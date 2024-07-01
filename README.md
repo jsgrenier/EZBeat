@@ -17,7 +17,7 @@ EZBeat is an application made in VB.Net, to stream and download music in multipl
 - Filter by track and artist
 
 ## Installation
-Download latest version
+[Download latest version](https://github.com/jsgrenier/EZBeat/releases/download/1.03/EZBeat_Setup-1.03.exe)
 
 ## Usage
 - Choose your download path
