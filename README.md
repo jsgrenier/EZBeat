@@ -9,7 +9,7 @@
 ## About the Project
 EZBeat is an application made in VB.Net, to stream and download music in multiple formats.
 
-![Project Screenshot](path/to/screenshot.png)
+![Project Screenshot](img1.png)
 
 ## Features
 - Stream music from popular platforms
