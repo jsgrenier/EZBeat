@@ -12,24 +12,24 @@ Public Class TrackResultControl
 
 
     Private Sub Guna2Panel1_MouseEnter(sender As Object, e As EventArgs) Handles Title.MouseEnter, ImgBox.MouseEnter, MainPanel.MouseEnter, Author.MouseEnter, PlayBtn.MouseEnter, DurationLbl.MouseEnter, DLBtn.MouseEnter, PB1.MouseEnter
-        MainPanel.FillColor = Color.FromArgb(39, 39, 39)
-        ImgBox.BackColor = Color.FromArgb(39, 39, 39)
-        Title.BackColor = Color.FromArgb(39, 39, 39)
-        Author.BackColor = Color.FromArgb(39, 39, 39)
-        DurationLbl.BackColor = Color.FromArgb(39, 39, 39)
+        MainPanel.FillColor = Color.FromArgb(45, 46, 49)
+        ImgBox.BackColor = Color.FromArgb(45, 46, 49)
+        Title.BackColor = Color.FromArgb(45, 46, 49)
+        Author.BackColor = Color.FromArgb(45, 46, 49)
+        DurationLbl.BackColor = Color.FromArgb(45, 46, 49)
         DLBtn.CustomImages.Image = My.Resources.icons8_download_24
-        PB1.BackColor = Color.FromArgb(39, 39, 39)
+        PB1.BackColor = Color.FromArgb(45, 46, 49)
     End Sub
 
     Private Sub Title_MouseClick(sender As Object, e As EventArgs) Handles Title.Click, ImgBox.Click, MainPanel.Click, Author.Click, PlayBtn.Click, DurationLbl.Click, DLBtn.Click, PB1.Click
 
-        MainPanel.FillColor = Color.FromArgb(39, 39, 39)
-        ImgBox.BackColor = Color.FromArgb(39, 39, 39)
-        Title.BackColor = Color.FromArgb(39, 39, 39)
-        Author.BackColor = Color.FromArgb(39, 39, 39)
-        DurationLbl.BackColor = Color.FromArgb(39, 39, 39)
+        MainPanel.FillColor = Color.FromArgb(45, 46, 49)
+        ImgBox.BackColor = Color.FromArgb(45, 46, 49)
+        Title.BackColor = Color.FromArgb(45, 46, 49)
+        Author.BackColor = Color.FromArgb(45, 46, 49)
+        DurationLbl.BackColor = Color.FromArgb(45, 46, 49)
         DLBtn.CustomImages.Image = My.Resources.icons8_download_24
-        PB1.BackColor = Color.FromArgb(39, 39, 39)
+        PB1.BackColor = Color.FromArgb(45, 46, 49)
 
     End Sub
 

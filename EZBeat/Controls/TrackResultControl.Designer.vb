@@ -40,7 +40,7 @@ Partial Class TrackResultControl
         '
         'MainPanel
         '
-        Me.MainPanel.BackColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(15, Byte), Integer), CType(CType(15, Byte), Integer))
+        Me.MainPanel.BackColor = System.Drawing.Color.FromArgb(CType(CType(30, Byte), Integer), CType(CType(31, Byte), Integer), CType(CType(34, Byte), Integer))
         Me.MainPanel.BorderRadius = 6
         Me.MainPanel.Controls.Add(Me.PB1)
         Me.MainPanel.Controls.Add(Me.DLBtn)
@@ -51,7 +51,7 @@ Partial Class TrackResultControl
         Me.MainPanel.Controls.Add(Me.Title)
         Me.MainPanel.Controls.Add(Me.ImgBox)
         Me.MainPanel.Cursor = System.Windows.Forms.Cursors.Default
-        Me.MainPanel.FillColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(15, Byte), Integer), CType(CType(15, Byte), Integer))
+        Me.MainPanel.FillColor = System.Drawing.Color.FromArgb(CType(CType(30, Byte), Integer), CType(CType(31, Byte), Integer), CType(CType(34, Byte), Integer))
         Me.MainPanel.Location = New System.Drawing.Point(0, 0)
         Me.MainPanel.Name = "MainPanel"
         Me.MainPanel.Size = New System.Drawing.Size(827, 60)
@@ -155,7 +155,7 @@ Partial Class TrackResultControl
         Me.Author.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Author.AutoSize = True
         Me.Author.Font = New System.Drawing.Font("Segoe UI", 10.25!)
-        Me.Author.ForeColor = System.Drawing.Color.FromArgb(CType(CType(165, Byte), Integer), CType(CType(165, Byte), Integer), CType(CType(165, Byte), Integer))
+        Me.Author.ForeColor = System.Drawing.Color.FromArgb(CType(CType(194, Byte), Integer), CType(CType(194, Byte), Integer), CType(CType(194, Byte), Integer))
         Me.Author.Location = New System.Drawing.Point(66, 29)
         Me.Author.MaximumSize = New System.Drawing.Size(500, 23)
         Me.Author.MinimumSize = New System.Drawing.Size(500, 23)
@@ -191,7 +191,7 @@ Partial Class TrackResultControl
         'TrackResultControl
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
-        Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(15, Byte), Integer), CType(CType(15, Byte), Integer))
+        Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(30, Byte), Integer), CType(CType(31, Byte), Integer), CType(CType(34, Byte), Integer))
         Me.Controls.Add(Me.MainPanel)
         Me.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Name = "TrackResultControl"

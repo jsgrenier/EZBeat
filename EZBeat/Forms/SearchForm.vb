@@ -323,13 +323,13 @@ Public Class SearchForm
         ' Check if the context menu is not open
         If Not Guna2ContextMenuStrip1.Visible Then
             Dim ctrl As TrackResultControl = DirectCast(sender, TrackResultControl)
-            ctrl.MainPanel.FillColor = Color.FromArgb(15, 15, 15)
-            ctrl.ImgBox.BackColor = Color.FromArgb(15, 15, 15)
-            ctrl.Title.BackColor = Color.FromArgb(15, 15, 15)
-            ctrl.Author.BackColor = Color.FromArgb(15, 15, 15)
-            ctrl.DurationLbl.BackColor = Color.FromArgb(15, 15, 15)
+            ctrl.MainPanel.FillColor = Color.FromArgb(30, 31, 34)
+            ctrl.ImgBox.BackColor = Color.FromArgb(30, 31, 34)
+            ctrl.Title.BackColor = Color.FromArgb(30, 31, 34)
+            ctrl.Author.BackColor = Color.FromArgb(30, 31, 34)
+            ctrl.DurationLbl.BackColor = Color.FromArgb(30, 31, 34)
             ctrl.DLBtn.CustomImages.Image = My.Resources.icons8_download_24_dark
-            ctrl.PB1.BackColor = Color.FromArgb(15, 15, 15)
+            ctrl.PB1.BackColor = Color.FromArgb(30, 31, 34)
         End If
     End Sub
 #End Region

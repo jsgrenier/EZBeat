@@ -50,7 +50,7 @@
     <OptionInfer>On</OptionInfer>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>imageico.ico</ApplicationIcon>
+    <ApplicationIcon>Resources\EZIco.ico</ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup>
     <ApplicationManifest>My Project\app.manifest</ApplicationManifest>
@@ -68,6 +68,12 @@
     <Reference Include="BetterFolderBrowser, Version=1.2.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\BetterFolderBrowser.1.2.0\lib\BetterFolderBrowser.dll</HintPath>
     </Reference>
+    <Reference Include="DevExpress.Data.Desktop.v23.2, Version=23.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Data.v23.2, Version=23.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Printing.v23.2.Core, Version=23.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Utils.v23.2, Version=23.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraBars.v23.2, Version=23.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraEditors.v23.2, Version=23.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="Guna.UI2, Version=2.0.4.4, Culture=neutral, PublicKeyToken=8b9d14aa5142e261, processorArchitecture=MSIL">
       <HintPath>..\packages\Guna.UI2.WinForms.2.0.4.4\lib\net472\Guna.UI2.dll</HintPath>
     </Reference>
@@ -374,9 +380,6 @@
     <None Include="Resources\iconSearch.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\icons8-youtube-24.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\icons8-soundcloud-24.png" />
   </ItemGroup>
   <ItemGroup>
@@ -417,22 +420,26 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="imageico.ico" />
+    <None Include="Resources\EZIco.ico" />
+    <None Include="Resources\EZLogo2.png" />
+    <None Include="Resources\Spin_1s_30px.gif" />
+    <None Include="Resources\icons8-youtube-24.png" />
+    <None Include="Resources\icons8-spotify-24.png" />
+    <None Include="Resources\icons8-spotify-24_gray.png" />
+    <None Include="Resources\icons8-youtube-24_red.png" />
+    <None Include="Resources\icons8-download-24_dark.png" />
     <None Include="Resources\TaskNext.ico" />
     <None Include="Resources\TaskPrev.ico" />
     <None Include="Resources\taskPlay.ico" />
     <None Include="Resources\TaskPause.ico" />
     <None Include="Resources\EZLogo.png" />
-    <None Include="Resources\icons8-spotify-24.png" />
     <None Include="Resources\icons8-error-50.png" />
     <None Include="Resources\icons8-mute-24_gray.png" />
     <None Include="Resources\icons8-mute-24.png" />
     <None Include="Resources\icons8-audio-24_gray.png" />
     <None Include="Resources\icons8-audio-24.png" />
-    <None Include="Resources\icons8-download-24_dark.png" />
     <None Include="Resources\icons8-download-24.png" />
-    <None Include="Resources\icons8-spotify-24_gray.png" />
     <None Include="Resources\icons8-youtube_24.png" />
-    <None Include="Resources\icons8-youtube-24_red.png" />
     <None Include="Resources\Spin-1s-30px.gif" />
     <None Include="Resources\icons8-play-50-dark.png" />
     <None Include="Resources\icons8-play-50.png" />

@@ -1,4 +1,8 @@
-﻿Imports Microsoft.WindowsAPICodePack.Taskbar
+﻿Imports DevExpress.Skins
+Imports DevExpress.Utils
+Imports DevExpress.XtraEditors
+Imports Microsoft.WindowsAPICodePack.Taskbar
+
 
 Public Class MainForm
     Public currentChildformMainPanel As Form
