@@ -506,8 +506,12 @@ Public Class SearchForm
                 End If
             Catch ex As OperationCanceledException
                 MsgBox(ex.ToString())
+            Catch ex As ArgumentOutOfRangeException
+                Console.WriteLine(ex.Message)
             Catch ex As Exception
                 Console.WriteLine(ex.Message)
+                MsgBox(ex.Message)
+
             End Try
         Next
     End Function

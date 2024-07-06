@@ -9,12 +9,12 @@ Public Class CustomTrackBar
     Private _value As Integer
     Private _maximum As Integer = 100
     Private _minimum As Integer = 0
-    Private _thumbColor As Color = Color.Red
-    Private _trackColor As Color = Color.FromArgb(156, 156, 156)
+    Private _thumbColor As Color = Color.FromArgb(29, 185, 84)
+    Private _trackColor As Color = Color.FromArgb(66, 68, 75)
     Private _thumbSize As Integer = 15
-    Private _filledColor As Color = Color.Red
+    Private _filledColor As Color = Color.FromArgb(51, 192, 101)
     Private _hoverPosition As Integer = -1
-    Private _hoverColor As Color = Color.FromArgb(196, 196, 196)
+    Private _hoverColor As Color = Color.FromArgb(78, 80, 89)
     Private _isHovering As Boolean = False
     Private _isDragging As Boolean = False
     Private _dragValue As Integer = 0
@@ -143,31 +143,68 @@ Public Class CustomTrackBar
         End If
     End Sub
 
+    Private Function CreateRoundedRectangle(rect As Rectangle, radius As Integer) As GraphicsPath
+        Dim path As New GraphicsPath()
+
+        path.AddArc(rect.X, rect.Y, radius, radius, 180, 90)
+        path.AddArc(rect.Right - radius, rect.Y, radius, radius, 270, 90)
+        path.AddArc(rect.Right - radius, rect.Bottom - radius, radius, radius, 0, 90)
+        path.AddArc(rect.X, rect.Bottom - radius, radius, radius, 90, 90)
+        path.CloseFigure()
+
+        Return path
+    End Function
+
+    Private Function CreateRightRoundedRectangle(rect As Rectangle, radius As Integer) As GraphicsPath
+        Dim path As New GraphicsPath()
+
+        path.AddLine(rect.X, rect.Y, rect.Right - radius, rect.Y)
+        path.AddArc(rect.Right - radius, rect.Y, radius, radius, 270, 90)
+        path.AddArc(rect.Right - radius, rect.Bottom - radius, radius, radius, 0, 90)
+        path.AddLine(rect.Right - radius, rect.Bottom, rect.X, rect.Bottom)
+        path.CloseFigure()
+
+        Return path
+    End Function
+
+
+
     Protected Overrides Sub OnPaint(e As PaintEventArgs)
         Dim g As Graphics = e.Graphics
         g.SmoothingMode = SmoothingMode.AntiAlias
         Dim trackWidth As Integer = Width - ThumbSize
-        Dim rect As New Rectangle(ThumbSize / 2, Height / 2 - 2, trackWidth, 4)
+        Dim rect As New Rectangle(ThumbSize / 2, (Height - 8) / 2, trackWidth, 8)
         Dim thumbRect As Rectangle
         If _isDragging Then
-            thumbRect = New Rectangle(Math.Min(Math.Max(_dragPosition - (ThumbSize / 2), 0), Width - ThumbSize), Height / 2 - ThumbSize / 2, ThumbSize, ThumbSize)
+            thumbRect = New Rectangle(Math.Min(Math.Max(_dragPosition - (ThumbSize / 2), 0), Width - ThumbSize), (Height - ThumbSize) / 2, ThumbSize, ThumbSize)
         Else
-            thumbRect = New Rectangle(Math.Min(Math.Max((Value / (_maximum - _minimum) * trackWidth), 0), trackWidth), Height / 2 - ThumbSize / 2, ThumbSize, ThumbSize)
+            thumbRect = New Rectangle(Math.Min(Math.Max((Value / (_maximum - _minimum) * trackWidth), 0), trackWidth), (Height - ThumbSize) / 2, ThumbSize, ThumbSize)
         End If
-        Dim filledRect As New Rectangle(ThumbSize / 2, Height / 2 - 2, thumbRect.X, 4)
-        Dim hoverRect As New Rectangle(thumbRect.Right, Height / 2 - 2, Math.Min(_hoverPosition - thumbRect.Right, trackWidth - thumbRect.Right + ThumbSize / 2), 4)
+        Dim filledRect As New Rectangle(ThumbSize / 2, (Height - 8) / 2, thumbRect.X, 8)
+        Dim hoverRect As New Rectangle(thumbRect.Right, (Height - 8) / 2, Math.Min(_hoverPosition - thumbRect.Right, trackWidth - thumbRect.Right + ThumbSize / 2), 8)
 
         Using b As New SolidBrush(_trackColor)
-            g.FillRectangle(b, rect)
+            Using path As GraphicsPath = CreateRoundedRectangle(rect, 8) ' Change the second parameter to adjust the border radius
+                g.FillPath(b, path)
+            End Using
         End Using
 
         Using b As New SolidBrush(FilledColor)
-            g.FillRectangle(b, filledRect)
+            Using path As GraphicsPath = CreateRoundedRectangle(filledRect, 8) ' Change the second parameter to adjust the border radius
+                If Value < 1 Then
+
+                Else
+                    g.FillPath(b, path)
+                End If
+
+            End Using
         End Using
 
         If _hoverPosition > thumbRect.Right Then
             Using b As New SolidBrush(HoverColor)
-                g.FillRectangle(b, hoverRect)
+                Using path As GraphicsPath = CreateRightRoundedRectangle(hoverRect, 8) ' Change the second parameter to adjust the border radius
+                    g.FillPath(b, path)
+                End Using
             End Using
         End If
 
@@ -177,6 +214,8 @@ Public Class CustomTrackBar
             End Using
         End If
     End Sub
+
+
 
     Protected Overrides Sub OnMouseLeave(e As EventArgs)
         _isHovering = False

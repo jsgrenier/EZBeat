@@ -415,6 +415,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="imageico.ico" />
+    <None Include="Resources\EZLogo.png" />
     <None Include="Resources\icons8-spotify-24.png" />
     <None Include="Resources\icons8-error-50.png" />
     <None Include="Resources\icons8-mute-24_gray.png" />

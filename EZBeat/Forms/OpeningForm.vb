@@ -39,10 +39,7 @@
         End If
     End Sub
 
-    Private Sub Guna2Button2_Click(sender As Object, e As EventArgs) Handles Guna2Button2.Click
-        Dim settings As New Settings()
-        settings.ShowDialog()
-    End Sub
+
 
     Private Sub Guna2TextBox1_Enter(sender As Object, e As EventArgs) Handles Guna2TextBox1.Enter
         MainForm.textboxFocused = True
@@ -50,5 +47,13 @@
 
     Private Sub Guna2TextBox1_Leave(sender As Object, e As EventArgs) Handles Guna2TextBox1.Leave
         MainForm.textboxFocused = False
+    End Sub
+
+    Private Sub Guna2Button2_MouseClick(sender As Object, e As MouseEventArgs) Handles Guna2Button2.MouseClick
+        If e.Button = MouseButtons.Left Then
+            Dim settings As New Settings()
+            settings.ShowDialog()
+        End If
+
     End Sub
 End Class

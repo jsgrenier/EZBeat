@@ -97,9 +97,9 @@ Partial Class OpeningForm
         Me.Label2.ForeColor = System.Drawing.Color.FromArgb(CType(CType(154, Byte), Integer), CType(CType(160, Byte), Integer), CType(CType(166, Byte), Integer))
         Me.Label2.Location = New System.Drawing.Point(25, 15)
         Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(59, 20)
+        Me.Label2.Size = New System.Drawing.Size(91, 20)
         Me.Label2.TabIndex = 0
-        Me.Label2.Text = "Canada"
+        Me.Label2.Text = "Version 1.0.4"
         '
         'MainMenu
         '
@@ -191,10 +191,10 @@ Partial Class OpeningForm
         '
         'PictureBox1
         '
-        Me.PictureBox1.Image = Global.EZBeat.My.Resources.Resources.testlogo
-        Me.PictureBox1.Location = New System.Drawing.Point(205, 59)
+        Me.PictureBox1.Image = Global.EZBeat.My.Resources.Resources.EZLogo
+        Me.PictureBox1.Location = New System.Drawing.Point(206, 57)
         Me.PictureBox1.Name = "PictureBox1"
-        Me.PictureBox1.Size = New System.Drawing.Size(243, 50)
+        Me.PictureBox1.Size = New System.Drawing.Size(241, 50)
         Me.PictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage
         Me.PictureBox1.TabIndex = 5
         Me.PictureBox1.TabStop = False

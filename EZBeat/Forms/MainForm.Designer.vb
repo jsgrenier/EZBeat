@@ -36,7 +36,7 @@ Partial Class MainForm
         Me.Label1 = New System.Windows.Forms.Label()
         Me.PlayBtn = New Guna.UI2.WinForms.Guna2Button()
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
-        Me.TBVolume = New EZBeat.CustomTrackBar()
+        Me.TBVolume = New EZBeat.VolumeTrackBar()
         Me.TBDuration = New EZBeat.CustomTrackBar()
         Me.Panel1.SuspendLayout()
         CType(Me.Guna2PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -217,8 +217,8 @@ Partial Class MainForm
         'TBVolume
         '
         Me.TBVolume.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.TBVolume.FilledColor = System.Drawing.Color.Red
-        Me.TBVolume.HoverColor = System.Drawing.Color.FromArgb(CType(CType(156, Byte), Integer), CType(CType(156, Byte), Integer), CType(CType(156, Byte), Integer))
+        Me.TBVolume.FilledColor = System.Drawing.Color.FromArgb(CType(CType(51, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(101, Byte), Integer))
+        Me.TBVolume.HoverColor = System.Drawing.Color.FromArgb(CType(CType(66, Byte), Integer), CType(CType(68, Byte), Integer), CType(CType(75, Byte), Integer))
         Me.TBVolume.Location = New System.Drawing.Point(905, 56)
         Me.TBVolume.Maximum = 100
         Me.TBVolume.Minimum = 0
@@ -226,17 +226,17 @@ Partial Class MainForm
         Me.TBVolume.Size = New System.Drawing.Size(115, 23)
         Me.TBVolume.TabIndex = 16
         Me.TBVolume.Text = "CustomTrackBar1"
-        Me.TBVolume.ThumbColor = System.Drawing.Color.Red
+        Me.TBVolume.ThumbColor = System.Drawing.Color.FromArgb(CType(CType(29, Byte), Integer), CType(CType(185, Byte), Integer), CType(CType(84, Byte), Integer))
         Me.TBVolume.ThumbSize = 15
-        Me.TBVolume.TrackColor = System.Drawing.Color.FromArgb(CType(CType(156, Byte), Integer), CType(CType(156, Byte), Integer), CType(CType(156, Byte), Integer))
+        Me.TBVolume.TrackColor = System.Drawing.Color.FromArgb(CType(CType(66, Byte), Integer), CType(CType(68, Byte), Integer), CType(CType(75, Byte), Integer))
         Me.TBVolume.Value = 50
         '
         'TBDuration
         '
         Me.TBDuration.Anchor = System.Windows.Forms.AnchorStyles.Top
         Me.TBDuration.Cursor = System.Windows.Forms.Cursors.Default
-        Me.TBDuration.FilledColor = System.Drawing.Color.Red
-        Me.TBDuration.HoverColor = System.Drawing.Color.FromArgb(CType(CType(196, Byte), Integer), CType(CType(196, Byte), Integer), CType(CType(196, Byte), Integer))
+        Me.TBDuration.FilledColor = System.Drawing.Color.FromArgb(CType(CType(51, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(101, Byte), Integer))
+        Me.TBDuration.HoverColor = System.Drawing.Color.FromArgb(CType(CType(78, Byte), Integer), CType(CType(80, Byte), Integer), CType(CType(89, Byte), Integer))
         Me.TBDuration.Location = New System.Drawing.Point(212, 57)
         Me.TBDuration.Maximum = 100
         Me.TBDuration.Minimum = 0
@@ -244,9 +244,9 @@ Partial Class MainForm
         Me.TBDuration.Size = New System.Drawing.Size(640, 23)
         Me.TBDuration.TabIndex = 13
         Me.TBDuration.Text = "CustomTrackBar1"
-        Me.TBDuration.ThumbColor = System.Drawing.Color.Red
+        Me.TBDuration.ThumbColor = System.Drawing.Color.FromArgb(CType(CType(29, Byte), Integer), CType(CType(185, Byte), Integer), CType(CType(84, Byte), Integer))
         Me.TBDuration.ThumbSize = 15
-        Me.TBDuration.TrackColor = System.Drawing.Color.FromArgb(CType(CType(156, Byte), Integer), CType(CType(156, Byte), Integer), CType(CType(156, Byte), Integer))
+        Me.TBDuration.TrackColor = System.Drawing.Color.FromArgb(CType(CType(66, Byte), Integer), CType(CType(68, Byte), Integer), CType(CType(75, Byte), Integer))
         Me.TBDuration.Value = 30
         '
         'MainForm
@@ -281,7 +281,7 @@ Partial Class MainForm
     Friend WithEvents Title As Label
     Friend WithEvents Thumbnail As Guna.UI2.WinForms.Guna2PictureBox
     Friend WithEvents TBDuration As CustomTrackBar
-    Friend WithEvents TBVolume As CustomTrackBar
+    Friend WithEvents TBVolume As VolumeTrackBar
     Friend WithEvents MuteBtn As Guna.UI2.WinForms.Guna2Button
     Friend WithEvents Guna2PictureBox1 As Guna.UI2.WinForms.Guna2PictureBox
     Friend WithEvents Author As Label
