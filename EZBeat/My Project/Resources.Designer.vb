@@ -421,6 +421,46 @@ Namespace My.Resources
         End Property
         
         '''<summary>
+        '''  Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
+        '''</summary>
+        Friend ReadOnly Property TaskNext() As System.Drawing.Icon
+            Get
+                Dim obj As Object = ResourceManager.GetObject("TaskNext", resourceCulture)
+                Return CType(obj,System.Drawing.Icon)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
+        '''</summary>
+        Friend ReadOnly Property TaskPause() As System.Drawing.Icon
+            Get
+                Dim obj As Object = ResourceManager.GetObject("TaskPause", resourceCulture)
+                Return CType(obj,System.Drawing.Icon)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
+        '''</summary>
+        Friend ReadOnly Property taskPlay() As System.Drawing.Icon
+            Get
+                Dim obj As Object = ResourceManager.GetObject("taskPlay", resourceCulture)
+                Return CType(obj,System.Drawing.Icon)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
+        '''</summary>
+        Friend ReadOnly Property TaskPrev() As System.Drawing.Icon
+            Get
+                Dim obj As Object = ResourceManager.GetObject("TaskPrev", resourceCulture)
+                Return CType(obj,System.Drawing.Icon)
+            End Get
+        End Property
+        
+        '''<summary>
         '''  Looks up a localized resource of type System.Drawing.Bitmap.
         '''</summary>
         Friend ReadOnly Property testlogo() As System.Drawing.Bitmap

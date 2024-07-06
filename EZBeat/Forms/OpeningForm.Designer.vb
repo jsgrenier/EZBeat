@@ -99,7 +99,7 @@ Partial Class OpeningForm
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(91, 20)
         Me.Label2.TabIndex = 0
-        Me.Label2.Text = "Version 1.0.4"
+        Me.Label2.Text = "Version 1.0.5"
         '
         'MainMenu
         '

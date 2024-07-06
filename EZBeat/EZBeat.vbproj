@@ -126,6 +126,7 @@
     <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.13.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
+    <Reference Include="PresentationCore" />
     <Reference Include="SoundCloudExplode, Version=1.6.3.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\SoundCloudExplode.1.6.3\lib\net461\SoundCloudExplode.dll</HintPath>
     </Reference>
@@ -227,6 +228,7 @@
     <Reference Include="taglib-sharp, Version=2.1.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\taglib-sharp-netstandard2.0.2.1.0\lib\netstandard2.0\taglib-sharp.dll</HintPath>
     </Reference>
+    <Reference Include="WindowsBase" />
     <Reference Include="WindowsFormsIntegration, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\WindowsAPICodePack.8.0.4\lib\net472\WindowsFormsIntegration.dll</HintPath>
     </Reference>
@@ -415,6 +417,10 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="imageico.ico" />
+    <None Include="Resources\TaskNext.ico" />
+    <None Include="Resources\TaskPrev.ico" />
+    <None Include="Resources\taskPlay.ico" />
+    <None Include="Resources\TaskPause.ico" />
     <None Include="Resources\EZLogo.png" />
     <None Include="Resources\icons8-spotify-24.png" />
     <None Include="Resources\icons8-error-50.png" />

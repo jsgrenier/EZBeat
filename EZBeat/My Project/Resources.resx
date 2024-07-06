@@ -223,6 +223,18 @@
   <data name="Spin_1s_30px" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Spin-1s-30px.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="TaskNext" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\TaskNext.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="TaskPause" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\TaskPause.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="taskPlay" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\taskPlay.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="TaskPrev" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\TaskPrev.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="testlogo" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\testlogo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>

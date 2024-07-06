@@ -1,4 +1,6 @@
-﻿Public Class MainForm
+﻿Imports Microsoft.WindowsAPICodePack.Taskbar
+
+Public Class MainForm
     Public currentChildformMainPanel As Form
     Public SearchEngine As String
     Public SearchQuery As String = String.Empty
@@ -16,6 +18,10 @@
         End Get
     End Property
     Public FileSaveExist As Boolean
+
+    Public btnPrevious As New ThumbnailToolBarButton(My.Resources.TaskPrev, "Previous")
+    Public btnPlayPause As New ThumbnailToolBarButton(My.Resources.taskPlay, "Play/Pause")
+    Public btnNext As New ThumbnailToolBarButton(My.Resources.TaskNext, "Next")
 
     Private Sub MainForm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         OpenChildFormContentPanel(New OpeningForm)
@@ -37,6 +43,56 @@
         Dim volume As Single = TBVolume.Value
         ' Set the volume of the audio player
         player2.audioplayer.settings.volume = volume
+        ' Create the buttons
+
+
+        ' Add event handlers for the buttons
+        AddHandler btnPrevious.Click, AddressOf BtnPrevious_Click
+        AddHandler btnPlayPause.Click, AddressOf BtnPlayPause_Click
+        AddHandler btnNext.Click, AddressOf BtnNext_Click
+
+        ' Add the buttons to the taskbar
+        TaskbarManager.Instance.ThumbnailToolBars.AddButtons(Me.Handle, btnPrevious, btnPlayPause, btnNext)
+
+
+
+    End Sub
+
+    Private Sub BtnPrevious_Click(sender As Object, e As ThumbnailButtonClickedEventArgs)
+        ' Handle the Previous button click event
+        If textboxFocused = False And Panel1.Visible = True Then
+            If player2.audioplayer.controls.currentPosition - 1 >= 0 Then
+                player2.audioplayer.controls.currentPosition -= 1
+            End If
+            TBDuration.Value = player2.audioplayer.controls.currentPosition
+        End If
+    End Sub
+
+    Private Sub BtnPlayPause_Click(sender As Object, e As ThumbnailButtonClickedEventArgs)
+        ' Handle the Play/Pause button click event
+        If textboxFocused = False And Panel1.Visible = True Then
+            If player2.audioplayer.playState = WMPLib.WMPPlayState.wmppsPaused Or player2.audioplayer.playState = WMPLib.WMPPlayState.wmppsStopped Then
+                player2.audioplayer.controls.play()
+                PauseBtn.Visible = True
+                PlayBtn.Visible = False
+                btnPlayPause.Icon = My.Resources.TaskPause
+            ElseIf player2.audioplayer.playState = WMPLib.WMPPlayState.wmppsPlaying Then
+                player2.audioplayer.controls.pause()
+                PauseBtn.Visible = False
+                PlayBtn.Visible = True
+                btnPlayPause.Icon = My.Resources.taskPlay
+            End If
+        End If
+    End Sub
+
+    Private Sub BtnNext_Click(sender As Object, e As ThumbnailButtonClickedEventArgs)
+        ' Handle the Next button click event
+        If textboxFocused = False And Panel1.Visible = True Then
+            If player2.audioplayer.controls.currentPosition + 1 <= player2.audioplayer.currentMedia.duration Then
+                player2.audioplayer.controls.currentPosition += 1
+            End If
+            TBDuration.Value = player2.audioplayer.controls.currentPosition
+        End If
     End Sub
 
     Private Sub Player2_PositionChange(sender As Object, e As PositionChangedEventArgs) Handles player2.PositionChange
@@ -50,6 +106,7 @@
         If TBDuration.Value = totalSeconds - 2 Then
             PauseBtn.Visible = False
             PlayBtn.Visible = True
+            btnPlayPause.Icon = My.Resources.taskPlay
             player2.audioplayer.controls.stop()
             TBDuration.Value = 0
         Else
@@ -110,6 +167,7 @@
         'ACTION
         PauseBtn.Visible = False
         PlayBtn.Visible = True
+        btnPlayPause.Icon = My.Resources.taskPlay
     End Sub
 
     Private Sub btnResume_Click(sender As Object, e As EventArgs) Handles PlayBtn.Click
@@ -117,6 +175,7 @@
         'ACTION
         PlayBtn.Visible = False
         PauseBtn.Visible = True
+        btnPlayPause.Icon = My.Resources.TaskPause
     End Sub
 
 
@@ -161,11 +220,13 @@
                         player2.audioplayer.controls.play()
                         PauseBtn.Visible = True
                         PlayBtn.Visible = False
+                        btnPlayPause.Icon = My.Resources.TaskPause
                         Return True
                     ElseIf player2.audioplayer.playState = WMPLib.WMPPlayState.wmppsPlaying Then
                         player2.audioplayer.controls.pause()
                         PauseBtn.Visible = False
                         PlayBtn.Visible = True
+                        btnPlayPause.Icon = My.Resources.taskPlay
                         Return True
                     End If
                 End If
@@ -223,5 +284,8 @@
             textboxFocused = False
         End If
     End Sub
+    Private Sub MainForm_SizeChanged(sender As Object, e As EventArgs) Handles MyBase.SizeChanged
+        Console.WriteLine("X: " & Me.Width & "Y: " & Me.Height)
 
+    End Sub
 End Class

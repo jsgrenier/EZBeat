@@ -138,6 +138,7 @@ Public Class WAudioPlayer
                 MainForm.Guna2PictureBox1.Visible = False
                 MainForm.PlayBtn.Visible = False
                 MainForm.PauseBtn.Visible = True
+                MainForm.btnPlayPause.Icon = My.Resources.TaskPause
             Case WMPPlayState.wmppsStopped Or WMPPlayState.wmppsPaused
                 positionTimer.Stop()
 

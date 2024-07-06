@@ -19,6 +19,7 @@ Imports System.Threading
 Imports SpotifyExplode.Albums
 Imports YoutubeExplode.Common
 Imports YoutubeExplode
+Imports Microsoft.WindowsAPICodePack.Taskbar
 
 Public Class SearchForm
 
@@ -278,15 +279,16 @@ Public Class SearchForm
                 'Console.WriteLine(Await SpotifyDL(title, author, cts.Token))
             End If
 
-
             Dim ytdl = New YoutubeDL()
             ytdl.YoutubeDLPath = "yt-dlp.exe"
             'ytdl.FFmpegPath = "ffmpeg.exe"
             ytdl.OutputFolder = My.Settings.SaveLocation
-
             PB1.Visible = True
+            TaskbarManager.Instance.SetProgressState(TaskbarProgressBarState.Normal)
+
             Dim progressHandler = New Progress(Of DownloadProgress)(Sub(p)
                                                                         PB1.Value = CInt(p.Progress * 100)
+                                                                        TaskbarManager.Instance.SetProgressValue(CInt(p.Progress * 100), 100)
                                                                         Select Case p.State
                                                                             Case 1
                                                                             'Status.Text = "Requesting download..."
@@ -300,9 +302,6 @@ Public Class SearchForm
                                                                         'Status.Text = p.State '$"Downloading... {p.Progress * 100}%"
                                                                     End Sub)
 
-
-
-
             ' Pass the progress handler to the RunAudioDownload method
             Select Case My.Settings.AudioFormat
                 Case "WAV"
@@ -315,11 +314,11 @@ Public Class SearchForm
 
             PB1.Visible = False
             SuccessImg.Visible = True
+            TaskbarManager.Instance.SetProgressState(TaskbarProgressBarState.NoProgress)
         Catch ex As Exception
-
+            TaskbarManager.Instance.SetProgressState(TaskbarProgressBarState.Error)
         End Try
     End Sub
-
     Private Sub Ctrl_MouseLeftControl(sender As Object, e As EventArgs)
         ' Check if the context menu is not open
         If Not Guna2ContextMenuStrip1.Visible Then
@@ -609,30 +608,29 @@ Public Class SearchForm
                     url = parentControl.URI
                 End If
 
-
                 Dim ytdl = New YoutubeDL()
                 ytdl.YoutubeDLPath = "yt-dlp.exe"
                 'ytdl.FFmpegPath = "ffmpeg.exe"
                 ytdl.OutputFolder = My.Settings.SaveLocation
 
                 parentControl.PB1.Visible = True
+                TaskbarManager.Instance.SetProgressState(TaskbarProgressBarState.Normal)
+
                 Dim progressHandler = New Progress(Of DownloadProgress)(Sub(p)
                                                                             parentControl.PB1.Value = CInt(p.Progress * 100)
+                                                                            TaskbarManager.Instance.SetProgressValue(CInt(p.Progress * 100), 100)
                                                                             Select Case p.State
                                                                                 Case 1
-                                                                            'Status.Text = "Requesting download..."
+                                                                                'Status.Text = "Requesting download..."
                                                                                 Case 2
-                                                                            'Status.Text = "Downloading..."
+                                                                                'Status.Text = "Downloading..."
                                                                                 Case 3
-                                                                            'Status.Text = "Finalizing..."
+                                                                                'Status.Text = "Finalizing..."
                                                                                 Case 5
                                                                                     'Status.Text = ""
                                                                             End Select
                                                                             'Status.Text = p.State '$"Downloading... {p.Progress * 100}%"
                                                                         End Sub)
-
-
-
 
                 ' Pass the progress handler to the RunAudioDownload method
                 Select Case My.Settings.AudioFormat
@@ -646,8 +644,9 @@ Public Class SearchForm
 
                 parentControl.PB1.Visible = False
                 parentControl.SuccessImg.Visible = True
+                TaskbarManager.Instance.SetProgressState(TaskbarProgressBarState.NoProgress)
             Catch ex As Exception
-
+                TaskbarManager.Instance.SetProgressState(TaskbarProgressBarState.Error)
             End Try
         End If
     End Sub
