@@ -258,7 +258,6 @@ Public Class SearchForm
                 MsgBox(ex.ToString())
                 Return Nothing
             Catch ex As Exception
-                'Console.WriteLine(ex)
                 Return Nothing
             End Try
         Next
@@ -272,16 +271,12 @@ Public Class SearchForm
         Download.Visible = False
         Try
             If MainForm.SearchEngine = "Spotify" Then
-                'Dim spotify = New SpotifyClient()
-                'Dim youtubeid = Await spotify.Tracks.GetYoutubeIdAsync(id) 'spotify.Tracks.GetYoutubeIdAsync(id)
-                'Dim youtube = New YoutubeClient()
                 url = Await Spotify2Youtube(title & " ", author, cts.Token)
-                'Console.WriteLine(Await SpotifyDL(title, author, cts.Token))
             End If
 
             Dim ytdl = New YoutubeDL()
             ytdl.YoutubeDLPath = "yt-dlp.exe"
-            'ytdl.FFmpegPath = "ffmpeg.exe"
+            ytdl.FFmpegPath = "ffmpeg.exe"
             ytdl.OutputFolder = My.Settings.SaveLocation
             PB1.Visible = True
             TaskbarManager.Instance.SetProgressState(TaskbarProgressBarState.Normal)
@@ -420,7 +415,6 @@ Public Class SearchForm
                 FlowLayoutPanel1.Controls.Add(lbl)
                 DotScaling1.Visible = False
                 lbl.Text = ex.Message
-                'Console.WriteLine(ex)
             End Try
         Next
     End Function
@@ -445,7 +439,6 @@ Public Class SearchForm
                     Dim author = If(track.User.Username, String.Empty)
                     Dim Url = If(track.Url, String.Empty)
                     Dim duration As String = If(track.Duration, String.Empty)
-                    'Console.WriteLine(title)
                     Dim Ctrl As New TrackResultControl()
                     Ctrl.URI = If(track.Url, String.Empty)
                     AddHandler Ctrl.MouseDown, AddressOf Ctrl_MouseDown
@@ -487,18 +480,15 @@ Public Class SearchForm
                             Else
                                 resultstr = timeSpan.ToString().Remove(0, 1)
                             End If
-                            'resultstr = String.Format("{0}:{1:D2}:{2:D2}", timeSpan.Hours, timeSpan.Minutes, timeSpan.Seconds)
                         Else
-                            If timeSpan.Minutes >= 10 Then '00:00:00
+                            If timeSpan.Minutes >= 10 Then
                                 resultstr = timeSpan.ToString().Remove(0, 3)
                             Else
                                 resultstr = timeSpan.ToString().Remove(0, 4)
                             End If
 
-                            'resultstr = String.Format("{0}:{1:D2}", timeSpan.Minutes, timeSpan.Seconds)
-                        End If
 
-                        'Ctrl.DurationLbl.Text = resultstr 'Math.Round(CDec(dr), 0)
+                        End If
                         Ctrl.DurationLbl.Text = resultstr
                     End If
 
@@ -540,7 +530,7 @@ Public Class SearchForm
                         AddHandler ctrl.PlayBtn.MouseDown, AddressOf Ctrl_PlayBtn_MouseDown
                         AddHandler ctrl.MouseLeftControl, AddressOf Ctrl_MouseLeftControl
                         AddHandler ctrl.DLBtn.MouseDown, AddressOf Ctrl_DL_MouseDown
-                        If CBBox1.SelectedIndex = 1 Then 'If Guna2CheckBox1.Checked = True Then
+                        If CBBox1.SelectedIndex = 1 Then
                             Dim artistMatch As Boolean = False
                             For Each artist In artists
                                 If String.Equals(artist.Name, query, StringComparison.OrdinalIgnoreCase) Then
@@ -610,7 +600,7 @@ Public Class SearchForm
 
                 Dim ytdl = New YoutubeDL()
                 ytdl.YoutubeDLPath = "yt-dlp.exe"
-                'ytdl.FFmpegPath = "ffmpeg.exe"
+                ytdl.FFmpegPath = "ffmpeg.exe"
                 ytdl.OutputFolder = My.Settings.SaveLocation
 
                 parentControl.PB1.Visible = True

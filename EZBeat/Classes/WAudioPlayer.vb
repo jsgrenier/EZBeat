@@ -20,7 +20,7 @@ Public Class WAudioPlayer
     Private WithEvents positionTimer As Timer = New Timer()
 
     Public Sub New()
-        positionTimer.Interval = 1000 ' Check position every second
+        positionTimer.Interval = 1000 'Check position every second
 
     End Sub
 
@@ -96,18 +96,14 @@ Public Class WAudioPlayer
             End If
 
             Dim spotify = New SpotifyToYoutube()
-            Dim youtubeid = Await spotify.GetUrl(title & " ", author) 'spotify.Tracks.GetYoutubeIdAsync(songUrl)
+            Dim youtubeid = Await spotify.GetUrl(title & " ", author)
             Dim youtube = New YoutubeClient()
             Dim streamManifest = Await youtube.Videos.Streams.GetManifestAsync(youtubeid)
 
-            'Play between the two one is audio only and the other is video included
-            'Dim streamInfo = streamManifest.GetAudioOnlyStreams.GetWithHighestBitrate
 
             Dim streamInfo = streamManifest.GetMuxedStreams().GetWithHighestVideoQuality
 
 
-            'Dim track = Await spotify.Tracks.GetAsync(songUrl)
-            'Dim VideoToPlay = Await spotify.Tracks.GetSpotifyDownloaderUrlAsync(songUrl)
 
             If streamInfo IsNot Nothing Then
                 PlayFile(streamInfo.Url)
@@ -119,7 +115,6 @@ Public Class WAudioPlayer
             mss.Style = Guna.UI2.WinForms.MessageDialogStyle.Dark
             mss.Buttons = Guna.UI2.WinForms.MessageDialogButtons.OK
             mss.Show()
-            'MsgBox("Video is unplayable")
         Catch ex As Exception
             Dim mss As New Guna.UI2.WinForms.Guna2MessageDialog()
             mss.Text = vbNewLine & ex.ToString()

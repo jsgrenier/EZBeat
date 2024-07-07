@@ -18,7 +18,6 @@ Public Class SpotifyToYoutube
                 MsgBox(ex.ToString())
                 Return Nothing
             Catch ex As Exception
-                'Console.WriteLine(ex)
                 Return Nothing
             End Try
         Next
@@ -43,7 +42,6 @@ Public Class SpotifyToYoutube
                 MsgBox(ex.ToString())
                 Return Nothing
             Catch ex As Exception
-                'Console.WriteLine(ex)
                 Return Nothing
             End Try
         Next

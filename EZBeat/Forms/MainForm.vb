@@ -156,7 +156,6 @@ Public Class MainForm
         If player2 IsNot Nothing Then
             player2.audioplayer.controls.currentPosition = TBDuration.Value
         End If
-        'player.SetPosition(TBDuration.Value)
     End Sub
 
     Private Sub TBVolume_Scroll(sender As Object, e As EventArgs) Handles TBVolume.Scroll
@@ -207,10 +206,8 @@ Public Class MainForm
         If Title.Size.Height = 20 Then
             Author.Visible = True
             Author.Location = New Point(89, 36)
-            'Description.Location = New Point(370, 52)
         Else
             Author.Visible = False
-            'Description.Location = New Point(370, 75)
         End If
     End Sub
 
@@ -287,9 +284,5 @@ Public Class MainForm
             Panel1.Focus()
             textboxFocused = False
         End If
-    End Sub
-    Private Sub MainForm_SizeChanged(sender As Object, e As EventArgs) Handles MyBase.SizeChanged
-        Console.WriteLine("X: " & Me.Width & "Y: " & Me.Height)
-
     End Sub
 End Class
