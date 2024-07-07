@@ -226,13 +226,13 @@ Public Class SearchForm
         ' Check if the mouse is not over any of the controls in the FlowLayoutPanel
         For Each ctrl As TrackResultControl In FlowLayoutPanel1.Controls
             If Not ctrl.ClientRectangle.Contains(ctrl.PointToClient(Control.MousePosition)) Then
-                ctrl.MainPanel.FillColor = Color.FromArgb(15, 15, 15)
-                ctrl.ImgBox.BackColor = Color.FromArgb(15, 15, 15)
-                ctrl.Title.BackColor = Color.FromArgb(15, 15, 15)
-                ctrl.Author.BackColor = Color.FromArgb(15, 15, 15)
-                ctrl.DurationLbl.BackColor = Color.FromArgb(15, 15, 15)
+                ctrl.MainPanel.FillColor = Color.FromArgb(30, 31, 34)
+                ctrl.ImgBox.BackColor = Color.FromArgb(30, 31, 34)
+                ctrl.Title.BackColor = Color.FromArgb(30, 31, 34)
+                ctrl.Author.BackColor = Color.FromArgb(30, 31, 34)
+                ctrl.DurationLbl.BackColor = Color.FromArgb(30, 31, 34)
                 ctrl.DLBtn.CustomImages.Image = My.Resources.icons8_download_24_dark
-                ctrl.PB1.BackColor = Color.FromArgb(15, 15, 15)
+                ctrl.PB1.BackColor = Color.FromArgb(30, 31, 34)
             End If
         Next
 
