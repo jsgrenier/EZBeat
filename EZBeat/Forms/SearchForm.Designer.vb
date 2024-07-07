@@ -27,9 +27,7 @@ Partial Class SearchForm
         Me.CBBox2 = New Guna.UI2.WinForms.Guna2ComboBox()
         Me.CBBox1 = New Guna.UI2.WinForms.Guna2ComboBox()
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
-        Me.Guna2Button3 = New Guna.UI2.WinForms.Guna2Button()
         Me.Guna2Button2 = New Guna.UI2.WinForms.Guna2Button()
-        Me.SearchMenu1 = New EZBeat.SearchMenu()
         Me.Guna2TextBox1 = New Guna.UI2.WinForms.Guna2TextBox()
         Me.Panel1 = New System.Windows.Forms.Panel()
         Me.FlowLayoutPanel1 = New System.Windows.Forms.FlowLayoutPanel()
@@ -42,6 +40,7 @@ Partial Class SearchForm
         Me.Guna2ContextMenuStrip1 = New Guna.UI2.WinForms.Guna2ContextMenuStrip()
         Me.PlayToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.DownloadToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.SearchMenu1 = New EZBeat.SearchMenu()
         Me.Guna2Panel1.SuspendLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.DownloadLink.SuspendLayout()
@@ -54,7 +53,6 @@ Partial Class SearchForm
         Me.Guna2Panel1.Controls.Add(Me.CBBox2)
         Me.Guna2Panel1.Controls.Add(Me.CBBox1)
         Me.Guna2Panel1.Controls.Add(Me.PictureBox1)
-        Me.Guna2Panel1.Controls.Add(Me.Guna2Button3)
         Me.Guna2Panel1.Controls.Add(Me.Guna2Button2)
         Me.Guna2Panel1.Controls.Add(Me.SearchMenu1)
         Me.Guna2Panel1.Controls.Add(Me.Guna2TextBox1)
@@ -128,33 +126,6 @@ Partial Class SearchForm
         Me.PictureBox1.TabIndex = 6
         Me.PictureBox1.TabStop = False
         '
-        'Guna2Button3
-        '
-        Me.Guna2Button3.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.Guna2Button3.AutoRoundedCorners = True
-        Me.Guna2Button3.BorderColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(15, Byte), Integer), CType(CType(15, Byte), Integer))
-        Me.Guna2Button3.BorderRadius = 24
-        Me.Guna2Button3.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.Guna2Button3.CustomImages.Image = Global.EZBeat.My.Resources.Resources.icons8_download_30
-        Me.Guna2Button3.CustomImages.ImageAlign = System.Windows.Forms.HorizontalAlignment.Center
-        Me.Guna2Button3.CustomImages.ImageOffset = New System.Drawing.Point(0, -5)
-        Me.Guna2Button3.CustomImages.ImageSize = New System.Drawing.Size(30, 30)
-        Me.Guna2Button3.DisabledState.BorderColor = System.Drawing.Color.DarkGray
-        Me.Guna2Button3.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray
-        Me.Guna2Button3.DisabledState.FillColor = System.Drawing.Color.FromArgb(CType(CType(169, Byte), Integer), CType(CType(169, Byte), Integer), CType(CType(169, Byte), Integer))
-        Me.Guna2Button3.DisabledState.ForeColor = System.Drawing.Color.FromArgb(CType(CType(141, Byte), Integer), CType(CType(141, Byte), Integer), CType(CType(141, Byte), Integer))
-        Me.Guna2Button3.FillColor = System.Drawing.Color.FromArgb(CType(CType(30, Byte), Integer), CType(CType(31, Byte), Integer), CType(CType(34, Byte), Integer))
-        Me.Guna2Button3.Font = New System.Drawing.Font("Segoe UI", 9.0!)
-        Me.Guna2Button3.ForeColor = System.Drawing.Color.White
-        Me.Guna2Button3.HoverState.FillColor = System.Drawing.Color.FromArgb(CType(CType(26, Byte), Integer), CType(CType(26, Byte), Integer), CType(CType(26, Byte), Integer))
-        Me.Guna2Button3.Location = New System.Drawing.Point(998, 77)
-        Me.Guna2Button3.Name = "Guna2Button3"
-        Me.Guna2Button3.PressedColor = System.Drawing.Color.FromArgb(CType(CType(96, Byte), Integer), CType(CType(99, Byte), Integer), CType(CType(104, Byte), Integer))
-        Me.Guna2Button3.PressedDepth = 0
-        Me.Guna2Button3.Size = New System.Drawing.Size(50, 50)
-        Me.Guna2Button3.TabIndex = 5
-        Me.Guna2Button3.Visible = False
-        '
         'Guna2Button2
         '
         Me.Guna2Button2.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
@@ -180,15 +151,6 @@ Partial Class SearchForm
         Me.Guna2Button2.PressedDepth = 0
         Me.Guna2Button2.Size = New System.Drawing.Size(50, 50)
         Me.Guna2Button2.TabIndex = 4
-        '
-        'SearchMenu1
-        '
-        Me.SearchMenu1.BackColor = System.Drawing.Color.FromArgb(CType(CType(30, Byte), Integer), CType(CType(31, Byte), Integer), CType(CType(34, Byte), Integer))
-        Me.SearchMenu1.Location = New System.Drawing.Point(200, 92)
-        Me.SearchMenu1.Name = "SearchMenu1"
-        Me.SearchMenu1.SelectedButton = EZBeat.SearchMenu.ButtonSelection.None
-        Me.SearchMenu1.Size = New System.Drawing.Size(400, 40)
-        Me.SearchMenu1.TabIndex = 3
         '
         'Guna2TextBox1
         '
@@ -396,6 +358,15 @@ Partial Class SearchForm
         Me.DownloadToolStripMenuItem.Size = New System.Drawing.Size(180, 34)
         Me.DownloadToolStripMenuItem.Text = "Download"
         '
+        'SearchMenu1
+        '
+        Me.SearchMenu1.BackColor = System.Drawing.Color.FromArgb(CType(CType(30, Byte), Integer), CType(CType(31, Byte), Integer), CType(CType(34, Byte), Integer))
+        Me.SearchMenu1.Location = New System.Drawing.Point(200, 92)
+        Me.SearchMenu1.Name = "SearchMenu1"
+        Me.SearchMenu1.SelectedButton = EZBeat.SearchMenu.ButtonSelection.None
+        Me.SearchMenu1.Size = New System.Drawing.Size(400, 40)
+        Me.SearchMenu1.TabIndex = 3
+        '
         'SearchForm
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
@@ -434,7 +405,6 @@ Partial Class SearchForm
     Friend WithEvents Guna2TextBox2 As Guna.UI2.WinForms.Guna2TextBox
     Friend WithEvents Guna2Button1 As Guna.UI2.WinForms.Guna2Button
     Friend WithEvents Guna2Button2 As Guna.UI2.WinForms.Guna2Button
-    Friend WithEvents Guna2Button3 As Guna.UI2.WinForms.Guna2Button
     Friend WithEvents PictureBox1 As PictureBox
     Friend WithEvents DotScaling1 As AnimOfDots.DotScaling
     Friend WithEvents Guna2VScrollBar1 As Guna.UI2.WinForms.Guna2VScrollBar

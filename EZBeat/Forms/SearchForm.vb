@@ -21,6 +21,7 @@ Imports YoutubeExplode.Common
 Imports YoutubeExplode
 Imports Microsoft.WindowsAPICodePack.Taskbar
 Imports Guna.UI2.WinForms
+Imports TagLib
 
 Public Class SearchForm
 
@@ -49,6 +50,7 @@ Public Class SearchForm
             End Try
         End If
     End Sub
+
     Private Sub Ctrl_PlayBtn_MouseDown(sender As Object, e As MouseEventArgs)
         If e.Button = MouseButtons.Left Then
             Dim clickedControl As Control = DirectCast(sender, Control)
@@ -209,9 +211,11 @@ Public Class SearchForm
         MainForm.OpenChildFormContentPanel(New OpeningForm)
     End Sub
 
-    Private Sub Guna2Button2_Click(sender As Object, e As EventArgs) Handles Guna2Button2.Click
-        Dim settings As New Settings()
-        settings.ShowDialog()
+    Private Sub Guna2Button2_MouseClick(sender As Object, e As MouseEventArgs) Handles Guna2Button2.MouseClick
+        If e.Button = MouseButtons.Left Then
+            Dim settings As New Settings()
+            settings.ShowDialog()
+        End If
     End Sub
 
     Private Sub Guna2TextBox1_Enter(sender As Object, e As EventArgs) Handles Guna2TextBox1.Enter
@@ -270,6 +274,7 @@ Public Class SearchForm
 
     Private Async Sub DownloadToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles DownloadToolStripMenuItem.Click
         Download.Visible = False
+        Dim filepath As String = String.Empty
         Try
             If MainForm.SearchEngine = "Spotify" Then
                 url = Await Spotify2Youtube(title & " ", author, cts.Token)
@@ -279,6 +284,8 @@ Public Class SearchForm
             ytdl.YoutubeDLPath = "yt-dlp.exe"
             ytdl.FFmpegPath = "ffmpeg.exe"
             ytdl.OutputFolder = My.Settings.SaveLocation
+            ytdl.OutputFileTemplate = "%(title)s [%(uploader)s].%(ext)s"
+
             PB1.Visible = True
             TaskbarManager.Instance.SetProgressState(TaskbarProgressBarState.Normal)
 
@@ -287,11 +294,11 @@ Public Class SearchForm
                                                                         TaskbarManager.Instance.SetProgressValue(CInt(p.Progress * 100), 100)
                                                                         Select Case p.State
                                                                             Case 1
-                                                                            'Status.Text = "Requesting download..."
+                                                                    'Status.Text = "Requesting download..."
                                                                             Case 2
-                                                                            'Status.Text = "Downloading..."
+                                                                    'Status.Text = "Downloading..."
                                                                             Case 3
-                                                                            'Status.Text = "Finalizing..."
+                                                                    'Status.Text = "Finalizing..."
                                                                             Case 5
                                                                                 'Status.Text = ""
                                                                         End Select
@@ -302,10 +309,13 @@ Public Class SearchForm
             Select Case My.Settings.AudioFormat
                 Case "WAV"
                     Dim res = Await ytdl.RunAudioDownload(url, AudioConversionFormat.Wav, progress:=progressHandler)
+                    filepath = res.Data
                 Case "AAC"
                     Dim res = Await ytdl.RunAudioDownload(url, AudioConversionFormat.Aac, progress:=progressHandler)
+                    filepath = res.Data
                 Case "MP3"
                     Dim res = Await ytdl.RunAudioDownload(url, AudioConversionFormat.Mp3, progress:=progressHandler)
+                    filepath = res.Data
             End Select
 
             PB1.Visible = False
@@ -313,8 +323,46 @@ Public Class SearchForm
             TaskbarManager.Instance.SetProgressState(TaskbarProgressBarState.NoProgress)
         Catch ex As Exception
             TaskbarManager.Instance.SetProgressState(TaskbarProgressBarState.Error)
+            Console.WriteLine("Download Error: " & ex.Message)
+            Return
+        End Try
+
+        Try
+            Using file As TagLib.File = TagLib.File.Create(filepath)
+                Select Case My.Settings.AudioFormat
+                    Case "WAV"
+                        ' Ensure RIFF INFO tags are used for WAV files
+                        If TypeOf file Is TagLib.Riff.File Then
+                            Dim wavFile = CType(file, TagLib.Riff.File)
+                            wavFile.Tag.Title = title
+                            wavFile.Tag.Performers = New String() {author}
+                            wavFile.Tag.AlbumArtists = New String() {author}
+                            wavFile.Save()
+                        End If
+                    Case "MP3"
+                        If TypeOf file Is TagLib.Mpeg.AudioFile Then
+                            Dim mp3File = CType(file, TagLib.Mpeg.AudioFile)
+                            mp3File.Tag.Title = title
+                            mp3File.Tag.Performers = New String() {author}
+                            mp3File.Tag.AlbumArtists = New String() {author}
+                            mp3File.Save()
+                        End If
+                    Case "AAC"
+                        ' Ensure MP4 tags are used for AAC files
+                        If TypeOf file Is TagLib.Mpeg4.File Then
+                            Dim aacFile = CType(file, TagLib.Mpeg4.File)
+                            aacFile.Tag.Title = title
+                            aacFile.Tag.Performers = New String() {author}
+                            aacFile.Tag.AlbumArtists = New String() {author}
+                            aacFile.Save()
+                        End If
+                End Select
+            End Using
+        Catch ex As Exception
+            MsgBox("TagLib Error: " & ex.Message)
         End Try
     End Sub
+
     Private Sub Ctrl_MouseLeftControl(sender As Object, e As EventArgs)
         ' Check if the context menu is not open
         If Not Guna2ContextMenuStrip1.Visible Then
@@ -439,88 +487,87 @@ Public Class SearchForm
         Dim results = Await soundcloud.Search.GetTracksAsync(query).CollectAsync(CInt(CBBox2.Text))
         ' Check if a cancellation has been requested
         ct.ThrowIfCancellationRequested()
-
-        Dim trackResults As New List(Of SoundCloudExplode.Search.TrackSearchResult)()
-
         For Each result In results
-            If TypeOf result Is SoundCloudExplode.Search.TrackSearchResult Then
-                trackResults.Add(DirectCast(result, SoundCloudExplode.Search.TrackSearchResult))
-            End If
-        Next
+            Try
 
-        If trackResults.Count = CInt(CBBox2.Text) Then
-            FlowLayoutPanel1.SuspendLayout()
 
-            For Each track In trackResults
-                Dim id = track.Id
-                Dim title = If(track.Title, String.Empty)
-                Dim img = If(track.ArtworkUrl, "https://www.gravatar.com/avatar/7771a96494d732c4e34f6895879eebf7?size=192&d=mm")
-                Dim author = If(track.User.Username, String.Empty)
-                Dim Url = If(track.Url, String.Empty)
-                Dim duration As String = If(track.Duration, String.Empty)
+                If TypeOf result Is SoundCloudExplode.Search.TrackSearchResult Then
+                    Dim track = DirectCast(result, SoundCloudExplode.Search.TrackSearchResult)
+                    Dim id = track.Id
 
-                Dim Ctrl As New TrackResultControl()
-                Ctrl.URI = If(track.Url, String.Empty)
-                AddHandler Ctrl.MouseDown, AddressOf Ctrl_MouseDown
-                AddHandler Ctrl.Title.MouseDown, AddressOf Ctrl_MouseDown
-                AddHandler Ctrl.Author.MouseDown, AddressOf Ctrl_MouseDown
-                AddHandler Ctrl.MainPanel.MouseDown, AddressOf Ctrl_MouseDown
-                AddHandler Ctrl.DurationLbl.MouseDown, AddressOf Ctrl_MouseDown
-                AddHandler Ctrl.PlayBtn.MouseDown, AddressOf Ctrl_PlayBtn_MouseDown
-                AddHandler Ctrl.MouseLeftControl, AddressOf Ctrl_MouseLeftControl
-                AddHandler Ctrl.DLBtn.MouseDown, AddressOf Ctrl_DL_MouseDown
+                    Dim title = If(track.Title, String.Empty)
+                    Dim img = If(track.ArtworkUrl, "https://www.gravatar.com/avatar/7771a96494d732c4e34f6895879eebf7?size=192&d=mm")
+                    Dim author = If(track.User.Username, String.Empty)
+                    Dim Url = If(track.Url, String.Empty)
+                    Dim duration As String = If(track.Duration, String.Empty)
+                    'Console.WriteLine(title)
+                    Dim Ctrl As New TrackResultControl()
+                    Ctrl.URI = If(track.Url, String.Empty)
+                    AddHandler Ctrl.MouseDown, AddressOf Ctrl_MouseDown
+                    AddHandler Ctrl.Title.MouseDown, AddressOf Ctrl_MouseDown
+                    AddHandler Ctrl.Author.MouseDown, AddressOf Ctrl_MouseDown
+                    AddHandler Ctrl.MainPanel.MouseDown, AddressOf Ctrl_MouseDown
+                    AddHandler Ctrl.DurationLbl.MouseDown, AddressOf Ctrl_MouseDown
+                    AddHandler Ctrl.PlayBtn.MouseDown, AddressOf Ctrl_PlayBtn_MouseDown
+                    AddHandler Ctrl.MouseLeftControl, AddressOf Ctrl_MouseLeftControl
+                    AddHandler Ctrl.DLBtn.MouseDown, AddressOf Ctrl_DL_MouseDown
+                    If CBBox1.SelectedIndex = 1 Then
+                        ' Remove special characters from artist and query
+                        Dim sanitizedArtist As String = System.Text.RegularExpressions.Regex.Replace(author, "[^a-zA-Z0-9]", String.Empty)
+                        Dim sanitizedQuery As String = System.Text.RegularExpressions.Regex.Replace(query, "[^a-zA-Z0-9]", String.Empty)
 
-                If CBBox1.SelectedIndex = 1 Then
-                    Dim sanitizedArtist As String = System.Text.RegularExpressions.Regex.Replace(author, "[^a-zA-Z0-9]", String.Empty)
-                    Dim sanitizedQuery As String = System.Text.RegularExpressions.Regex.Replace(query, "[^a-zA-Z0-9]", String.Empty)
-
-                    If String.Compare(sanitizedArtist.ToLower(), sanitizedQuery.ToLower()) <> 0 Then
-                        Continue For
-                    End If
-                End If
-
-                FlowLayoutPanel1.Controls.Add(Ctrl)
-                DotScaling1.Visible = False
-                Ctrl.Title.Text = title
-                Ctrl.Author.Text = author
-                Ctrl.Url.Text = Url
-                Ctrl.ImgBox.ImageLocation = img.ToString()
-
-                If duration Is Nothing Then
-                    Ctrl.DurationLbl.Text = "Null"
-                Else
-                    Dim dr As String = duration / 1000
-                    Ctrl.DurationSeconds = Math.Round(CDec(dr), 0)
-                    Dim timeSpan As TimeSpan = TimeSpan.FromSeconds(dr.Remove(dr.Length - 3))
-                    Dim resultstr As String
-
-                    If timeSpan.Hours > 0 Then
-                        If timeSpan.Hours >= 10 Then
-                            resultstr = timeSpan.ToString()
-                        Else
-                            resultstr = timeSpan.ToString().Remove(0, 1)
+                        ' Compare sanitized strings
+                        If String.Compare(sanitizedArtist.ToLower(), sanitizedQuery.ToLower()) <> 0 Then
+                            Continue For
                         End If
+                    End If
+
+                    FlowLayoutPanel1.Controls.Add(Ctrl)
+                    DotScaling1.Visible = False
+                    Ctrl.Title.Text = title
+                    Ctrl.Author.Text = author
+                    Ctrl.Url.Text = Url
+                    Ctrl.ImgBox.ImageLocation = img.ToString()
+                    If duration Is Nothing Then
+                        Ctrl.DurationLbl.Text = "Null"
                     Else
-                        If timeSpan.Minutes >= 10 Then
-                            resultstr = timeSpan.ToString().Remove(0, 3)
+                        Dim dr As String = duration / 1000
+                        Ctrl.DurationSeconds = Math.Round(CDec(dr), 0) 'dr.Remove(dr.Length - 3)
+                        Dim timeSpan As TimeSpan = TimeSpan.FromSeconds(dr.Remove(dr.Length - 3))
+                        Dim resultstr As String
+
+                        If timeSpan.Hours > 0 Then
+                            If timeSpan.Hours >= 10 Then
+                                resultstr = timeSpan.ToString()
+                            Else
+                                resultstr = timeSpan.ToString().Remove(0, 1)
+                            End If
+                            'resultstr = String.Format("{0}:{1:D2}:{2:D2}", timeSpan.Hours, timeSpan.Minutes, timeSpan.Seconds)
                         Else
-                            resultstr = timeSpan.ToString().Remove(0, 4)
+                            If timeSpan.Minutes >= 10 Then '00:00:00
+                                resultstr = timeSpan.ToString().Remove(0, 3)
+                            Else
+                                resultstr = timeSpan.ToString().Remove(0, 4)
+                            End If
+
+                            'resultstr = String.Format("{0}:{1:D2}", timeSpan.Minutes, timeSpan.Seconds)
                         End If
+
+                        'Ctrl.DurationLbl.Text = resultstr 'Math.Round(CDec(dr), 0)
+                        Ctrl.DurationLbl.Text = resultstr
                     End If
 
-                    Ctrl.DurationLbl.Text = resultstr
                 End If
-            Next
+            Catch ex As OperationCanceledException
+                MsgBox(ex.ToString())
+            Catch ex As ArgumentOutOfRangeException
+                Console.WriteLine(ex.Message)
+            Catch ex As Exception
+                Console.WriteLine(ex.Message)
+                MsgBox(ex.Message)
 
-            FlowLayoutPanel1.ResumeLayout()
-            FlowLayoutPanel1.PerformLayout() ' Force layout update
-
-            If Guna2VScrollBar1 IsNot Nothing Then
-                Guna2VScrollBar1.Maximum = FlowLayoutPanel1.VerticalScroll.Maximum
-                Guna2VScrollBar1.LargeChange = FlowLayoutPanel1.VerticalScroll.LargeChange
-                Guna2VScrollBar1.SmallChange = FlowLayoutPanel1.VerticalScroll.SmallChange
-            End If
-        End If
+            End Try
+        Next
     End Function
 
 
@@ -622,6 +669,7 @@ Public Class SearchForm
 
     Private Async Sub Ctrl_DL_MouseDown(sender As Object, e As MouseEventArgs)
         If e.Button = MouseButtons.Left Then
+            Dim filepath As String = String.Empty
             Dim spotify As New SpotifyToYoutube()
             Dim clickedControl As Control = DirectCast(sender, Control)
             Dim parentControl As TrackResultControl = clickedControl.Parent.Parent
@@ -637,8 +685,10 @@ Public Class SearchForm
                 ytdl.YoutubeDLPath = "yt-dlp.exe"
                 ytdl.FFmpegPath = "ffmpeg.exe"
                 ytdl.OutputFolder = My.Settings.SaveLocation
+                ytdl.OutputFileTemplate = "%(title)s [%(uploader)s].%(ext)s"
 
                 parentControl.PB1.Visible = True
+
                 TaskbarManager.Instance.SetProgressState(TaskbarProgressBarState.Normal)
 
                 Dim progressHandler = New Progress(Of DownloadProgress)(Sub(p)
@@ -661,10 +711,13 @@ Public Class SearchForm
                 Select Case My.Settings.AudioFormat
                     Case "WAV"
                         Dim res = Await ytdl.RunAudioDownload(url, AudioConversionFormat.Wav, progress:=progressHandler)
+                        filepath = res.Data
                     Case "AAC"
                         Dim res = Await ytdl.RunAudioDownload(url, AudioConversionFormat.Aac, progress:=progressHandler)
+                        filepath = res.Data
                     Case "MP3"
                         Dim res = Await ytdl.RunAudioDownload(url, AudioConversionFormat.Mp3, progress:=progressHandler)
+                        filepath = res.Data
                 End Select
 
                 parentControl.PB1.Visible = False
@@ -672,6 +725,43 @@ Public Class SearchForm
                 TaskbarManager.Instance.SetProgressState(TaskbarProgressBarState.NoProgress)
             Catch ex As Exception
                 TaskbarManager.Instance.SetProgressState(TaskbarProgressBarState.Error)
+            End Try
+
+
+            Try
+                Using file As TagLib.File = TagLib.File.Create(filepath)
+                    Select Case My.Settings.AudioFormat
+                        Case "WAV"
+                            ' Ensure RIFF INFO tags are used for WAV files
+                            If TypeOf file Is TagLib.Riff.File Then
+                                Dim wavFile = CType(file, TagLib.Riff.File)
+                                wavFile.Tag.Title = title
+                                wavFile.Tag.Performers = New String() {author}
+                                wavFile.Tag.AlbumArtists = New String() {author}
+                                wavFile.Save()
+                            End If
+                        Case "MP3"
+                            If TypeOf file Is TagLib.Mpeg.AudioFile Then
+                                Dim mp3File = CType(file, TagLib.Mpeg.AudioFile)
+                                mp3File.Tag.Title = title
+                                mp3File.Tag.Performers = New String() {author}
+                                mp3File.Tag.AlbumArtists = New String() {author}
+                                mp3File.Save()
+                            End If
+                        Case "AAC"
+                            ' Ensure MP4 tags are used for AAC files
+                            If TypeOf file Is TagLib.Mpeg4.File Then
+                                Dim aacFile = CType(file, TagLib.Mpeg4.File)
+                                aacFile.Tag.Title = title
+                                aacFile.Tag.Performers = New String() {author}
+                                aacFile.Tag.AlbumArtists = New String() {author}
+                                aacFile.Save()
+                            End If
+                    End Select
+                End Using
+
+            Catch ex As Exception
+                MsgBox("TagLib Error: " & ex.Message)
             End Try
         End If
     End Sub
@@ -723,5 +813,4 @@ Public Class SearchForm
         End Select
 
     End Sub
-
 End Class
