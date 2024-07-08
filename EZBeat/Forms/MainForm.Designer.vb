@@ -51,7 +51,7 @@ Partial Class MainForm
         Me.MainPanel.Dock = System.Windows.Forms.DockStyle.Fill
         Me.MainPanel.Location = New System.Drawing.Point(0, 0)
         Me.MainPanel.Name = "MainPanel"
-        Me.MainPanel.Size = New System.Drawing.Size(1064, 530)
+        Me.MainPanel.Size = New System.Drawing.Size(1078, 530)
         Me.MainPanel.TabIndex = 1
         '
         'Panel1
@@ -71,7 +71,7 @@ Partial Class MainForm
         Me.Panel1.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.Panel1.Location = New System.Drawing.Point(0, 530)
         Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(1064, 93)
+        Me.Panel1.Size = New System.Drawing.Size(1078, 93)
         Me.Panel1.TabIndex = 0
         Me.Panel1.Visible = False
         '
@@ -117,7 +117,7 @@ Partial Class MainForm
         Me.MuteBtn.Font = New System.Drawing.Font("Segoe UI", 9.0!)
         Me.MuteBtn.ForeColor = System.Drawing.Color.White
         Me.MuteBtn.HoverState.FillColor = System.Drawing.Color.FromArgb(CType(CType(42, Byte), Integer), CType(CType(43, Byte), Integer), CType(CType(48, Byte), Integer))
-        Me.MuteBtn.Location = New System.Drawing.Point(1028, 56)
+        Me.MuteBtn.Location = New System.Drawing.Point(1042, 56)
         Me.MuteBtn.Name = "MuteBtn"
         Me.MuteBtn.PressedDepth = 0
         Me.MuteBtn.Size = New System.Drawing.Size(24, 24)
@@ -128,7 +128,7 @@ Partial Class MainForm
         Me.TBVolume.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.TBVolume.FilledColor = System.Drawing.Color.FromArgb(CType(CType(51, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(101, Byte), Integer))
         Me.TBVolume.HoverColor = System.Drawing.Color.FromArgb(CType(CType(66, Byte), Integer), CType(CType(68, Byte), Integer), CType(CType(75, Byte), Integer))
-        Me.TBVolume.Location = New System.Drawing.Point(905, 56)
+        Me.TBVolume.Location = New System.Drawing.Point(919, 56)
         Me.TBVolume.Maximum = 100
         Me.TBVolume.Minimum = 0
         Me.TBVolume.Name = "TBVolume"
@@ -156,7 +156,7 @@ Partial Class MainForm
         Me.PauseBtn.FillColor = System.Drawing.Color.Empty
         Me.PauseBtn.Font = New System.Drawing.Font("Segoe UI", 9.0!)
         Me.PauseBtn.ForeColor = System.Drawing.Color.White
-        Me.PauseBtn.Location = New System.Drawing.Point(515, 16)
+        Me.PauseBtn.Location = New System.Drawing.Point(522, 16)
         Me.PauseBtn.Name = "PauseBtn"
         Me.PauseBtn.PressedDepth = 0
         Me.PauseBtn.RightToLeft = System.Windows.Forms.RightToLeft.Yes
@@ -169,7 +169,7 @@ Partial Class MainForm
         Me.TBDuration.Cursor = System.Windows.Forms.Cursors.Default
         Me.TBDuration.FilledColor = System.Drawing.Color.FromArgb(CType(CType(51, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(101, Byte), Integer))
         Me.TBDuration.HoverColor = System.Drawing.Color.FromArgb(CType(CType(78, Byte), Integer), CType(CType(80, Byte), Integer), CType(CType(89, Byte), Integer))
-        Me.TBDuration.Location = New System.Drawing.Point(212, 57)
+        Me.TBDuration.Location = New System.Drawing.Point(219, 57)
         Me.TBDuration.Maximum = 100
         Me.TBDuration.Minimum = 0
         Me.TBDuration.Name = "TBDuration"
@@ -209,7 +209,7 @@ Partial Class MainForm
         '
         Me.Label2.Anchor = System.Windows.Forms.AnchorStyles.Top
         Me.Label2.ForeColor = System.Drawing.Color.White
-        Me.Label2.Location = New System.Drawing.Point(860, 54)
+        Me.Label2.Location = New System.Drawing.Point(867, 54)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(57, 26)
         Me.Label2.TabIndex = 9
@@ -220,7 +220,7 @@ Partial Class MainForm
         '
         Me.Label1.Anchor = System.Windows.Forms.AnchorStyles.Top
         Me.Label1.ForeColor = System.Drawing.Color.White
-        Me.Label1.Location = New System.Drawing.Point(147, 54)
+        Me.Label1.Location = New System.Drawing.Point(154, 54)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(57, 26)
         Me.Label1.TabIndex = 8
@@ -244,7 +244,7 @@ Partial Class MainForm
         Me.PlayBtn.FillColor = System.Drawing.Color.Empty
         Me.PlayBtn.Font = New System.Drawing.Font("Segoe UI", 9.0!)
         Me.PlayBtn.ForeColor = System.Drawing.Color.White
-        Me.PlayBtn.Location = New System.Drawing.Point(515, 16)
+        Me.PlayBtn.Location = New System.Drawing.Point(522, 16)
         Me.PlayBtn.Name = "PlayBtn"
         Me.PlayBtn.PressedDepth = 0
         Me.PlayBtn.RightToLeft = System.Windows.Forms.RightToLeft.Yes
@@ -261,7 +261,7 @@ Partial Class MainForm
         Me.Appearance.Options.UseFont = True
         Me.Appearance.Options.UseForeColor = True
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
-        Me.ClientSize = New System.Drawing.Size(1064, 623)
+        Me.ClientSize = New System.Drawing.Size(1078, 623)
         Me.Controls.Add(Me.MainPanel)
         Me.Controls.Add(Me.Panel1)
         Me.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -270,7 +270,7 @@ Partial Class MainForm
         Me.IconOptions.SvgImageColorizationMode = DevExpress.Utils.SvgImageColorizationMode.None
         Me.KeyPreview = True
         Me.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
-        Me.MinimumSize = New System.Drawing.Size(1066, 657)
+        Me.MinimumSize = New System.Drawing.Size(1080, 657)
         Me.Name = "MainForm"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "EZ Beat"

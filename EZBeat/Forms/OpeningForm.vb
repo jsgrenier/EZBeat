@@ -11,18 +11,22 @@
         MainForm.SearchQuery = Guna2TextBox1.Text
         MainForm.CategorieSelectedIndex = CBBox1.SelectedIndex
         MainForm.CountSelectedIndex = CBBox2.SelectedIndex
+
+        Animator1.HideSync(MainMenu)
         MainForm.OpenChildFormContentPanel(New SearchForm)
     End Sub
 
-    Private Sub Guna2TextBox1_KeyDown(sender As Object, e As KeyEventArgs) Handles Guna2TextBox1.KeyDown
-        If e.KeyCode = Keys.Enter Then
+    Private Sub Guna2TextBox1_KeyPress(sender As Object, e As KeyPressEventArgs) Handles Guna2TextBox1.KeyPress
+        If e.KeyChar = ChrW(Keys.Enter) Then
+            e.Handled = True
             MainForm.SearchQuery = Guna2TextBox1.Text
             MainForm.CategorieSelectedIndex = CBBox1.SelectedIndex
             MainForm.CountSelectedIndex = CBBox2.SelectedIndex
+            'Animator1.HideSync(MainMenu)
             MainForm.OpenChildFormContentPanel(New SearchForm)
         End If
-
     End Sub
+
 
     Private Sub Guna2RadioButton1_CheckedChanged(sender As Object, e As EventArgs) Handles Guna2RadioButton2.CheckedChanged, Guna2RadioButton1.CheckedChanged, Guna2RadioButton3.CheckedChanged
         If Guna2RadioButton1.Checked = True Then

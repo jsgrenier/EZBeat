@@ -427,15 +427,12 @@ Public Class SearchForm
         Next
 
         If trackResults.Count = CInt(CBBox2.Text) Then
-            FlowLayoutPanel1.SuspendLayout()
+            ' Create an array to hold the controls
+            Dim controlArray(CInt(CBBox2.Text) - 1) As TrackResultControl
 
-            For Each track In trackResults
-                Dim id = track.Id
-                Dim title = track.Title
-                Dim duration = track.Duration
-                Dim url = track.Url
-                Dim artist = track.Author
-                Dim img = track.Thumbnails.Last.Url
+            ' Populate the array with controls
+            For i As Integer = 0 To controlArray.Length - 1
+                Dim track = trackResults(i)
                 Dim Ctrl As New TrackResultControl()
                 AddHandler Ctrl.MouseDown, AddressOf Ctrl_MouseDown
                 AddHandler Ctrl.Title.MouseDown, AddressOf Ctrl_MouseDown
@@ -446,38 +443,50 @@ Public Class SearchForm
                 AddHandler Ctrl.MouseLeftControl, AddressOf Ctrl_MouseLeftControl
                 AddHandler Ctrl.DLBtn.MouseDown, AddressOf Ctrl_DL_MouseDown
                 Ctrl.URI = track.Url
-                FlowLayoutPanel1.Controls.Add(Ctrl)
-                DotScaling1.Visible = False
+
+                Dim title = track.Title
+                Dim duration = track.Duration
+                Dim url = track.Url
+                Dim artist = track.Author
+                Dim img = track.Thumbnails.Last.Url
+
                 Ctrl.Title.Text = title
                 Ctrl.Url.Text = url
-                Ctrl.id = id
+                Ctrl.id = track.Id
                 Ctrl.Author.Text = artist.ChannelTitle
                 Ctrl.ImgBox.ImageLocation = img
                 Ctrl.DurationSeconds = duration.Value.TotalSeconds
 
                 Dim timeSpan As TimeSpan = TimeSpan.FromSeconds(duration.Value.TotalSeconds)
-                Dim resultstr
+                Dim resultstr As String
 
                 If timeSpan.Hours > 0 Then
-                    resultstr = String.Format("{0}:{1:D2}:{2:D2}", timeSpan.Hours, timeSpan.Minutes, timeSpan.Seconds)
+                    resultstr = timeSpan.ToString("hh\:mm\:ss")
                 Else
-                    resultstr = String.Format("{0}:{1:D2}", timeSpan.Minutes, timeSpan.Seconds)
+                    resultstr = timeSpan.ToString("mm\:ss")
                 End If
+
                 Ctrl.DurationLbl.Text = resultstr
+
+                controlArray(i) = Ctrl
             Next
 
+            ' Add all controls to the FlowLayoutPanel1 at once
+            FlowLayoutPanel1.SuspendLayout()
+            FlowLayoutPanel1.Controls.AddRange(controlArray)
             FlowLayoutPanel1.ResumeLayout()
             FlowLayoutPanel1.PerformLayout() ' Force layout update
+
+            DotScaling1.Visible = False
 
             If Guna2VScrollBar1 IsNot Nothing Then
                 Guna2VScrollBar1.Maximum = FlowLayoutPanel1.VerticalScroll.Maximum
                 Guna2VScrollBar1.LargeChange = FlowLayoutPanel1.VerticalScroll.LargeChange
                 Guna2VScrollBar1.SmallChange = FlowLayoutPanel1.VerticalScroll.SmallChange
             End If
-
-
         End If
     End Function
+
 
 
 
@@ -487,88 +496,96 @@ Public Class SearchForm
         Dim results = Await soundcloud.Search.GetTracksAsync(query).CollectAsync(CInt(CBBox2.Text))
         ' Check if a cancellation has been requested
         ct.ThrowIfCancellationRequested()
+
+        ' Create a list to hold the results
+        Dim resultList As New List(Of SoundCloudExplode.Search.TrackSearchResult)()
+
+        ' Populate the list with the results
         For Each result In results
-            Try
-
-
-                If TypeOf result Is SoundCloudExplode.Search.TrackSearchResult Then
-                    Dim track = DirectCast(result, SoundCloudExplode.Search.TrackSearchResult)
-                    Dim id = track.Id
-
-                    Dim title = If(track.Title, String.Empty)
-                    Dim img = If(track.ArtworkUrl, "https://www.gravatar.com/avatar/7771a96494d732c4e34f6895879eebf7?size=192&d=mm")
-                    Dim author = If(track.User.Username, String.Empty)
-                    Dim Url = If(track.Url, String.Empty)
-                    Dim duration As String = If(track.Duration, String.Empty)
-                    'Console.WriteLine(title)
-                    Dim Ctrl As New TrackResultControl()
-                    Ctrl.URI = If(track.Url, String.Empty)
-                    AddHandler Ctrl.MouseDown, AddressOf Ctrl_MouseDown
-                    AddHandler Ctrl.Title.MouseDown, AddressOf Ctrl_MouseDown
-                    AddHandler Ctrl.Author.MouseDown, AddressOf Ctrl_MouseDown
-                    AddHandler Ctrl.MainPanel.MouseDown, AddressOf Ctrl_MouseDown
-                    AddHandler Ctrl.DurationLbl.MouseDown, AddressOf Ctrl_MouseDown
-                    AddHandler Ctrl.PlayBtn.MouseDown, AddressOf Ctrl_PlayBtn_MouseDown
-                    AddHandler Ctrl.MouseLeftControl, AddressOf Ctrl_MouseLeftControl
-                    AddHandler Ctrl.DLBtn.MouseDown, AddressOf Ctrl_DL_MouseDown
-                    If CBBox1.SelectedIndex = 1 Then
-                        ' Remove special characters from artist and query
-                        Dim sanitizedArtist As String = System.Text.RegularExpressions.Regex.Replace(author, "[^a-zA-Z0-9]", String.Empty)
-                        Dim sanitizedQuery As String = System.Text.RegularExpressions.Regex.Replace(query, "[^a-zA-Z0-9]", String.Empty)
-
-                        ' Compare sanitized strings
-                        If String.Compare(sanitizedArtist.ToLower(), sanitizedQuery.ToLower()) <> 0 Then
-                            Continue For
-                        End If
-                    End If
-
-                    FlowLayoutPanel1.Controls.Add(Ctrl)
-                    DotScaling1.Visible = False
-                    Ctrl.Title.Text = title
-                    Ctrl.Author.Text = author
-                    Ctrl.Url.Text = Url
-                    Ctrl.ImgBox.ImageLocation = img.ToString()
-                    If duration Is Nothing Then
-                        Ctrl.DurationLbl.Text = "Null"
-                    Else
-                        Dim dr As String = duration / 1000
-                        Ctrl.DurationSeconds = Math.Round(CDec(dr), 0) 'dr.Remove(dr.Length - 3)
-                        Dim timeSpan As TimeSpan = TimeSpan.FromSeconds(dr.Remove(dr.Length - 3))
-                        Dim resultstr As String
-
-                        If timeSpan.Hours > 0 Then
-                            If timeSpan.Hours >= 10 Then
-                                resultstr = timeSpan.ToString()
-                            Else
-                                resultstr = timeSpan.ToString().Remove(0, 1)
-                            End If
-                            'resultstr = String.Format("{0}:{1:D2}:{2:D2}", timeSpan.Hours, timeSpan.Minutes, timeSpan.Seconds)
-                        Else
-                            If timeSpan.Minutes >= 10 Then '00:00:00
-                                resultstr = timeSpan.ToString().Remove(0, 3)
-                            Else
-                                resultstr = timeSpan.ToString().Remove(0, 4)
-                            End If
-
-                            'resultstr = String.Format("{0}:{1:D2}", timeSpan.Minutes, timeSpan.Seconds)
-                        End If
-
-                        'Ctrl.DurationLbl.Text = resultstr 'Math.Round(CDec(dr), 0)
-                        Ctrl.DurationLbl.Text = resultstr
-                    End If
-
-                End If
-            Catch ex As OperationCanceledException
-                MsgBox(ex.ToString())
-            Catch ex As ArgumentOutOfRangeException
-                Console.WriteLine(ex.Message)
-            Catch ex As Exception
-                Console.WriteLine(ex.Message)
-                MsgBox(ex.Message)
-
-            End Try
+            If TypeOf result Is SoundCloudExplode.Search.TrackSearchResult Then
+                resultList.Add(DirectCast(result, SoundCloudExplode.Search.TrackSearchResult))
+            End If
         Next
+
+        ' Check if the list contains the required number of results
+        If resultList.Count >= CInt(CBBox2.Text) Then
+            FlowLayoutPanel1.SuspendLayout()
+            ' Create an array to hold the controls
+            Dim controlArray(CInt(CBBox2.Text) - 1) As TrackResultControl
+
+            ' Populate the array with controls
+            For i As Integer = 0 To controlArray.Length - 1
+                Dim track = resultList(i)
+                Dim Ctrl As New TrackResultControl()
+                Ctrl.URI = If(track.Url, String.Empty)
+                AddHandler Ctrl.MouseDown, AddressOf Ctrl_MouseDown
+                AddHandler Ctrl.Title.MouseDown, AddressOf Ctrl_MouseDown
+                AddHandler Ctrl.Author.MouseDown, AddressOf Ctrl_MouseDown
+                AddHandler Ctrl.MainPanel.MouseDown, AddressOf Ctrl_MouseDown
+                AddHandler Ctrl.DurationLbl.MouseDown, AddressOf Ctrl_MouseDown
+                AddHandler Ctrl.PlayBtn.MouseDown, AddressOf Ctrl_PlayBtn_MouseDown
+                AddHandler Ctrl.MouseLeftControl, AddressOf Ctrl_MouseLeftControl
+                AddHandler Ctrl.DLBtn.MouseDown, AddressOf Ctrl_DL_MouseDown
+
+                Dim title = If(track.Title, String.Empty)
+                Dim img = If(track.ArtworkUrl, "https://www.gravatar.com/avatar/7771a96494d732c4e34f6895879eebf7?size=192&d=mm")
+                Dim author = If(track.User.Username, String.Empty)
+                Dim Url = If(track.Url, String.Empty)
+                Dim duration As String = If(track.Duration, String.Empty)
+
+                If CBBox1.SelectedIndex = 1 Then
+                    ' Remove special characters from artist and query
+                    Dim sanitizedArtist As String = System.Text.RegularExpressions.Regex.Replace(author, "[^a-zA-Z0-9]", String.Empty)
+                    Dim sanitizedQuery As String = System.Text.RegularExpressions.Regex.Replace(query, "[^a-zA-Z0-9]", String.Empty)
+
+                    ' Compare sanitized strings
+                    If String.Compare(sanitizedArtist.ToLower(), sanitizedQuery.ToLower()) <> 0 Then
+                        Continue For
+                    End If
+                End If
+
+                Ctrl.Title.Text = title
+                Ctrl.Author.Text = author
+                Ctrl.Url.Text = Url
+                Ctrl.ImgBox.ImageLocation = img.ToString()
+
+                If duration Is Nothing Then
+                    Ctrl.DurationLbl.Text = "Null"
+                Else
+                    Dim dr As String = duration / 1000
+                    Ctrl.DurationSeconds = Math.Round(CDec(dr), 0)
+                    Dim timeSpan As TimeSpan = TimeSpan.FromSeconds(dr)
+
+                    Dim resultstr As String
+                    If timeSpan.Hours > 0 Then
+                        resultstr = timeSpan.ToString("hh\:mm\:ss")
+                    Else
+                        resultstr = timeSpan.ToString("mm\:ss")
+                    End If
+
+                    Ctrl.DurationLbl.Text = resultstr
+                End If
+
+                controlArray(i) = Ctrl
+            Next
+
+            ' Add all controls to the FlowLayoutPanel1 at once
+            FlowLayoutPanel1.Controls.AddRange(controlArray)
+            DotScaling1.Visible = False
+            FlowLayoutPanel1.ResumeLayout()
+            FlowLayoutPanel1.PerformLayout() ' Force layout update
+
+            If Guna2VScrollBar1 IsNot Nothing Then
+                Guna2VScrollBar1.Maximum = FlowLayoutPanel1.VerticalScroll.Maximum
+                Guna2VScrollBar1.LargeChange = FlowLayoutPanel1.VerticalScroll.LargeChange
+                Guna2VScrollBar1.SmallChange = FlowLayoutPanel1.VerticalScroll.SmallChange
+            End If
+        End If
     End Function
+
+
+
+
 
 
     Private Async Function SearchSP(query As String, ct As CancellationToken) As Task
@@ -585,16 +602,12 @@ Public Class SearchForm
             Next
 
             If trackResults.Count = CInt(CBBox2.Text) Then
-                FlowLayoutPanel1.SuspendLayout()
+                ' Create an array to hold the controls
+                Dim controlArray(CInt(CBBox2.Text) - 1) As TrackResultControl
 
-                For Each track In trackResults
-                    Dim id = track.Id
-                    Dim title = track.Title
-                    Dim duration = track.DurationMs
-                    Dim url = track.Url
-                    Dim artists = track.Artists.ToList()
-                    Dim album = track.Album
-
+                ' Populate the array with controls
+                For i As Integer = 0 To controlArray.Length - 1
+                    Dim track = trackResults(i)
                     Dim ctrl As New TrackResultControl()
                     AddHandler ctrl.MouseDown, AddressOf Ctrl_MouseDown
                     AddHandler ctrl.Title.MouseDown, AddressOf Ctrl_MouseDown
@@ -604,6 +617,13 @@ Public Class SearchForm
                     AddHandler ctrl.PlayBtn.MouseDown, AddressOf Ctrl_PlayBtn_MouseDown
                     AddHandler ctrl.MouseLeftControl, AddressOf Ctrl_MouseLeftControl
                     AddHandler ctrl.DLBtn.MouseDown, AddressOf Ctrl_DL_MouseDown
+
+                    Dim id = track.Id
+                    Dim title = track.Title
+                    Dim duration = track.DurationMs
+                    Dim url = track.Url
+                    Dim artists = track.Artists.ToList()
+                    Dim album = track.Album
 
                     If CBBox1.SelectedIndex = 1 Then
                         Dim artistMatch As Boolean = False
@@ -618,36 +638,41 @@ Public Class SearchForm
                         End If
                     End If
 
-                    FlowLayoutPanel1.Controls.Add(ctrl)
-                    DotScaling1.Visible = False
                     ctrl.Title.Text = title
                     ctrl.Url.Text = url
                     ctrl.id = id
 
-                    Dim dr As String = duration
-                    ctrl.DurationSeconds = dr.Remove(dr.Length - 3)
-                    Dim timeSpan As TimeSpan = TimeSpan.FromSeconds(dr.Remove(dr.Length - 3))
+                    Dim dr As Double = duration / 1000
+                    ctrl.DurationSeconds = Math.Round(dr, 0)
+                    Dim timeSpan As TimeSpan = TimeSpan.FromSeconds(dr)
                     Dim resultstr As String
 
                     If timeSpan.Hours > 0 Then
-                        resultstr = String.Format("{0}:{1:D2}:{2:D2}", timeSpan.Hours, timeSpan.Minutes, timeSpan.Seconds)
+                        resultstr = timeSpan.ToString("hh\:mm\:ss")
                     Else
-                        resultstr = String.Format("{0}:{1:D2}", timeSpan.Minutes, timeSpan.Seconds)
+                        resultstr = timeSpan.ToString("mm\:ss")
                     End If
                     ctrl.DurationLbl.Text = resultstr
 
-                    For i = 0 To artists.Count - 1
-                        ctrl.Author.Text += (artists(i).Name & "$%#").Replace("$%#", ", ")
+                    For j = 0 To artists.Count - 1
+                        ctrl.Author.Text += (artists(j).Name & "$%#").Replace("$%#", ", ")
                     Next
                     ctrl.ImgBox.ImageLocation = album.Images(0).Url
                     Dim lastIndex As Integer = ctrl.Author.Text.LastIndexOf(", ")
                     If lastIndex >= 0 Then
                         ctrl.Author.Text = ctrl.Author.Text.Remove(lastIndex, 2)
                     End If
+
+                    controlArray(i) = ctrl
                 Next
 
+                ' Add all controls to the FlowLayoutPanel1 at once
+                FlowLayoutPanel1.SuspendLayout()
+                FlowLayoutPanel1.Controls.AddRange(controlArray)
                 FlowLayoutPanel1.ResumeLayout()
                 FlowLayoutPanel1.PerformLayout() ' Force layout update
+
+                DotScaling1.Visible = False
 
                 If Guna2VScrollBar1 IsNot Nothing Then
                     Guna2VScrollBar1.Maximum = FlowLayoutPanel1.VerticalScroll.Maximum
@@ -665,6 +690,7 @@ Public Class SearchForm
             Console.WriteLine(ex.Message.ToString())
         End Try
     End Function
+
 
 
     Private Async Sub Ctrl_DL_MouseDown(sender As Object, e As MouseEventArgs)
