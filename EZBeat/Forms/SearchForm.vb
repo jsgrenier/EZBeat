@@ -574,7 +574,6 @@ Public Class SearchForm
             DotScaling1.Visible = False
             FlowLayoutPanel1.ResumeLayout()
             FlowLayoutPanel1.PerformLayout() ' Force layout update
-
             If Guna2VScrollBar1 IsNot Nothing Then
                 Guna2VScrollBar1.Maximum = FlowLayoutPanel1.VerticalScroll.Maximum
                 Guna2VScrollBar1.LargeChange = FlowLayoutPanel1.VerticalScroll.LargeChange

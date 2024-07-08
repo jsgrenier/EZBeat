@@ -11,8 +11,6 @@
         MainForm.SearchQuery = Guna2TextBox1.Text
         MainForm.CategorieSelectedIndex = CBBox1.SelectedIndex
         MainForm.CountSelectedIndex = CBBox2.SelectedIndex
-
-        Animator1.HideSync(MainMenu)
         MainForm.OpenChildFormContentPanel(New SearchForm)
     End Sub
 
@@ -22,7 +20,6 @@
             MainForm.SearchQuery = Guna2TextBox1.Text
             MainForm.CategorieSelectedIndex = CBBox1.SelectedIndex
             MainForm.CountSelectedIndex = CBBox2.SelectedIndex
-            'Animator1.HideSync(MainMenu)
             MainForm.OpenChildFormContentPanel(New SearchForm)
         End If
     End Sub
