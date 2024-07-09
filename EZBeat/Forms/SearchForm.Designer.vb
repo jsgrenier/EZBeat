@@ -332,7 +332,7 @@ Partial Class SearchForm
         Me.Guna2Transition1.SetDecoration(Me.Guna2VScrollBar1, Guna.UI2.AnimatorNS.DecorationType.None)
         Me.Guna2VScrollBar1.FillColor = System.Drawing.Color.FromArgb(CType(CType(30, Byte), Integer), CType(CType(31, Byte), Integer), CType(CType(34, Byte), Integer))
         Me.Guna2VScrollBar1.FillOffset = New System.Windows.Forms.Padding(2, 0, 2, 0)
-        Me.Guna2VScrollBar1.HoverState.FillColor = System.Drawing.Color.FromArgb(CType(CType(85, Byte), Integer), CType(CType(85, Byte), Integer), CType(CType(85, Byte), Integer))
+        Me.Guna2VScrollBar1.HoverState.ThumbColor = System.Drawing.Color.FromArgb(CType(CType(85, Byte), Integer), CType(CType(85, Byte), Integer), CType(CType(85, Byte), Integer))
         Me.Guna2VScrollBar1.InUpdate = False
         Me.Guna2VScrollBar1.LargeChange = 10
         Me.Guna2VScrollBar1.Location = New System.Drawing.Point(1062, 133)
