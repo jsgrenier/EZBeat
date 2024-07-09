@@ -5,7 +5,6 @@ Imports Microsoft.WindowsAPICodePack.Taskbar
 Imports System.Runtime.InteropServices
 Imports System.Windows.Forms
 
-
 Public Class MainForm
     Public currentChildformMainPanel As Form
     Public SearchEngine As String
@@ -131,7 +130,6 @@ Public Class MainForm
         RegisterHotKey(Me.Handle, HOTKEY_ID_PREV_TRACK, 0, VK_MEDIA_PREV_TRACK)
         ' Register the Next Track media key as a global hotkey
         RegisterHotKey(Me.Handle, HOTKEY_ID_NEXT_TRACK, 0, VK_MEDIA_NEXT_TRACK)
-
 
     End Sub
 

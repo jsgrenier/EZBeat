@@ -37,6 +37,7 @@ Public Class SearchForm
     Private Status As Label
     Private Download As Guna.UI2.WinForms.Guna2Button
     Private cts As CancellationTokenSource = New CancellationTokenSource()
+    Public WithEvents ctxTrack As New TrackCtxMenu()
 
 #Region "UserActions"
     Private Async Sub Guna2TextBox1_KeyDown(sender As Object, e As KeyEventArgs) Handles Guna2TextBox1.KeyDown
@@ -111,7 +112,7 @@ Public Class SearchForm
                 parentControl = parentControl.Parent
             End While
             Dim TrackResult As TrackResultControl = DirectCast(parentControl, TrackResultControl)
-
+            TrackResult.Focus()
 
             url = TrackResult.Url.Text
             duration = TrackResult.DurationSeconds
@@ -125,16 +126,72 @@ Public Class SearchForm
 
             Download = TrackResult.DLBtn
 
-            Dim screenPoint As Point = clickedControl.PointToScreen(e.Location)
-            Dim formPoint As Point = Me.PointToClient(screenPoint)
-            formPoint.X += 5 ' Adjust the X coordinate
-            formPoint.Y += 5 ' Adjust the Y coordinate
-            Guna2ContextMenuStrip1.Show(Me, formPoint)
-
         End If
     End Sub
 
-    Private Sub PlayToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles PlayToolStripMenuItem.Click
+    Private Sub CtrlRightClick(sender As Object, e As MouseEventArgs)
+        Dim ctrl As Control = DirectCast(sender, Control)
+        Dim newpos As Point = ctrl.PointToClient(Control.MousePosition)
+        'ClickedNoteID = ctrl.Tag
+
+
+        ' Convert the mouse position to client coordinates
+        Dim mousePos As Point = PointToClient(Cursor.Position)
+
+        ' Calculate the position to ensure the ctxControl stays within bounds
+        Dim x As Integer = mousePos.X
+        Dim y As Integer = mousePos.Y
+
+        ' Adjust the X coordinate if necessary
+        If x + ctxTrack.Width > ClientSize.Width Then
+            x = ClientSize.Width - ctxTrack.Width
+        End If
+
+        ' Adjust the Y coordinate if necessary
+        If y + ctxTrack.Height > ClientSize.Height Then
+            y = ClientSize.Height - ctxTrack.Height
+        End If
+
+        ' Set the location of the ctxControl
+        ctxTrack.Location = New Point(x, y)
+
+        ' Show the ctxControl
+        ctxTrack.BringToFront()
+        Guna2Transition1.ShowSync(ctxTrack, True, Guna.UI2.AnimatorNS.Animation.Transparent)
+        'ctxTrack.Visible = True
+    End Sub
+
+    Private Sub Control2_MouseClick(sender As Object, e As MouseEventArgs) Handles Me.MouseDown
+        Dim ctrl As Control = TryCast(sender, Control)
+        If ctrl IsNot ctxTrack Then
+            ctxTrack.Visible = False
+        End If
+    End Sub
+
+    Private Sub AddMouseDownEventHandlers(parentControl As Control)
+        ' Recursively attach the event handler to this control and its children
+        For Each ctrl As Control In parentControl.Controls
+            AddHandler ctrl.MouseDown, AddressOf Control2_MouseClick
+            ' Recursively attach to children controls
+            If ctrl.HasChildren Then
+                AddMouseDownEventHandlers(ctrl)
+            End If
+        Next
+    End Sub
+
+    Private Sub FlowLayoutPanel1_ControlAdded(sender As Object, e As ControlEventArgs) Handles FlowLayoutPanel1.ControlAdded
+        ' Attach the MouseDown event handler to the newly added control
+        AddHandler e.Control.MouseDown, AddressOf Control2_MouseClick
+
+        ' If the new control can contain other controls, attach to its children as well
+        If e.Control.HasChildren Then
+            AddMouseDownEventHandlers(e.Control)
+        End If
+    End Sub
+
+    Private Sub CtxTrackPlay_Click(sender As Object, e As EventArgs) Handles ctxTrack.PlayClicked
+        ctxTrack.Visible = False
+
         Dim seconds As Double = duration
         Dim timeSpan As TimeSpan = TimeSpan.FromSeconds(seconds)
         Dim result As String
@@ -172,107 +229,10 @@ Public Class SearchForm
                 MainForm.player2.StreamAudioFromSpotify(title, author)
 
         End Select
-
     End Sub
 
-    Private Async Sub SearchMenu1_YoutubeClick(sender As Object, e As EventArgs) Handles SearchMenu1.YoutubeClick
-        MainForm.SearchEngine = "Youtube"
-        Try
-            Await PerformSearchQuery(Guna2TextBox1.Text)
-        Catch ex As Exception
-            Console.WriteLine(ex)
-        End Try
-
-    End Sub
-
-    Private Async Sub SearchMenu1_SoundcloudClick(sender As Object, e As EventArgs) Handles SearchMenu1.SoundcloudClick
-        MainForm.SearchEngine = "Soundcloud"
-        Try
-            Await PerformSearchQuery(Guna2TextBox1.Text)
-        Catch ex As Exception
-            Console.WriteLine(ex)
-        End Try
-
-
-    End Sub
-
-    Private Async Sub SearchMenu1_SpotifyClick(sender As Object, e As EventArgs) Handles SearchMenu1.SpotifyClick
-        MainForm.SearchEngine = "Spotify"
-        Try
-            Await PerformSearchQuery(Guna2TextBox1.Text)
-        Catch ex As Exception
-            Console.WriteLine(ex)
-        End Try
-
-
-    End Sub
-
-    Private Sub PictureBox1_Click(sender As Object, e As EventArgs) Handles PictureBox1.Click
-        MainForm.OpenChildFormContentPanel(New OpeningForm)
-    End Sub
-
-    Private Sub Guna2Button2_MouseClick(sender As Object, e As MouseEventArgs) Handles Guna2Button2.MouseClick
-        If e.Button = MouseButtons.Left Then
-            Dim settings As New Settings()
-            settings.ShowDialog()
-        End If
-    End Sub
-
-    Private Sub Guna2TextBox1_Enter(sender As Object, e As EventArgs) Handles Guna2TextBox1.Enter
-        MainForm.textboxFocused = True
-    End Sub
-
-    Private Sub Guna2TextBox1_Leave(sender As Object, e As EventArgs) Handles Guna2TextBox1.Leave
-        MainForm.textboxFocused = False
-    End Sub
-
-    Private Sub Guna2ContextMenuStrip1_Closed(sender As Object, e As ToolStripDropDownClosedEventArgs) Handles Guna2ContextMenuStrip1.Closed
-
-        ' Check if the mouse is not over any of the controls in the FlowLayoutPanel
-        For Each ctrl As TrackResultControl In FlowLayoutPanel1.Controls
-            If Not ctrl.ClientRectangle.Contains(ctrl.PointToClient(Control.MousePosition)) Then
-                ctrl.MainPanel.FillColor = Color.FromArgb(30, 31, 34)
-                ctrl.ImgBox.BackColor = Color.FromArgb(30, 31, 34)
-                ctrl.Title.BackColor = Color.FromArgb(30, 31, 34)
-                ctrl.Author.BackColor = Color.FromArgb(30, 31, 34)
-                ctrl.DurationLbl.BackColor = Color.FromArgb(30, 31, 34)
-                ctrl.DLBtn.CustomImages.Image = My.Resources.icons8_download_24_dark
-                ctrl.PB1.BackColor = Color.FromArgb(30, 31, 34)
-            End If
-        Next
-
-
-
-    End Sub
-
-
-    Private Async Function Spotify2Youtube(trackname As String, artist As String, ct As CancellationToken) As Task(Of String)
-        Dim youtube As New YoutubeExplode.YoutubeClient()
-        Dim results = Await youtube.Search.GetVideosAsync(trackname & artist).CollectAsync(1)
-        ' Check if a cancellation has been requested
-        ct.ThrowIfCancellationRequested()
-
-        For Each result In results
-            Try
-                If TypeOf result Is YoutubeExplode.Search.VideoSearchResult Then
-                    Dim track = DirectCast(result, YoutubeExplode.Search.VideoSearchResult)
-                    Return track.Url
-                End If
-            Catch ex As OperationCanceledException
-                ' The operation was cancelled. You can handle this case if needed.
-                MsgBox(ex.ToString())
-                Return Nothing
-            Catch ex As Exception
-                Return Nothing
-            End Try
-        Next
-
-        ' If no video was found
-        Return Nothing
-    End Function
-
-
-    Private Async Sub DownloadToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles DownloadToolStripMenuItem.Click
+    Private Async Sub CtxTrackDL_Click(sender As Object, e As EventArgs) Handles ctxTrack.DLClicked
+        'ctxTrack.Visible = False
         Download.Visible = False
         Dim filepath As String = String.Empty
         Try
@@ -363,9 +323,108 @@ Public Class SearchForm
         End Try
     End Sub
 
+
+    Private Async Sub SearchMenu1_YoutubeClick(sender As Object, e As EventArgs) Handles SearchMenu1.YoutubeClick
+        MainForm.SearchEngine = "Youtube"
+        Try
+            Await PerformSearchQuery(Guna2TextBox1.Text)
+        Catch ex As Exception
+            Console.WriteLine(ex)
+        End Try
+
+    End Sub
+
+    Private Async Sub SearchMenu1_SoundcloudClick(sender As Object, e As EventArgs) Handles SearchMenu1.SoundcloudClick
+        MainForm.SearchEngine = "Soundcloud"
+        Try
+            Await PerformSearchQuery(Guna2TextBox1.Text)
+        Catch ex As Exception
+            Console.WriteLine(ex)
+        End Try
+
+
+    End Sub
+
+    Private Async Sub SearchMenu1_SpotifyClick(sender As Object, e As EventArgs) Handles SearchMenu1.SpotifyClick
+        MainForm.SearchEngine = "Spotify"
+        Try
+            Await PerformSearchQuery(Guna2TextBox1.Text)
+        Catch ex As Exception
+            Console.WriteLine(ex)
+        End Try
+
+
+    End Sub
+
+    Private Sub PictureBox1_Click(sender As Object, e As EventArgs) Handles PictureBox1.Click
+        MainForm.OpenChildFormContentPanel(New OpeningForm)
+    End Sub
+
+    Private Sub Guna2Button2_MouseClick(sender As Object, e As MouseEventArgs) Handles Guna2Button2.MouseClick
+        If e.Button = MouseButtons.Left Then
+            Dim settings As New Settings()
+            settings.ShowDialog()
+        End If
+    End Sub
+
+    Private Sub Guna2TextBox1_Enter(sender As Object, e As EventArgs) Handles Guna2TextBox1.Enter
+        MainForm.textboxFocused = True
+    End Sub
+
+    Private Sub Guna2TextBox1_Leave(sender As Object, e As EventArgs) Handles Guna2TextBox1.Leave
+        MainForm.textboxFocused = False
+    End Sub
+
+    Private Sub Guna2ContextMenuStrip1_Closed(sender As Object, e As EventArgs) Handles ctxTrack.VisibleChanged
+        If ctxTrack.Visible = False Then
+            ' Check if the mouse is not over any of the controls in the FlowLayoutPanel
+            For Each ctrl As TrackResultControl In FlowLayoutPanel1.Controls
+                If Not ctrl.ClientRectangle.Contains(ctrl.PointToClient(Control.MousePosition)) Then
+                    ctrl.MainPanel.FillColor = Color.FromArgb(30, 31, 34)
+                    ctrl.ImgBox.BackColor = Color.FromArgb(30, 31, 34)
+                    ctrl.Title.BackColor = Color.FromArgb(30, 31, 34)
+                    ctrl.Author.BackColor = Color.FromArgb(30, 31, 34)
+                    ctrl.DurationLbl.BackColor = Color.FromArgb(30, 31, 34)
+                    ctrl.DLBtn.CustomImages.Image = My.Resources.icons8_download_24_dark
+                    ctrl.PB1.BackColor = Color.FromArgb(30, 31, 34)
+                End If
+            Next
+        End If
+
+
+
+
+    End Sub
+
+
+    Private Async Function Spotify2Youtube(trackname As String, artist As String, ct As CancellationToken) As Task(Of String)
+        Dim youtube As New YoutubeExplode.YoutubeClient()
+        Dim results = Await youtube.Search.GetVideosAsync(trackname & artist).CollectAsync(1)
+        ' Check if a cancellation has been requested
+        ct.ThrowIfCancellationRequested()
+
+        For Each result In results
+            Try
+                If TypeOf result Is YoutubeExplode.Search.VideoSearchResult Then
+                    Dim track = DirectCast(result, YoutubeExplode.Search.VideoSearchResult)
+                    Return track.Url
+                End If
+            Catch ex As OperationCanceledException
+                ' The operation was cancelled. You can handle this case if needed.
+                MsgBox(ex.ToString())
+                Return Nothing
+            Catch ex As Exception
+                Return Nothing
+            End Try
+        Next
+
+        ' If no video was found
+        Return Nothing
+    End Function
+
     Private Sub Ctrl_MouseLeftControl(sender As Object, e As EventArgs)
         ' Check if the context menu is not open
-        If Not Guna2ContextMenuStrip1.Visible Then
+        If Not ctxTrack.Visible Then
             Dim ctrl As TrackResultControl = DirectCast(sender, TrackResultControl)
             ctrl.MainPanel.FillColor = Color.FromArgb(30, 31, 34)
             ctrl.ImgBox.BackColor = Color.FromArgb(30, 31, 34)
@@ -374,6 +433,20 @@ Public Class SearchForm
             ctrl.DurationLbl.BackColor = Color.FromArgb(30, 31, 34)
             ctrl.DLBtn.CustomImages.Image = My.Resources.icons8_download_24_dark
             ctrl.PB1.BackColor = Color.FromArgb(30, 31, 34)
+        End If
+    End Sub
+
+    Private Sub Ctrl_MouseEnterControl(sender As Object, e As EventArgs)
+        ' Check if the context menu is not open
+        If Not ctxTrack.Visible Then
+            Dim ctrl As TrackResultControl = DirectCast(sender, TrackResultControl)
+            ctrl.MainPanel.FillColor = Color.FromArgb(45, 46, 49)
+            ctrl.ImgBox.BackColor = Color.FromArgb(45, 46, 49)
+            ctrl.Title.BackColor = Color.FromArgb(45, 46, 49)
+            ctrl.Author.BackColor = Color.FromArgb(45, 46, 49)
+            ctrl.DurationLbl.BackColor = Color.FromArgb(45, 46, 49)
+            ctrl.DLBtn.CustomImages.Image = My.Resources.icons8_download_24
+            ctrl.PB1.BackColor = Color.FromArgb(45, 46, 49)
         End If
     End Sub
 #End Region
@@ -441,7 +514,9 @@ Public Class SearchForm
                 AddHandler Ctrl.DurationLbl.MouseDown, AddressOf Ctrl_MouseDown
                 AddHandler Ctrl.PlayBtn.MouseDown, AddressOf Ctrl_PlayBtn_MouseDown
                 AddHandler Ctrl.MouseLeftControl, AddressOf Ctrl_MouseLeftControl
+                AddHandler Ctrl.MouseEnterControl, AddressOf Ctrl_MouseEnterControl
                 AddHandler Ctrl.DLBtn.MouseDown, AddressOf Ctrl_DL_MouseDown
+                AddHandler Ctrl.RightClicked, AddressOf CtrlRightClick
                 Ctrl.URI = track.Url
 
                 Dim title = track.Title
@@ -525,8 +600,9 @@ Public Class SearchForm
                 AddHandler Ctrl.DurationLbl.MouseDown, AddressOf Ctrl_MouseDown
                 AddHandler Ctrl.PlayBtn.MouseDown, AddressOf Ctrl_PlayBtn_MouseDown
                 AddHandler Ctrl.MouseLeftControl, AddressOf Ctrl_MouseLeftControl
+                AddHandler Ctrl.MouseEnterControl, AddressOf Ctrl_MouseEnterControl
                 AddHandler Ctrl.DLBtn.MouseDown, AddressOf Ctrl_DL_MouseDown
-
+                AddHandler Ctrl.RightClicked, AddressOf CtrlRightClick
                 Dim title = If(track.Title, String.Empty)
                 Dim img = If(track.ArtworkUrl, "https://www.gravatar.com/avatar/7771a96494d732c4e34f6895879eebf7?size=192&d=mm")
                 Dim author = If(track.User.Username, String.Empty)
@@ -615,8 +691,9 @@ Public Class SearchForm
                     AddHandler ctrl.DurationLbl.MouseDown, AddressOf Ctrl_MouseDown
                     AddHandler ctrl.PlayBtn.MouseDown, AddressOf Ctrl_PlayBtn_MouseDown
                     AddHandler ctrl.MouseLeftControl, AddressOf Ctrl_MouseLeftControl
+                    AddHandler ctrl.MouseEnterControl, AddressOf Ctrl_MouseEnterControl
                     AddHandler ctrl.DLBtn.MouseDown, AddressOf Ctrl_DL_MouseDown
-
+                    AddHandler ctrl.RightClicked, AddressOf CtrlRightClick
                     Dim id = track.Id
                     Dim title = track.Title
                     Dim duration = track.DurationMs
@@ -827,6 +904,8 @@ Public Class SearchForm
         CBBox1.SelectedIndex = MainForm.CategorieSelectedIndex
         CBBox2.SelectedIndex = MainForm.CountSelectedIndex
         DotScaling1.Start()
+        Me.Controls.Add(ctxTrack)
+        ctxTrack.Visible= false
         Guna2TextBox1.Text = MainForm.SearchQuery
         Select Case MainForm.SearchEngine
             Case "Youtube"
@@ -837,5 +916,15 @@ Public Class SearchForm
                 SearchMenu1.SelectedButton = ButtonSelection.Spotify
         End Select
 
+        AddMouseDownEventHandlers(Me)
     End Sub
+
+    Private Sub FlowLayoutPanel1_Scroll(sender As Object, e As ScrollEventArgs) Handles Guna2VScrollBar1.Scroll, FlowLayoutPanel1.Scroll
+        ctxTrack.Visible = False
+    End Sub
+
+    Private Sub SearchForm_SizeChanged(sender As Object, e As EventArgs) Handles MyBase.SizeChanged
+        ctxTrack.Visible = False
+    End Sub
+
 End Class

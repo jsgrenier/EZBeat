@@ -3,22 +3,25 @@ Imports System.Runtime.InteropServices
 
 Public Class TrackResultControl
     Public Event MouseLeftControl As EventHandler
+    Public Event MouseEnterControl As EventHandler
     Public id As String
     Public DurationSeconds As Double
     Public URI As String
     Dim titlefont As New PrivateFontCollection()
     Dim lightfont As New PrivateFontCollection()
     Dim boldfont As New PrivateFontCollection()
+    Public Event RightClicked As EventHandler
 
 
     Private Sub Guna2Panel1_MouseEnter(sender As Object, e As EventArgs) Handles Title.MouseEnter, ImgBox.MouseEnter, MainPanel.MouseEnter, Author.MouseEnter, PlayBtn.MouseEnter, DurationLbl.MouseEnter, DLBtn.MouseEnter, PB1.MouseEnter
-        MainPanel.FillColor = Color.FromArgb(45, 46, 49)
-        ImgBox.BackColor = Color.FromArgb(45, 46, 49)
-        Title.BackColor = Color.FromArgb(45, 46, 49)
-        Author.BackColor = Color.FromArgb(45, 46, 49)
-        DurationLbl.BackColor = Color.FromArgb(45, 46, 49)
-        DLBtn.CustomImages.Image = My.Resources.icons8_download_24
-        PB1.BackColor = Color.FromArgb(45, 46, 49)
+        RaiseEvent MouseEnterControl(Me, e)
+
+    End Sub
+
+    Private Sub TrackResultControl_MouseClick(sender As Object, e As MouseEventArgs) Handles Title.MouseClick, ImgBox.MouseClick, MainPanel.MouseClick, Author.MouseClick, PlayBtn.MouseClick, DurationLbl.MouseClick, DLBtn.MouseClick, PB1.MouseClick
+        If e.Button = MouseButtons.Right Then
+            RaiseEvent RightClicked(Me, e)
+        End If
     End Sub
 
     Private Sub Title_MouseClick(sender As Object, e As EventArgs) Handles Title.Click, ImgBox.Click, MainPanel.Click, Author.Click, PlayBtn.Click, DurationLbl.Click, DLBtn.Click, PB1.Click
@@ -51,9 +54,5 @@ Public Class TrackResultControl
             Author.Font = New Font("Segoe UI", 10)
             DurationLbl.Font = New Font("Segoe UI", 10.5, FontStyle.Regular)
         End Try
-
-
-
-
     End Sub
 End Class
