@@ -45,11 +45,15 @@ Public Class TrackResultControl
             titlefont.AddFontFile("Tofino-Regular.ttf")
             lightfont.AddFontFile("Tofino-Light.ttf")
 
-            Title.Font = New Font(titlefont.Families(0), 11, FontStyle.Regular)
-            Author.Font = New Font(lightfont.Families(0), 10)
-            DurationLbl.Font = New Font(titlefont.Families(0), 10.5, FontStyle.Regular)
+            Title.Font = New Font(MainForm.titlefont.Families(0), 11, FontStyle.Regular)
+            Author.Font = New Font(MainForm.lightfont.Families(0), 10)
+            DurationLbl.Font = New Font(MainForm.titlefont.Families(0), 10.5, FontStyle.Regular)
 
         Catch ex As system.IO.FileNotFoundException
+            Title.Font = New Font("Segoe UI", 11, FontStyle.Regular)
+            Author.Font = New Font("Segoe UI", 10)
+            DurationLbl.Font = New Font("Segoe UI", 10.5, FontStyle.Regular)
+        Catch ex As IndexOutOfRangeException
             Title.Font = New Font("Segoe UI", 11, FontStyle.Regular)
             Author.Font = New Font("Segoe UI", 10)
             DurationLbl.Font = New Font("Segoe UI", 10.5, FontStyle.Regular)

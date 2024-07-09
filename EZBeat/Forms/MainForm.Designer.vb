@@ -29,9 +29,7 @@ Partial Class MainForm
         Me.Author = New System.Windows.Forms.Label()
         Me.Guna2PictureBox1 = New Guna.UI2.WinForms.Guna2PictureBox()
         Me.MuteBtn = New Guna.UI2.WinForms.Guna2Button()
-        Me.TBVolume = New EZBeat.VolumeTrackBar()
         Me.PauseBtn = New Guna.UI2.WinForms.Guna2Button()
-        Me.TBDuration = New EZBeat.CustomTrackBar()
         Me.Title = New System.Windows.Forms.Label()
         Me.Thumbnail = New Guna.UI2.WinForms.Guna2PictureBox()
         Me.Label2 = New System.Windows.Forms.Label()
@@ -39,6 +37,8 @@ Partial Class MainForm
         Me.PlayBtn = New Guna.UI2.WinForms.Guna2Button()
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
         Me.BehaviorManager1 = New DevExpress.Utils.Behaviors.BehaviorManager(Me.components)
+        Me.TBVolume = New EZBeat.VolumeTrackBar()
+        Me.TBDuration = New EZBeat.CustomTrackBar()
         Me.Panel1.SuspendLayout()
         CType(Me.Guna2PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Thumbnail, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -57,17 +57,17 @@ Partial Class MainForm
         'Panel1
         '
         Me.Panel1.BackColor = System.Drawing.Color.FromArgb(CType(CType(42, Byte), Integer), CType(CType(43, Byte), Integer), CType(CType(48, Byte), Integer))
+        Me.Panel1.Controls.Add(Me.PlayBtn)
+        Me.Panel1.Controls.Add(Me.PauseBtn)
         Me.Panel1.Controls.Add(Me.Author)
         Me.Panel1.Controls.Add(Me.Guna2PictureBox1)
         Me.Panel1.Controls.Add(Me.MuteBtn)
         Me.Panel1.Controls.Add(Me.TBVolume)
-        Me.Panel1.Controls.Add(Me.PauseBtn)
         Me.Panel1.Controls.Add(Me.TBDuration)
         Me.Panel1.Controls.Add(Me.Title)
         Me.Panel1.Controls.Add(Me.Thumbnail)
         Me.Panel1.Controls.Add(Me.Label2)
         Me.Panel1.Controls.Add(Me.Label1)
-        Me.Panel1.Controls.Add(Me.PlayBtn)
         Me.Panel1.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.Panel1.Location = New System.Drawing.Point(0, 530)
         Me.Panel1.Name = "Panel1"
@@ -80,7 +80,7 @@ Partial Class MainForm
         Me.Author.AutoSize = True
         Me.Author.Font = New System.Drawing.Font("Segoe UI", 9.0!)
         Me.Author.ForeColor = System.Drawing.Color.FromArgb(CType(CType(194, Byte), Integer), CType(CType(194, Byte), Integer), CType(CType(194, Byte), Integer))
-        Me.Author.Location = New System.Drawing.Point(89, 36)
+        Me.Author.Location = New System.Drawing.Point(88, 36)
         Me.Author.Name = "Author"
         Me.Author.Size = New System.Drawing.Size(19, 15)
         Me.Author.TabIndex = 19
@@ -117,32 +117,16 @@ Partial Class MainForm
         Me.MuteBtn.Font = New System.Drawing.Font("Segoe UI", 9.0!)
         Me.MuteBtn.ForeColor = System.Drawing.Color.White
         Me.MuteBtn.HoverState.FillColor = System.Drawing.Color.FromArgb(CType(CType(42, Byte), Integer), CType(CType(43, Byte), Integer), CType(CType(48, Byte), Integer))
-        Me.MuteBtn.Location = New System.Drawing.Point(1042, 56)
+        Me.MuteBtn.Location = New System.Drawing.Point(1042, 58)
         Me.MuteBtn.Name = "MuteBtn"
         Me.MuteBtn.PressedDepth = 0
         Me.MuteBtn.Size = New System.Drawing.Size(24, 24)
         Me.MuteBtn.TabIndex = 17
         '
-        'TBVolume
-        '
-        Me.TBVolume.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.TBVolume.FilledColor = System.Drawing.Color.FromArgb(CType(CType(51, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(101, Byte), Integer))
-        Me.TBVolume.HoverColor = System.Drawing.Color.FromArgb(CType(CType(66, Byte), Integer), CType(CType(68, Byte), Integer), CType(CType(75, Byte), Integer))
-        Me.TBVolume.Location = New System.Drawing.Point(919, 56)
-        Me.TBVolume.Maximum = 100
-        Me.TBVolume.Minimum = 0
-        Me.TBVolume.Name = "TBVolume"
-        Me.TBVolume.Size = New System.Drawing.Size(115, 23)
-        Me.TBVolume.TabIndex = 16
-        Me.TBVolume.Text = "CustomTrackBar1"
-        Me.TBVolume.ThumbColor = System.Drawing.Color.FromArgb(CType(CType(29, Byte), Integer), CType(CType(185, Byte), Integer), CType(CType(84, Byte), Integer))
-        Me.TBVolume.ThumbSize = 15
-        Me.TBVolume.TrackColor = System.Drawing.Color.FromArgb(CType(CType(66, Byte), Integer), CType(CType(68, Byte), Integer), CType(CType(75, Byte), Integer))
-        Me.TBVolume.Value = 50
-        '
         'PauseBtn
         '
         Me.PauseBtn.Anchor = System.Windows.Forms.AnchorStyles.Top
+        Me.PauseBtn.BackColor = System.Drawing.Color.Transparent
         Me.PauseBtn.Cursor = System.Windows.Forms.Cursors.Hand
         Me.PauseBtn.CustomImages.HoveredImage = Global.EZBeat.My.Resources.Resources.icons8_pause_35_dark
         Me.PauseBtn.CustomImages.Image = Global.EZBeat.My.Resources.Resources.icons8_pause_35
@@ -162,24 +146,6 @@ Partial Class MainForm
         Me.PauseBtn.RightToLeft = System.Windows.Forms.RightToLeft.Yes
         Me.PauseBtn.Size = New System.Drawing.Size(35, 35)
         Me.PauseBtn.TabIndex = 3
-        '
-        'TBDuration
-        '
-        Me.TBDuration.Anchor = System.Windows.Forms.AnchorStyles.Top
-        Me.TBDuration.Cursor = System.Windows.Forms.Cursors.Default
-        Me.TBDuration.FilledColor = System.Drawing.Color.FromArgb(CType(CType(51, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(101, Byte), Integer))
-        Me.TBDuration.HoverColor = System.Drawing.Color.FromArgb(CType(CType(78, Byte), Integer), CType(CType(80, Byte), Integer), CType(CType(89, Byte), Integer))
-        Me.TBDuration.Location = New System.Drawing.Point(219, 57)
-        Me.TBDuration.Maximum = 100
-        Me.TBDuration.Minimum = 0
-        Me.TBDuration.Name = "TBDuration"
-        Me.TBDuration.Size = New System.Drawing.Size(640, 23)
-        Me.TBDuration.TabIndex = 13
-        Me.TBDuration.Text = "CustomTrackBar1"
-        Me.TBDuration.ThumbColor = System.Drawing.Color.FromArgb(CType(CType(29, Byte), Integer), CType(CType(185, Byte), Integer), CType(CType(84, Byte), Integer))
-        Me.TBDuration.ThumbSize = 15
-        Me.TBDuration.TrackColor = System.Drawing.Color.FromArgb(CType(CType(66, Byte), Integer), CType(CType(68, Byte), Integer), CType(CType(75, Byte), Integer))
-        Me.TBDuration.Value = 30
         '
         'Title
         '
@@ -209,7 +175,7 @@ Partial Class MainForm
         '
         Me.Label2.Anchor = System.Windows.Forms.AnchorStyles.Top
         Me.Label2.ForeColor = System.Drawing.Color.White
-        Me.Label2.Location = New System.Drawing.Point(867, 54)
+        Me.Label2.Location = New System.Drawing.Point(867, 56)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(57, 26)
         Me.Label2.TabIndex = 9
@@ -220,7 +186,7 @@ Partial Class MainForm
         '
         Me.Label1.Anchor = System.Windows.Forms.AnchorStyles.Top
         Me.Label1.ForeColor = System.Drawing.Color.White
-        Me.Label1.Location = New System.Drawing.Point(154, 54)
+        Me.Label1.Location = New System.Drawing.Point(154, 56)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(57, 26)
         Me.Label1.TabIndex = 8
@@ -251,6 +217,41 @@ Partial Class MainForm
         Me.PlayBtn.Size = New System.Drawing.Size(35, 35)
         Me.PlayBtn.TabIndex = 2
         Me.PlayBtn.Visible = False
+        '
+        'TBVolume
+        '
+        Me.TBVolume.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.TBVolume.FilledColor = System.Drawing.Color.FromArgb(CType(CType(51, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(101, Byte), Integer))
+        Me.TBVolume.HoverColor = System.Drawing.Color.FromArgb(CType(CType(66, Byte), Integer), CType(CType(68, Byte), Integer), CType(CType(75, Byte), Integer))
+        Me.TBVolume.Location = New System.Drawing.Point(919, 58)
+        Me.TBVolume.Maximum = 100
+        Me.TBVolume.Minimum = 0
+        Me.TBVolume.Name = "TBVolume"
+        Me.TBVolume.Size = New System.Drawing.Size(115, 23)
+        Me.TBVolume.TabIndex = 16
+        Me.TBVolume.Text = "CustomTrackBar1"
+        Me.TBVolume.ThumbColor = System.Drawing.Color.FromArgb(CType(CType(29, Byte), Integer), CType(CType(185, Byte), Integer), CType(CType(84, Byte), Integer))
+        Me.TBVolume.ThumbSize = 15
+        Me.TBVolume.TrackColor = System.Drawing.Color.FromArgb(CType(CType(66, Byte), Integer), CType(CType(68, Byte), Integer), CType(CType(75, Byte), Integer))
+        Me.TBVolume.Value = 50
+        '
+        'TBDuration
+        '
+        Me.TBDuration.Anchor = System.Windows.Forms.AnchorStyles.Top
+        Me.TBDuration.Cursor = System.Windows.Forms.Cursors.Default
+        Me.TBDuration.FilledColor = System.Drawing.Color.FromArgb(CType(CType(51, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(101, Byte), Integer))
+        Me.TBDuration.HoverColor = System.Drawing.Color.FromArgb(CType(CType(78, Byte), Integer), CType(CType(80, Byte), Integer), CType(CType(89, Byte), Integer))
+        Me.TBDuration.Location = New System.Drawing.Point(219, 59)
+        Me.TBDuration.Maximum = 100
+        Me.TBDuration.Minimum = 0
+        Me.TBDuration.Name = "TBDuration"
+        Me.TBDuration.Size = New System.Drawing.Size(640, 23)
+        Me.TBDuration.TabIndex = 13
+        Me.TBDuration.Text = "CustomTrackBar1"
+        Me.TBDuration.ThumbColor = System.Drawing.Color.FromArgb(CType(CType(29, Byte), Integer), CType(CType(185, Byte), Integer), CType(CType(84, Byte), Integer))
+        Me.TBDuration.ThumbSize = 15
+        Me.TBDuration.TrackColor = System.Drawing.Color.FromArgb(CType(CType(66, Byte), Integer), CType(CType(68, Byte), Integer), CType(CType(75, Byte), Integer))
+        Me.TBDuration.Value = 30
         '
         'MainForm
         '

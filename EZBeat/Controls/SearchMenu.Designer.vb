@@ -83,7 +83,7 @@ Partial Class SearchMenu
         Me.Guna2Separator1.FillThickness = 3
         Me.Guna2Separator1.Location = New System.Drawing.Point(0, 32)
         Me.Guna2Separator1.Name = "Guna2Separator1"
-        Me.Guna2Separator1.Size = New System.Drawing.Size(93, 10)
+        Me.Guna2Separator1.Size = New System.Drawing.Size(90, 10)
         Me.Guna2Separator1.TabIndex = 7
         '
         'Panel2
@@ -147,7 +147,7 @@ Partial Class SearchMenu
         Me.Panel3.Controls.Add(Me.Label3)
         Me.Panel3.Controls.Add(Me.PictureBox3)
         Me.Panel3.Controls.Add(Me.Guna2Separator3)
-        Me.Panel3.Location = New System.Drawing.Point(223, 0)
+        Me.Panel3.Location = New System.Drawing.Point(225, 0)
         Me.Panel3.Name = "Panel3"
         Me.Panel3.Size = New System.Drawing.Size(83, 40)
         Me.Panel3.TabIndex = 2

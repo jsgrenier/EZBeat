@@ -526,11 +526,27 @@ Public Class SearchForm
                 Dim img = track.Thumbnails.Last.Url
 
                 Ctrl.Title.Text = title
+
                 Ctrl.Url.Text = url
                 Ctrl.id = track.Id
                 Ctrl.Author.Text = artist.ChannelTitle
                 Ctrl.ImgBox.ImageLocation = img
                 Ctrl.DurationSeconds = duration.Value.TotalSeconds
+
+                Try
+                    Ctrl.Author.Font = New Font(MainForm.lightfont.Families(0), 10)
+                    Ctrl.DurationLbl.Font = New Font(MainForm.titlefont.Families(0), 10.5, FontStyle.Regular)
+                    Ctrl.Title.Font = New Font(MainForm.titlefont.Families(0), 11, FontStyle.Regular)
+                Catch ex As System.IO.FileNotFoundException
+                    Ctrl.Title.Font = New Font("Segoe UI", 11, FontStyle.Regular)
+                    Ctrl.Author.Font = New Font("Segoe UI", 10)
+                    Ctrl.DurationLbl.Font = New Font("Segoe UI", 10.5, FontStyle.Regular)
+                Catch ex As IndexOutOfRangeException
+                    Ctrl.Title.Font = New Font("Segoe UI", 11, FontStyle.Regular)
+                    Ctrl.Author.Font = New Font("Segoe UI", 10)
+                    Ctrl.DurationLbl.Font = New Font("Segoe UI", 10.5, FontStyle.Regular)
+                End Try
+
 
                 Dim timeSpan As TimeSpan = TimeSpan.FromSeconds(duration.Value.TotalSeconds)
                 Dim resultstr As String
@@ -625,6 +641,20 @@ Public Class SearchForm
                 Ctrl.Url.Text = Url
                 Ctrl.ImgBox.ImageLocation = img.ToString()
 
+                Try
+                    Ctrl.Author.Font = New Font(MainForm.lightfont.Families(0), 10)
+                    Ctrl.DurationLbl.Font = New Font(MainForm.titlefont.Families(0), 10.5, FontStyle.Regular)
+                    Ctrl.Title.Font = New Font(MainForm.titlefont.Families(0), 11, FontStyle.Regular)
+                Catch ex As System.IO.FileNotFoundException
+                    Ctrl.Title.Font = New Font("Segoe UI", 11, FontStyle.Regular)
+                    Ctrl.Author.Font = New Font("Segoe UI", 10)
+                    Ctrl.DurationLbl.Font = New Font("Segoe UI", 10.5, FontStyle.Regular)
+                Catch ex As IndexOutOfRangeException
+                    Ctrl.Title.Font = New Font("Segoe UI", 11, FontStyle.Regular)
+                    Ctrl.Author.Font = New Font("Segoe UI", 10)
+                    Ctrl.DurationLbl.Font = New Font("Segoe UI", 10.5, FontStyle.Regular)
+                End Try
+
                 If duration Is Nothing Then
                     Ctrl.DurationLbl.Text = "Null"
                 Else
@@ -717,6 +747,20 @@ Public Class SearchForm
                     ctrl.Title.Text = title
                     ctrl.Url.Text = url
                     ctrl.id = id
+
+                    Try
+                        ctrl.Author.Font = New Font(MainForm.lightfont.Families(0), 10)
+                        ctrl.DurationLbl.Font = New Font(MainForm.titlefont.Families(0), 10.5, FontStyle.Regular)
+                        ctrl.Title.Font = New Font(MainForm.titlefont.Families(0), 11, FontStyle.Regular)
+                    Catch ex As System.IO.FileNotFoundException
+                        ctrl.Title.Font = New Font("Segoe UI", 11, FontStyle.Regular)
+                        ctrl.Author.Font = New Font("Segoe UI", 10)
+                        ctrl.DurationLbl.Font = New Font("Segoe UI", 10.5, FontStyle.Regular)
+                    Catch ex As IndexOutOfRangeException
+                        ctrl.Title.Font = New Font("Segoe UI", 11, FontStyle.Regular)
+                        ctrl.Author.Font = New Font("Segoe UI", 10)
+                        ctrl.DurationLbl.Font = New Font("Segoe UI", 10.5, FontStyle.Regular)
+                    End Try
 
                     Dim dr As Double = duration / 1000
                     ctrl.DurationSeconds = Math.Round(dr, 0)
@@ -917,6 +961,26 @@ Public Class SearchForm
         End Select
 
         AddMouseDownEventHandlers(Me)
+
+        Try
+            SearchMenu1.Label1.Font = New Font(MainForm.boldfont.Families(0), 9.75, FontStyle.Regular)
+            SearchMenu1.Label2.Font = New Font(MainForm.boldfont.Families(0), 9.75, FontStyle.Regular)
+            SearchMenu1.Label3.Font = New Font(MainForm.boldfont.Families(0), 9.75, FontStyle.Regular)
+            CBBox1.Font = New Font(MainForm.titlefont.Families(0), 12, FontStyle.Regular)
+            CBBox1.TextOffset = New Point(22, 2)
+            CBBox2.Font = New Font(MainForm.titlefont.Families(0), 12, FontStyle.Regular)
+            CBBox2.TextOffset = New Point(10, 2)
+            ctxTrack.Guna2Button1.Font = New Font(MainForm.boldfont.Families(0), 9.75, FontStyle.Regular)
+            ctxTrack.Guna2Button3.Font = New Font(MainForm.boldfont.Families(0), 9.75, FontStyle.Regular)
+        Catch ex As System.IO.FileNotFoundException
+            SearchMenu1.Label1.Font = New Font("Segoe UI Semibold", 9.75, FontStyle.Regular)
+            SearchMenu1.Label2.Font = New Font("Segoe UI Semibold", 9.75, FontStyle.Regular)
+            SearchMenu1.Label3.Font = New Font("Segoe UI Semibold", 9.75, FontStyle.Regular)
+        Catch ex As IndexOutOfRangeException
+            SearchMenu1.Label1.Font = New Font("Segoe UI Semibold", 9.75, FontStyle.Regular)
+            SearchMenu1.Label2.Font = New Font("Segoe UI Semibold", 9.75, FontStyle.Regular)
+            SearchMenu1.Label3.Font = New Font("Segoe UI Semibold", 9.75, FontStyle.Regular)
+        End Try
     End Sub
 
     Private Sub FlowLayoutPanel1_Scroll(sender As Object, e As ScrollEventArgs) Handles Guna2VScrollBar1.Scroll, FlowLayoutPanel1.Scroll

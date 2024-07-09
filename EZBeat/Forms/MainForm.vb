@@ -2,6 +2,7 @@
 Imports DevExpress.Utils
 Imports DevExpress.XtraEditors
 Imports Microsoft.WindowsAPICodePack.Taskbar
+Imports System.Drawing.Text
 Imports System.Runtime.InteropServices
 Imports System.Windows.Forms
 
@@ -13,6 +14,9 @@ Public Class MainForm
     Public textboxFocused As Boolean = False
     Public CountSelectedIndex As Integer
     Public CategorieSelectedIndex As Integer
+    Public titlefont As New PrivateFontCollection()
+    Public lightfont As New PrivateFontCollection()
+    Public boldfont As New PrivateFontCollection()
     Public WithEvents player2 As New WAudioPlayer()
 
     ' Constants for the Windows API functions
@@ -42,43 +46,62 @@ Public Class MainForm
     Private Const VK_MEDIA_NEXT_TRACK As UInteger = &HB0
 
     Protected Overrides Sub WndProc(ByRef m As Message)
-        If m.Msg = WM_HOTKEY Then
-            Select Case m.WParam.ToInt32()
-                Case HOTKEY_ID_PLAY_PAUSE
-                    ' Handle the Play/Pause button click event
-                    If Panel1.Visible = True Then
-                        If player2.audioplayer.playState = WMPLib.WMPPlayState.wmppsPaused Or player2.audioplayer.playState = WMPLib.WMPPlayState.wmppsStopped Then
-                            player2.audioplayer.controls.play()
-                            PauseBtn.Visible = True
-                            PlayBtn.Visible = False
-                            btnPlayPause.Icon = My.Resources.TaskPause
-                        ElseIf player2.audioplayer.playState = WMPLib.WMPPlayState.wmppsPlaying Then
-                            player2.audioplayer.controls.pause()
-                            PauseBtn.Visible = False
-                            PlayBtn.Visible = True
-                            btnPlayPause.Icon = My.Resources.taskPlay
+        Try
+            If m.Msg = WM_HOTKEY Then
+                Select Case m.WParam.ToInt32()
+                    Case HOTKEY_ID_PLAY_PAUSE
+                        ' Handle the Play/Pause button click event
+                        If Panel1.Visible Then
+                            If player2 IsNot Nothing AndAlso player2.audioplayer IsNot Nothing Then
+                                If player2.audioplayer.playState = WMPLib.WMPPlayState.wmppsPaused Or player2.audioplayer.playState = WMPLib.WMPPlayState.wmppsStopped Then
+                                    player2.audioplayer.controls.play()
+                                    PauseBtn.Visible = True
+                                    PlayBtn.Visible = False
+                                    btnPlayPause.Icon = My.Resources.TaskPause
+                                ElseIf player2.audioplayer.playState = WMPLib.WMPPlayState.wmppsPlaying Then
+                                    player2.audioplayer.controls.pause()
+                                    PauseBtn.Visible = False
+                                    PlayBtn.Visible = True
+                                    btnPlayPause.Icon = My.Resources.taskPlay
+                                End If
+                            End If
                         End If
-                    End If
-                Case HOTKEY_ID_PREV_TRACK
-                    ' Handle the Previous Track action
-                    If Panel1.Visible = True Then
-                        If player2.audioplayer.controls.currentPosition - 1 >= 0 Then
-                            player2.audioplayer.controls.currentPosition -= 1
+                    Case HOTKEY_ID_PREV_TRACK
+                        ' Handle the Previous Track action
+                        If Panel1.Visible Then
+                            If player2 IsNot Nothing AndAlso player2.audioplayer IsNot Nothing Then
+                                If player2.audioplayer.controls.currentPosition - 1 >= 0 Then
+                                    player2.audioplayer.controls.currentPosition -= 1
+                                End If
+                                TBDuration.Value = player2.audioplayer.controls.currentPosition
+                            End If
                         End If
-                        TBDuration.Value = player2.audioplayer.controls.currentPosition
-                    End If
-                Case HOTKEY_ID_NEXT_TRACK
-                    ' Handle the Next Track action
-                    If Panel1.Visible = True Then
-                        If player2.audioplayer.controls.currentPosition + 1 <= player2.audioplayer.currentMedia.duration Then
-                            player2.audioplayer.controls.currentPosition += 1
+                    Case HOTKEY_ID_NEXT_TRACK
+                        ' Handle the Next Track action
+                        If Panel1.Visible Then
+                            If player2 IsNot Nothing AndAlso player2.audioplayer IsNot Nothing Then
+                                If player2.audioplayer.controls.currentPosition + 1 <= player2.audioplayer.currentMedia.duration Then
+                                    player2.audioplayer.controls.currentPosition += 1
+                                End If
+                                TBDuration.Value = player2.audioplayer.controls.currentPosition
+                            End If
                         End If
-                        TBDuration.Value = player2.audioplayer.controls.currentPosition
-                    End If
-            End Select
-        End If
-        MyBase.WndProc(m)
+                End Select
+            End If
+
+            MyBase.WndProc(m)
+        Catch ex As SEHException
+            ' Log the exception details
+            Debug.WriteLine("SEHException in WndProc: " & ex.ToString())
+            MsgBox("An external component has thrown an exception: " & ex.Message)
+        Catch ex As Exception
+            ' Log the exception details
+            Debug.WriteLine("Exception in WndProc: " & ex.ToString())
+            MsgBox(ex.Message)
+        End Try
     End Sub
+
+
 
     Protected Overloads Overrides ReadOnly Property CreateParams() As CreateParams
         Get
@@ -130,6 +153,23 @@ Public Class MainForm
         RegisterHotKey(Me.Handle, HOTKEY_ID_PREV_TRACK, 0, VK_MEDIA_PREV_TRACK)
         ' Register the Next Track media key as a global hotkey
         RegisterHotKey(Me.Handle, HOTKEY_ID_NEXT_TRACK, 0, VK_MEDIA_NEXT_TRACK)
+
+        Try
+            titlefont.AddFontFile("Tofino-Regular.ttf")
+            lightfont.AddFontFile("Tofino-Light.ttf")
+            boldfont.AddFontFile("Tofino-Semibold.ttf")
+
+            Title.Font = New Font(titlefont.Families(0), 10, FontStyle.Regular)
+            Author.Font = New Font("Segoe UI", 10)
+            Label1.Font = New Font(titlefont.Families(0), 10.5, FontStyle.Regular)
+            Label2.Font = New Font(titlefont.Families(0), 10.5, FontStyle.Regular)
+
+        Catch ex As System.IO.FileNotFoundException
+            Title.Font = New Font("Segoe UI", 11, FontStyle.Regular)
+            Author.Font = New Font("Segoe UI", 10)
+            Label1.Font = New Font("Segoe UI", 9.75, FontStyle.Regular)
+            Label2.Font = New Font("Segoe UI", 9.75, FontStyle.Regular)
+        End Try
 
     End Sub
 
@@ -273,13 +313,16 @@ Public Class MainForm
         UnregisterHotKey(Me.Handle, HOTKEY_ID_PLAY_PAUSE)
         UnregisterHotKey(Me.Handle, HOTKEY_ID_PREV_TRACK)
         UnregisterHotKey(Me.Handle, HOTKEY_ID_NEXT_TRACK)
+        boldfont.Dispose()
+        lightfont.Dispose()
+        titlefont.Dispose()
         End
     End Sub
 
     Private Sub Title_SizeChanged(sender As Object, e As EventArgs) Handles Title.SizeChanged
         If Title.Size.Height = 20 Then
             Author.Visible = True
-            Author.Location = New Point(89, 36)
+            Author.Location = New Point(88, 36)
         Else
             Author.Visible = False
         End If

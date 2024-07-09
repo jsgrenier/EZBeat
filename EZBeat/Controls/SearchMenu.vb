@@ -83,4 +83,5 @@ Public Class SearchMenu
         Guna2Separator2.FillColor = Color.Empty
         PictureBox2.Image = My.Resources.icons8_soundcloud_24
     End Sub
+
 End Class
