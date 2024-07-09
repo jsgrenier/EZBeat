@@ -41,6 +41,7 @@ Partial Class TrackResultControl
         'MainPanel
         '
         Me.MainPanel.BackColor = System.Drawing.Color.FromArgb(CType(CType(30, Byte), Integer), CType(CType(31, Byte), Integer), CType(CType(34, Byte), Integer))
+        Me.MainPanel.BorderColor = System.Drawing.Color.FromArgb(CType(CType(69, Byte), Integer), CType(CType(71, Byte), Integer), CType(CType(76, Byte), Integer))
         Me.MainPanel.BorderRadius = 6
         Me.MainPanel.Controls.Add(Me.PB1)
         Me.MainPanel.Controls.Add(Me.DLBtn)

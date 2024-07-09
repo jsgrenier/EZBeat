@@ -387,6 +387,7 @@ Public Class SearchForm
                     ctrl.DurationLbl.BackColor = Color.FromArgb(30, 31, 34)
                     ctrl.DLBtn.CustomImages.Image = My.Resources.icons8_download_24_dark
                     ctrl.PB1.BackColor = Color.FromArgb(30, 31, 34)
+                    ctrl.MainPanel.BorderThickness = 0
                 End If
             Next
         End If
@@ -433,6 +434,7 @@ Public Class SearchForm
             ctrl.DurationLbl.BackColor = Color.FromArgb(30, 31, 34)
             ctrl.DLBtn.CustomImages.Image = My.Resources.icons8_download_24_dark
             ctrl.PB1.BackColor = Color.FromArgb(30, 31, 34)
+            ctrl.MainPanel.BorderThickness = 0
         End If
     End Sub
 
@@ -447,6 +449,7 @@ Public Class SearchForm
             ctrl.DurationLbl.BackColor = Color.FromArgb(45, 46, 49)
             ctrl.DLBtn.CustomImages.Image = My.Resources.icons8_download_24
             ctrl.PB1.BackColor = Color.FromArgb(45, 46, 49)
+            ctrl.MainPanel.BorderThickness = 1
         End If
     End Sub
 #End Region

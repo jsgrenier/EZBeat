@@ -33,6 +33,7 @@ Public Class TrackResultControl
         DurationLbl.BackColor = Color.FromArgb(45, 46, 49)
         DLBtn.CustomImages.Image = My.Resources.icons8_download_24
         PB1.BackColor = Color.FromArgb(45, 46, 49)
+        MainPanel.BorderThickness = 1
 
     End Sub
 
