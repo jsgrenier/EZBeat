@@ -62,16 +62,20 @@ Public Class MainForm
                     End If
                 Case HOTKEY_ID_PREV_TRACK
                     ' Handle the Previous Track action
-                    If player2.audioplayer.controls.currentPosition - 1 >= 0 Then
-                        player2.audioplayer.controls.currentPosition -= 1
+                    If Panel1.Visible = True Then
+                        If player2.audioplayer.controls.currentPosition - 1 >= 0 Then
+                            player2.audioplayer.controls.currentPosition -= 1
+                        End If
+                        TBDuration.Value = player2.audioplayer.controls.currentPosition
                     End If
-                    TBDuration.Value = player2.audioplayer.controls.currentPosition
                 Case HOTKEY_ID_NEXT_TRACK
                     ' Handle the Next Track action
-                    If player2.audioplayer.controls.currentPosition + 1 <= player2.audioplayer.currentMedia.duration Then
-                        player2.audioplayer.controls.currentPosition += 1
+                    If Panel1.Visible = True Then
+                        If player2.audioplayer.controls.currentPosition + 1 <= player2.audioplayer.currentMedia.duration Then
+                            player2.audioplayer.controls.currentPosition += 1
+                        End If
+                        TBDuration.Value = player2.audioplayer.controls.currentPosition
                     End If
-                    TBDuration.Value = player2.audioplayer.controls.currentPosition
             End Select
         End If
         MyBase.WndProc(m)
