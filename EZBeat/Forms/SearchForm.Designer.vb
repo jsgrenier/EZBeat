@@ -29,6 +29,7 @@ Partial Class SearchForm
         Me.CBBox1 = New Guna.UI2.WinForms.Guna2ComboBox()
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         Me.Guna2Button2 = New Guna.UI2.WinForms.Guna2Button()
+        Me.SearchMenu1 = New EZBeat.SearchMenu()
         Me.Guna2TextBox1 = New Guna.UI2.WinForms.Guna2TextBox()
         Me.Panel1 = New System.Windows.Forms.Panel()
         Me.FlowLayoutPanel1 = New System.Windows.Forms.FlowLayoutPanel()
@@ -39,7 +40,6 @@ Partial Class SearchForm
         Me.DotScaling1 = New AnimOfDots.DotScaling()
         Me.Guna2VScrollBar1 = New Guna.UI2.WinForms.Guna2VScrollBar()
         Me.Guna2Transition1 = New Guna.UI2.WinForms.Guna2Transition()
-        Me.SearchMenu1 = New EZBeat.SearchMenu()
         Me.Guna2Panel1.SuspendLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.DownloadLink.SuspendLayout()
@@ -154,6 +154,16 @@ Partial Class SearchForm
         Me.Guna2Button2.PressedDepth = 0
         Me.Guna2Button2.Size = New System.Drawing.Size(50, 50)
         Me.Guna2Button2.TabIndex = 4
+        '
+        'SearchMenu1
+        '
+        Me.SearchMenu1.BackColor = System.Drawing.Color.FromArgb(CType(CType(30, Byte), Integer), CType(CType(31, Byte), Integer), CType(CType(34, Byte), Integer))
+        Me.Guna2Transition1.SetDecoration(Me.SearchMenu1, Guna.UI2.AnimatorNS.DecorationType.None)
+        Me.SearchMenu1.Location = New System.Drawing.Point(200, 92)
+        Me.SearchMenu1.Name = "SearchMenu1"
+        Me.SearchMenu1.SelectedButton = EZBeat.SearchMenu.ButtonSelection.None
+        Me.SearchMenu1.Size = New System.Drawing.Size(400, 40)
+        Me.SearchMenu1.TabIndex = 3
         '
         'Guna2TextBox1
         '
@@ -322,6 +332,7 @@ Partial Class SearchForm
         Me.Guna2Transition1.SetDecoration(Me.Guna2VScrollBar1, Guna.UI2.AnimatorNS.DecorationType.None)
         Me.Guna2VScrollBar1.FillColor = System.Drawing.Color.FromArgb(CType(CType(30, Byte), Integer), CType(CType(31, Byte), Integer), CType(CType(34, Byte), Integer))
         Me.Guna2VScrollBar1.FillOffset = New System.Windows.Forms.Padding(2, 0, 2, 0)
+        Me.Guna2VScrollBar1.HoverState.FillColor = System.Drawing.Color.FromArgb(CType(CType(85, Byte), Integer), CType(CType(85, Byte), Integer), CType(CType(85, Byte), Integer))
         Me.Guna2VScrollBar1.InUpdate = False
         Me.Guna2VScrollBar1.LargeChange = 10
         Me.Guna2VScrollBar1.Location = New System.Drawing.Point(1062, 133)
@@ -330,7 +341,7 @@ Partial Class SearchForm
         Me.Guna2VScrollBar1.ScrollbarSize = 14
         Me.Guna2VScrollBar1.Size = New System.Drawing.Size(18, 529)
         Me.Guna2VScrollBar1.TabIndex = 0
-        Me.Guna2VScrollBar1.ThumbColor = System.Drawing.Color.FromArgb(CType(CType(170, Byte), Integer), CType(CType(170, Byte), Integer), CType(CType(170, Byte), Integer))
+        Me.Guna2VScrollBar1.ThumbColor = System.Drawing.Color.FromArgb(CType(CType(60, Byte), Integer), CType(CType(61, Byte), Integer), CType(CType(64, Byte), Integer))
         Me.Guna2VScrollBar1.ThumbSize = 5.0!
         Me.Guna2VScrollBar1.ThumbStyle = Guna.UI2.WinForms.Enums.ThumbStyle.Inset
         '
@@ -355,16 +366,6 @@ Partial Class SearchForm
         Me.Guna2Transition1.DefaultAnimation = Animation1
         Me.Guna2Transition1.Interval = 1
         Me.Guna2Transition1.TimeStep = 0.07!
-        '
-        'SearchMenu1
-        '
-        Me.SearchMenu1.BackColor = System.Drawing.Color.FromArgb(CType(CType(30, Byte), Integer), CType(CType(31, Byte), Integer), CType(CType(34, Byte), Integer))
-        Me.Guna2Transition1.SetDecoration(Me.SearchMenu1, Guna.UI2.AnimatorNS.DecorationType.None)
-        Me.SearchMenu1.Location = New System.Drawing.Point(200, 92)
-        Me.SearchMenu1.Name = "SearchMenu1"
-        Me.SearchMenu1.SelectedButton = EZBeat.SearchMenu.ButtonSelection.None
-        Me.SearchMenu1.Size = New System.Drawing.Size(400, 40)
-        Me.SearchMenu1.TabIndex = 3
         '
         'SearchForm
         '
