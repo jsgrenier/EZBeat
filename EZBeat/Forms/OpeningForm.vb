@@ -1,4 +1,5 @@
 ﻿Imports System.Drawing.Text
+Imports Guna.UI2.WinForms
 Imports YouTubeApiSharp
 Imports YoutubeExplode.Common
 
@@ -6,6 +7,9 @@ Public Class OpeningForm
     Private titlefont As New PrivateFontCollection()
     Private lightfont As New PrivateFontCollection()
     Private boldfont As New PrivateFontCollection()
+
+    Public WithEvents ctxArtist As New CtxTrackArtist()
+    Public WithEvents ctxCount As New CtxCount()
 
     Protected Overloads Overrides ReadOnly Property CreateParams() As CreateParams
         Get
@@ -78,10 +82,10 @@ Public Class OpeningForm
             Guna2RadioButton2.Font = New Font(boldfont.Families(0), 9.75, FontStyle.Regular)
             Guna2RadioButton3.Font = New Font(boldfont.Families(0), 9.75, FontStyle.Regular)
             Label2.Font = New Font(titlefont.Families(0), 11.25, FontStyle.Regular)
-            CBBox1.Font = New Font(titlefont.Families(0), 12, FontStyle.Regular)
-            CBBox1.TextOffset = New Point(22, 2)
-            CBBox2.Font = New Font(titlefont.Families(0), 12, FontStyle.Regular)
-            CBBox2.TextOffset = New Point(10, 2)
+            'CBBox1.Font = New Font(titlefont.Families(0), 12, FontStyle.Regular)
+            'CBBox1.TextOffset = New Point(22, 2)
+            'CBBox4.Font = New Font(titlefont.Families(0), 12, FontStyle.Regular)
+            'CBBox4.TextOffset = New Point(10, 2)
             Guna2Button1.Font = New Font(boldfont.Families(0), 11.25, FontStyle.Regular)
         Catch ex As System.IO.FileNotFoundException
             Guna2RadioButton1.Font = defaultradiofont
@@ -104,12 +108,107 @@ Public Class OpeningForm
             CBBox2.Font = New Font("Segoe UI", 12.0!)
             CBBox2.TextOffset = New Point(10, 0)
         End Try
-
+        MainMenu.Controls.Add(ctxArtist)
+        MainMenu.Controls.Add(ctxCount)
+        ctxArtist.Visible = False
+        ctxCount.Visible = False
+        AddMouseDownEventHandlers(Me)
     End Sub
 
     Private Sub OpeningForm_FormClosing(sender As Object, e As FormClosingEventArgs) Handles MyBase.FormClosing
         boldfont.Dispose()
         lightfont.Dispose()
         titlefont.Dispose()
+    End Sub
+
+    Private Sub Control2_MouseClick(sender As Object, e As MouseEventArgs) Handles Me.MouseDown
+        Dim ctrl As Control = TryCast(sender, Control)
+        If ctrl IsNot CBBox1 Then
+            CBBox1.Checked = False
+        End If
+        If ctrl IsNot CBBox2 Then
+            CBBox2.Checked = False
+        End If
+    End Sub
+
+    Private Sub AddMouseDownEventHandlers(parentControl As Control)
+        ' Recursively attach the event handler to this control and its children
+        For Each ctrl As Control In parentControl.Controls
+            AddHandler ctrl.MouseDown, AddressOf Control2_MouseClick
+            ' Recursively attach to children controls
+            If ctrl.HasChildren Then
+                AddMouseDownEventHandlers(ctrl)
+            End If
+        Next
+    End Sub
+
+    Private Sub ArtistCtx(action As String, Xcoord As Integer, Ycoord As Integer)
+        Select Case action
+            Case "Open"
+                ctxArtist.Location = New Point(Xcoord, Ycoord + 51)
+                ctxArtist.BringToFront()
+                Guna2Transition1.ShowSync(ctxArtist, True, Guna.UI2.AnimatorNS.Animation.Transparent)
+            Case "Close"
+
+        End Select
+
+    End Sub
+
+    Private Sub CBBox3_CheckedChanged(sender As Object, e As EventArgs) Handles CBBox1.CheckedChanged
+        If CBBox1.Checked = True Then
+            ArtistCtx("Open", CBBox1.Location.X, CBBox1.Location.Y)
+        Else
+            ctxArtist.Visible = False
+        End If
+    End Sub
+
+    Private Sub ArtistCtxOption_Clicked(sender As Object, e As EventArgs) Handles ctxArtist.ArtistClicked
+        CBBox1.Text = "Artist"
+        CBBox1.Checked = False
+    End Sub
+
+    Private Sub TrackCtxOption_Clicked(sender As Object, e As EventArgs) Handles ctxArtist.TrackClicked
+        CBBox1.Text = "Track"
+        CBBox1.Checked = False
+    End Sub
+
+    Private Sub CountCtx(action As String, Xcoord As Integer, Ycoord As Integer)
+        Select Case action
+            Case "Open"
+                ctxCount.Location = New Point(Xcoord, Ycoord + 51)
+                ctxCount.BringToFront()
+                Guna2Transition1.ShowSync(ctxCount, True, Guna.UI2.AnimatorNS.Animation.Transparent)
+            Case "Close"
+        End Select
+    End Sub
+
+    Private Sub CBBox4_CheckedChanged(sender As Object, e As EventArgs) Handles CBBox2.CheckedChanged
+        If CBBox2.Checked = True Then
+            CountCtx("Open", CBBox2.Location.X, CBBox2.Location.Y)
+        Else
+            ctxCount.Visible = False
+        End If
+    End Sub
+
+    Private Sub Btn20_Clicked(sender As Object, e As EventArgs) Handles ctxCount.Btn20Clicked
+        CBBox2.Text = "20"
+        CBBox2.Checked = False
+    End Sub
+    Private Sub Btn40_Clicked(sender As Object, e As EventArgs) Handles ctxCount.Btn40Clicked
+        CBBox2.Text = "40"
+        CBBox2.Checked = False
+    End Sub
+    Private Sub Btn60_Clicked(sender As Object, e As EventArgs) Handles ctxCount.Btn60Clicked
+        CBBox2.Text = "60"
+        CBBox2.Checked = False
+    End Sub
+    Private Sub Btn80_Clicked(sender As Object, e As EventArgs) Handles ctxCount.Btn80Clicked
+        CBBox2.Text = "80"
+        CBBox2.Checked = False
+    End Sub
+
+    Private Sub Btn100_Clicked(sender As Object, e As EventArgs) Handles ctxCount.Btn100Clicked
+        CBBox2.Text = "100"
+        CBBox2.Checked = False
     End Sub
 End Class

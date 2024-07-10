@@ -22,22 +22,22 @@ Partial Class OpeningForm
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
-        Dim Animation1 As Guna.UI2.AnimatorNS.Animation = New Guna.UI2.AnimatorNS.Animation()
+        Dim Animation3 As Guna.UI2.AnimatorNS.Animation = New Guna.UI2.AnimatorNS.Animation()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(OpeningForm))
         Me.OpeningPanel = New Guna.UI2.WinForms.Guna2Panel()
         Me.Guna2Button2 = New Guna.UI2.WinForms.Guna2Button()
         Me.MainFooter = New System.Windows.Forms.Panel()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.MainMenu = New System.Windows.Forms.Panel()
-        Me.CBBox2 = New Guna.UI2.WinForms.Guna2ComboBox()
-        Me.CBBox1 = New Guna.UI2.WinForms.Guna2ComboBox()
+        Me.CBBox2 = New Guna.UI2.WinForms.Guna2Button()
+        Me.CBBox1 = New Guna.UI2.WinForms.Guna2Button()
         Me.Guna2RadioButton3 = New Guna.UI2.WinForms.Guna2RadioButton()
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         Me.Guna2RadioButton2 = New Guna.UI2.WinForms.Guna2RadioButton()
         Me.Guna2RadioButton1 = New Guna.UI2.WinForms.Guna2RadioButton()
         Me.Guna2Button1 = New Guna.UI2.WinForms.Guna2Button()
         Me.Guna2TextBox1 = New Guna.UI2.WinForms.Guna2TextBox()
-        Me.Animator1 = New Guna.UI2.WinForms.Guna2Transition()
+        Me.Guna2Transition1 = New Guna.UI2.WinForms.Guna2Transition()
         Me.OpeningPanel.SuspendLayout()
         Me.MainFooter.SuspendLayout()
         Me.MainMenu.SuspendLayout()
@@ -50,7 +50,7 @@ Partial Class OpeningForm
         Me.OpeningPanel.Controls.Add(Me.Guna2Button2)
         Me.OpeningPanel.Controls.Add(Me.MainFooter)
         Me.OpeningPanel.Controls.Add(Me.MainMenu)
-        Me.Animator1.SetDecoration(Me.OpeningPanel, Guna.UI2.AnimatorNS.DecorationType.None)
+        Me.Guna2Transition1.SetDecoration(Me.OpeningPanel, Guna.UI2.AnimatorNS.DecorationType.None)
         Me.OpeningPanel.Dock = System.Windows.Forms.DockStyle.Fill
         Me.OpeningPanel.Location = New System.Drawing.Point(0, 0)
         Me.OpeningPanel.Name = "OpeningPanel"
@@ -68,7 +68,7 @@ Partial Class OpeningForm
         Me.Guna2Button2.CustomImages.ImageAlign = System.Windows.Forms.HorizontalAlignment.Center
         Me.Guna2Button2.CustomImages.ImageOffset = New System.Drawing.Point(0, -5)
         Me.Guna2Button2.CustomImages.ImageSize = New System.Drawing.Size(30, 30)
-        Me.Animator1.SetDecoration(Me.Guna2Button2, Guna.UI2.AnimatorNS.DecorationType.None)
+        Me.Guna2Transition1.SetDecoration(Me.Guna2Button2, Guna.UI2.AnimatorNS.DecorationType.None)
         Me.Guna2Button2.DisabledState.BorderColor = System.Drawing.Color.DarkGray
         Me.Guna2Button2.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray
         Me.Guna2Button2.DisabledState.FillColor = System.Drawing.Color.FromArgb(CType(CType(169, Byte), Integer), CType(CType(169, Byte), Integer), CType(CType(169, Byte), Integer))
@@ -88,7 +88,7 @@ Partial Class OpeningForm
         '
         Me.MainFooter.BackColor = System.Drawing.Color.FromArgb(CType(CType(30, Byte), Integer), CType(CType(31, Byte), Integer), CType(CType(34, Byte), Integer))
         Me.MainFooter.Controls.Add(Me.Label2)
-        Me.Animator1.SetDecoration(Me.MainFooter, Guna.UI2.AnimatorNS.DecorationType.None)
+        Me.Guna2Transition1.SetDecoration(Me.MainFooter, Guna.UI2.AnimatorNS.DecorationType.None)
         Me.MainFooter.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.MainFooter.Location = New System.Drawing.Point(0, 612)
         Me.MainFooter.Name = "MainFooter"
@@ -98,7 +98,7 @@ Partial Class OpeningForm
         'Label2
         '
         Me.Label2.AutoSize = True
-        Me.Animator1.SetDecoration(Me.Label2, Guna.UI2.AnimatorNS.DecorationType.None)
+        Me.Guna2Transition1.SetDecoration(Me.Label2, Guna.UI2.AnimatorNS.DecorationType.None)
         Me.Label2.Font = New System.Drawing.Font("Segoe UI", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label2.ForeColor = System.Drawing.Color.FromArgb(CType(CType(154, Byte), Integer), CType(CType(160, Byte), Integer), CType(CType(166, Byte), Integer))
         Me.Label2.Location = New System.Drawing.Point(25, 15)
@@ -118,65 +118,71 @@ Partial Class OpeningForm
         Me.MainMenu.Controls.Add(Me.Guna2RadioButton1)
         Me.MainMenu.Controls.Add(Me.Guna2Button1)
         Me.MainMenu.Controls.Add(Me.Guna2TextBox1)
-        Me.Animator1.SetDecoration(Me.MainMenu, Guna.UI2.AnimatorNS.DecorationType.None)
+        Me.Guna2Transition1.SetDecoration(Me.MainMenu, Guna.UI2.AnimatorNS.DecorationType.None)
         Me.MainMenu.Location = New System.Drawing.Point(208, 12)
         Me.MainMenu.Name = "MainMenu"
-        Me.MainMenu.Size = New System.Drawing.Size(665, 485)
+        Me.MainMenu.Size = New System.Drawing.Size(665, 594)
         Me.MainMenu.TabIndex = 0
         '
         'CBBox2
         '
         Me.CBBox2.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.CBBox2.AutoRoundedCorners = True
-        Me.CBBox2.BackColor = System.Drawing.Color.Transparent
+        Me.CBBox2.Animated = True
         Me.CBBox2.BorderColor = System.Drawing.Color.FromArgb(CType(CType(96, Byte), Integer), CType(CType(99, Byte), Integer), CType(CType(104, Byte), Integer))
         Me.CBBox2.BorderRadius = 24
-        Me.Animator1.SetDecoration(Me.CBBox2, Guna.UI2.AnimatorNS.DecorationType.None)
-        Me.CBBox2.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed
-        Me.CBBox2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.CBBox2.BorderThickness = 1
+        Me.CBBox2.ButtonMode = Guna.UI2.WinForms.Enums.ButtonMode.ToogleButton
+        Me.CBBox2.CheckedState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(45, Byte), Integer), CType(CType(46, Byte), Integer), CType(CType(49, Byte), Integer))
+        Me.CBBox2.CheckedState.FillColor = System.Drawing.Color.FromArgb(CType(CType(45, Byte), Integer), CType(CType(46, Byte), Integer), CType(CType(49, Byte), Integer))
+        Me.CBBox2.CustomImages.Image = Global.EZBeat.My.Resources.Resources.icons8_expand_arrow_26
+        Me.CBBox2.CustomImages.ImageSize = New System.Drawing.Size(12, 12)
+        Me.Guna2Transition1.SetDecoration(Me.CBBox2, Guna.UI2.AnimatorNS.DecorationType.None)
+        Me.CBBox2.DisabledState.BorderColor = System.Drawing.Color.DarkGray
+        Me.CBBox2.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray
+        Me.CBBox2.DisabledState.FillColor = System.Drawing.Color.FromArgb(CType(CType(169, Byte), Integer), CType(CType(169, Byte), Integer), CType(CType(169, Byte), Integer))
+        Me.CBBox2.DisabledState.ForeColor = System.Drawing.Color.FromArgb(CType(CType(141, Byte), Integer), CType(CType(141, Byte), Integer), CType(CType(141, Byte), Integer))
         Me.CBBox2.FillColor = System.Drawing.Color.FromArgb(CType(CType(30, Byte), Integer), CType(CType(31, Byte), Integer), CType(CType(34, Byte), Integer))
-        Me.CBBox2.FocusedColor = System.Drawing.Color.FromArgb(CType(CType(45, Byte), Integer), CType(CType(46, Byte), Integer), CType(CType(49, Byte), Integer))
-        Me.CBBox2.FocusedState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(45, Byte), Integer), CType(CType(46, Byte), Integer), CType(CType(49, Byte), Integer))
-        Me.CBBox2.FocusedState.FillColor = System.Drawing.Color.FromArgb(CType(CType(45, Byte), Integer), CType(CType(46, Byte), Integer), CType(CType(49, Byte), Integer))
         Me.CBBox2.Font = New System.Drawing.Font("Segoe UI", 12.0!)
         Me.CBBox2.ForeColor = System.Drawing.Color.White
         Me.CBBox2.HoverState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(45, Byte), Integer), CType(CType(46, Byte), Integer), CType(CType(49, Byte), Integer))
         Me.CBBox2.HoverState.FillColor = System.Drawing.Color.FromArgb(CType(CType(45, Byte), Integer), CType(CType(46, Byte), Integer), CType(CType(49, Byte), Integer))
-        Me.CBBox2.ItemHeight = 44
-        Me.CBBox2.Items.AddRange(New Object() {"20", "40", "60", "80", "100"})
         Me.CBBox2.Location = New System.Drawing.Point(357, 261)
         Me.CBBox2.Name = "CBBox2"
+        Me.CBBox2.PressedDepth = 0
         Me.CBBox2.Size = New System.Drawing.Size(78, 50)
-        Me.CBBox2.StartIndex = 0
-        Me.CBBox2.TabIndex = 11
-        Me.CBBox2.TextOffset = New System.Drawing.Point(10, 0)
+        Me.CBBox2.TabIndex = 7
+        Me.CBBox2.Text = "20"
+        Me.CBBox2.TextOffset = New System.Drawing.Point(-6, -2)
         '
         'CBBox1
         '
         Me.CBBox1.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.CBBox1.AutoRoundedCorners = True
-        Me.CBBox1.BackColor = System.Drawing.Color.Transparent
+        Me.CBBox1.Animated = True
         Me.CBBox1.BorderColor = System.Drawing.Color.FromArgb(CType(CType(96, Byte), Integer), CType(CType(99, Byte), Integer), CType(CType(104, Byte), Integer))
         Me.CBBox1.BorderRadius = 24
-        Me.Animator1.SetDecoration(Me.CBBox1, Guna.UI2.AnimatorNS.DecorationType.None)
-        Me.CBBox1.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed
-        Me.CBBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.CBBox1.BorderThickness = 1
+        Me.CBBox1.ButtonMode = Guna.UI2.WinForms.Enums.ButtonMode.ToogleButton
+        Me.CBBox1.CheckedState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(45, Byte), Integer), CType(CType(46, Byte), Integer), CType(CType(49, Byte), Integer))
+        Me.CBBox1.CheckedState.FillColor = System.Drawing.Color.FromArgb(CType(CType(45, Byte), Integer), CType(CType(46, Byte), Integer), CType(CType(49, Byte), Integer))
+        Me.CBBox1.CustomImages.Image = Global.EZBeat.My.Resources.Resources.icons8_expand_arrow_26
+        Me.CBBox1.CustomImages.ImageSize = New System.Drawing.Size(12, 12)
+        Me.Guna2Transition1.SetDecoration(Me.CBBox1, Guna.UI2.AnimatorNS.DecorationType.None)
+        Me.CBBox1.DisabledState.BorderColor = System.Drawing.Color.DarkGray
+        Me.CBBox1.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray
+        Me.CBBox1.DisabledState.FillColor = System.Drawing.Color.FromArgb(CType(CType(169, Byte), Integer), CType(CType(169, Byte), Integer), CType(CType(169, Byte), Integer))
+        Me.CBBox1.DisabledState.ForeColor = System.Drawing.Color.FromArgb(CType(CType(141, Byte), Integer), CType(CType(141, Byte), Integer), CType(CType(141, Byte), Integer))
         Me.CBBox1.FillColor = System.Drawing.Color.FromArgb(CType(CType(30, Byte), Integer), CType(CType(31, Byte), Integer), CType(CType(34, Byte), Integer))
-        Me.CBBox1.FocusedColor = System.Drawing.Color.FromArgb(CType(CType(45, Byte), Integer), CType(CType(46, Byte), Integer), CType(CType(49, Byte), Integer))
-        Me.CBBox1.FocusedState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(45, Byte), Integer), CType(CType(46, Byte), Integer), CType(CType(49, Byte), Integer))
-        Me.CBBox1.FocusedState.FillColor = System.Drawing.Color.FromArgb(CType(CType(45, Byte), Integer), CType(CType(46, Byte), Integer), CType(CType(49, Byte), Integer))
         Me.CBBox1.Font = New System.Drawing.Font("Segoe UI", 12.0!)
         Me.CBBox1.ForeColor = System.Drawing.Color.White
         Me.CBBox1.HoverState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(45, Byte), Integer), CType(CType(46, Byte), Integer), CType(CType(49, Byte), Integer))
         Me.CBBox1.HoverState.FillColor = System.Drawing.Color.FromArgb(CType(CType(45, Byte), Integer), CType(CType(46, Byte), Integer), CType(CType(49, Byte), Integer))
-        Me.CBBox1.ItemHeight = 44
-        Me.CBBox1.Items.AddRange(New Object() {"Track", "Artist"})
         Me.CBBox1.Location = New System.Drawing.Point(230, 261)
         Me.CBBox1.Name = "CBBox1"
+        Me.CBBox1.PressedDepth = 0
         Me.CBBox1.Size = New System.Drawing.Size(109, 50)
-        Me.CBBox1.StartIndex = 0
-        Me.CBBox1.TabIndex = 10
-        Me.CBBox1.TextOffset = New System.Drawing.Point(22, 2)
+        Me.CBBox1.TabIndex = 6
+        Me.CBBox1.Text = "Track"
+        Me.CBBox1.TextOffset = New System.Drawing.Point(-6, -2)
         '
         'Guna2RadioButton3
         '
@@ -187,7 +193,7 @@ Partial Class OpeningForm
         Me.Guna2RadioButton3.CheckedState.FillColor = System.Drawing.Color.FromArgb(CType(CType(96, Byte), Integer), CType(CType(99, Byte), Integer), CType(CType(104, Byte), Integer))
         Me.Guna2RadioButton3.CheckedState.InnerColor = System.Drawing.Color.White
         Me.Guna2RadioButton3.CheckedState.InnerOffset = -4
-        Me.Animator1.SetDecoration(Me.Guna2RadioButton3, Guna.UI2.AnimatorNS.DecorationType.None)
+        Me.Guna2Transition1.SetDecoration(Me.Guna2RadioButton3, Guna.UI2.AnimatorNS.DecorationType.None)
         Me.Guna2RadioButton3.Font = New System.Drawing.Font("Segoe UI Semibold", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Guna2RadioButton3.ForeColor = System.Drawing.Color.Gainsboro
         Me.Guna2RadioButton3.Location = New System.Drawing.Point(402, 339)
@@ -203,7 +209,7 @@ Partial Class OpeningForm
         'PictureBox1
         '
         Me.PictureBox1.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.Animator1.SetDecoration(Me.PictureBox1, Guna.UI2.AnimatorNS.DecorationType.None)
+        Me.Guna2Transition1.SetDecoration(Me.PictureBox1, Guna.UI2.AnimatorNS.DecorationType.None)
         Me.PictureBox1.Image = Global.EZBeat.My.Resources.Resources.EZLogo
         Me.PictureBox1.Location = New System.Drawing.Point(212, 99)
         Me.PictureBox1.Name = "PictureBox1"
@@ -221,7 +227,7 @@ Partial Class OpeningForm
         Me.Guna2RadioButton2.CheckedState.FillColor = System.Drawing.Color.FromArgb(CType(CType(96, Byte), Integer), CType(CType(99, Byte), Integer), CType(CType(104, Byte), Integer))
         Me.Guna2RadioButton2.CheckedState.InnerColor = System.Drawing.Color.White
         Me.Guna2RadioButton2.CheckedState.InnerOffset = -4
-        Me.Animator1.SetDecoration(Me.Guna2RadioButton2, Guna.UI2.AnimatorNS.DecorationType.None)
+        Me.Guna2Transition1.SetDecoration(Me.Guna2RadioButton2, Guna.UI2.AnimatorNS.DecorationType.None)
         Me.Guna2RadioButton2.Font = New System.Drawing.Font("Segoe UI Semibold", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Guna2RadioButton2.ForeColor = System.Drawing.Color.Gainsboro
         Me.Guna2RadioButton2.Location = New System.Drawing.Point(287, 339)
@@ -244,7 +250,7 @@ Partial Class OpeningForm
         Me.Guna2RadioButton1.CheckedState.FillColor = System.Drawing.Color.FromArgb(CType(CType(96, Byte), Integer), CType(CType(99, Byte), Integer), CType(CType(104, Byte), Integer))
         Me.Guna2RadioButton1.CheckedState.InnerColor = System.Drawing.Color.White
         Me.Guna2RadioButton1.CheckedState.InnerOffset = -4
-        Me.Animator1.SetDecoration(Me.Guna2RadioButton1, Guna.UI2.AnimatorNS.DecorationType.None)
+        Me.Guna2Transition1.SetDecoration(Me.Guna2RadioButton1, Guna.UI2.AnimatorNS.DecorationType.None)
         Me.Guna2RadioButton1.Font = New System.Drawing.Font("Segoe UI Semibold", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Guna2RadioButton1.ForeColor = System.Drawing.Color.Gainsboro
         Me.Guna2RadioButton1.Location = New System.Drawing.Point(194, 339)
@@ -265,7 +271,7 @@ Partial Class OpeningForm
         Me.Guna2Button1.BorderRadius = 4
         Me.Guna2Button1.BorderThickness = 1
         Me.Guna2Button1.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.Animator1.SetDecoration(Me.Guna2Button1, Guna.UI2.AnimatorNS.DecorationType.None)
+        Me.Guna2Transition1.SetDecoration(Me.Guna2Button1, Guna.UI2.AnimatorNS.DecorationType.None)
         Me.Guna2Button1.DisabledState.BorderColor = System.Drawing.Color.DarkGray
         Me.Guna2Button1.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray
         Me.Guna2Button1.DisabledState.FillColor = System.Drawing.Color.FromArgb(CType(CType(169, Byte), Integer), CType(CType(169, Byte), Integer), CType(CType(169, Byte), Integer))
@@ -292,7 +298,7 @@ Partial Class OpeningForm
         Me.Guna2TextBox1.BorderColor = System.Drawing.Color.FromArgb(CType(CType(96, Byte), Integer), CType(CType(99, Byte), Integer), CType(CType(104, Byte), Integer))
         Me.Guna2TextBox1.BorderRadius = 24
         Me.Guna2TextBox1.Cursor = System.Windows.Forms.Cursors.IBeam
-        Me.Animator1.SetDecoration(Me.Guna2TextBox1, Guna.UI2.AnimatorNS.DecorationType.None)
+        Me.Guna2Transition1.SetDecoration(Me.Guna2TextBox1, Guna.UI2.AnimatorNS.DecorationType.None)
         Me.Guna2TextBox1.DefaultText = ""
         Me.Guna2TextBox1.DisabledState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(208, Byte), Integer), CType(CType(208, Byte), Integer), CType(CType(208, Byte), Integer))
         Me.Guna2TextBox1.DisabledState.FillColor = System.Drawing.Color.FromArgb(CType(CType(226, Byte), Integer), CType(CType(226, Byte), Integer), CType(CType(226, Byte), Integer))
@@ -317,26 +323,27 @@ Partial Class OpeningForm
         Me.Guna2TextBox1.TabIndex = 1
         Me.Guna2TextBox1.TextOffset = New System.Drawing.Point(6, 0)
         '
-        'Animator1
+        'Guna2Transition1
         '
-        Me.Animator1.AnimationType = Guna.UI2.AnimatorNS.AnimationType.Transparent
-        Me.Animator1.Cursor = Nothing
-        Animation1.AnimateOnlyDifferences = True
-        Animation1.BlindCoeff = CType(resources.GetObject("Animation1.BlindCoeff"), System.Drawing.PointF)
-        Animation1.LeafCoeff = 0!
-        Animation1.MaxTime = 1.0!
-        Animation1.MinTime = 0!
-        Animation1.MosaicCoeff = CType(resources.GetObject("Animation1.MosaicCoeff"), System.Drawing.PointF)
-        Animation1.MosaicShift = CType(resources.GetObject("Animation1.MosaicShift"), System.Drawing.PointF)
-        Animation1.MosaicSize = 0
-        Animation1.Padding = New System.Windows.Forms.Padding(0)
-        Animation1.RotateCoeff = 0!
-        Animation1.RotateLimit = 0!
-        Animation1.ScaleCoeff = CType(resources.GetObject("Animation1.ScaleCoeff"), System.Drawing.PointF)
-        Animation1.SlideCoeff = CType(resources.GetObject("Animation1.SlideCoeff"), System.Drawing.PointF)
-        Animation1.TimeCoeff = 0!
-        Animation1.TransparencyCoeff = 1.0!
-        Me.Animator1.DefaultAnimation = Animation1
+        Me.Guna2Transition1.Cursor = Nothing
+        Animation3.AnimateOnlyDifferences = True
+        Animation3.BlindCoeff = CType(resources.GetObject("Animation3.BlindCoeff"), System.Drawing.PointF)
+        Animation3.LeafCoeff = 0!
+        Animation3.MaxTime = 1.0!
+        Animation3.MinTime = 0!
+        Animation3.MosaicCoeff = CType(resources.GetObject("Animation3.MosaicCoeff"), System.Drawing.PointF)
+        Animation3.MosaicShift = CType(resources.GetObject("Animation3.MosaicShift"), System.Drawing.PointF)
+        Animation3.MosaicSize = 0
+        Animation3.Padding = New System.Windows.Forms.Padding(0)
+        Animation3.RotateCoeff = 0!
+        Animation3.RotateLimit = 0!
+        Animation3.ScaleCoeff = CType(resources.GetObject("Animation3.ScaleCoeff"), System.Drawing.PointF)
+        Animation3.SlideCoeff = CType(resources.GetObject("Animation3.SlideCoeff"), System.Drawing.PointF)
+        Animation3.TimeCoeff = 0!
+        Animation3.TransparencyCoeff = 0!
+        Me.Guna2Transition1.DefaultAnimation = Animation3
+        Me.Guna2Transition1.Interval = 1
+        Me.Guna2Transition1.TimeStep = 0.07!
         '
         'OpeningForm
         '
@@ -344,7 +351,7 @@ Partial Class OpeningForm
         Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(32, Byte), Integer), CType(CType(33, Byte), Integer), CType(CType(36, Byte), Integer))
         Me.ClientSize = New System.Drawing.Size(1080, 662)
         Me.Controls.Add(Me.OpeningPanel)
-        Me.Animator1.SetDecoration(Me, Guna.UI2.AnimatorNS.DecorationType.None)
+        Me.Guna2Transition1.SetDecoration(Me, Guna.UI2.AnimatorNS.DecorationType.None)
         Me.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.ForeColor = System.Drawing.Color.Gainsboro
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
@@ -373,7 +380,7 @@ Partial Class OpeningForm
     Friend WithEvents PictureBox1 As PictureBox
     Friend WithEvents Guna2Button2 As Guna.UI2.WinForms.Guna2Button
     Friend WithEvents Guna2RadioButton3 As Guna.UI2.WinForms.Guna2RadioButton
-    Friend WithEvents CBBox2 As Guna.UI2.WinForms.Guna2ComboBox
-    Friend WithEvents CBBox1 As Guna.UI2.WinForms.Guna2ComboBox
-    Friend WithEvents Animator1 As Guna.UI2.WinForms.Guna2Transition
+    Friend WithEvents CBBox2 As Guna.UI2.WinForms.Guna2Button
+    Friend WithEvents CBBox1 As Guna.UI2.WinForms.Guna2Button
+    Friend WithEvents Guna2Transition1 As Guna.UI2.WinForms.Guna2Transition
 End Class
