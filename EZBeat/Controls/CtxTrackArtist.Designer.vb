@@ -24,8 +24,8 @@ Partial Class CtxTrackArtist
     Private Sub InitializeComponent()
         Me.Guna2Button1 = New Guna.UI2.WinForms.Guna2Button()
         Me.Guna2Panel1 = New Guna.UI2.WinForms.Guna2Panel()
-        Me.Guna2Separator1 = New Guna.UI2.WinForms.Guna2Separator()
         Me.Guna2Button3 = New Guna.UI2.WinForms.Guna2Button()
+        Me.Guna2Separator1 = New Guna.UI2.WinForms.Guna2Separator()
         Me.Guna2Panel1.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -64,17 +64,6 @@ Partial Class CtxTrackArtist
         Me.Guna2Panel1.Size = New System.Drawing.Size(107, 78)
         Me.Guna2Panel1.TabIndex = 1
         '
-        'Guna2Separator1
-        '
-        Me.Guna2Separator1.Anchor = CType((System.Windows.Forms.AnchorStyles.Left Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.Guna2Separator1.BackColor = System.Drawing.Color.Transparent
-        Me.Guna2Separator1.FillColor = System.Drawing.Color.FromArgb(CType(CType(66, Byte), Integer), CType(CType(66, Byte), Integer), CType(CType(66, Byte), Integer))
-        Me.Guna2Separator1.Location = New System.Drawing.Point(0, 33)
-        Me.Guna2Separator1.Name = "Guna2Separator1"
-        Me.Guna2Separator1.Size = New System.Drawing.Size(107, 10)
-        Me.Guna2Separator1.TabIndex = 6
-        Me.Guna2Separator1.TabStop = False
-        '
         'Guna2Button3
         '
         Me.Guna2Button3.Animated = True
@@ -96,6 +85,17 @@ Partial Class CtxTrackArtist
         Me.Guna2Button3.TabIndex = 5
         Me.Guna2Button3.TabStop = False
         Me.Guna2Button3.Text = "Artist"
+        '
+        'Guna2Separator1
+        '
+        Me.Guna2Separator1.Anchor = CType((System.Windows.Forms.AnchorStyles.Left Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.Guna2Separator1.BackColor = System.Drawing.Color.Transparent
+        Me.Guna2Separator1.FillColor = System.Drawing.Color.FromArgb(CType(CType(66, Byte), Integer), CType(CType(66, Byte), Integer), CType(CType(66, Byte), Integer))
+        Me.Guna2Separator1.Location = New System.Drawing.Point(0, 33)
+        Me.Guna2Separator1.Name = "Guna2Separator1"
+        Me.Guna2Separator1.Size = New System.Drawing.Size(107, 10)
+        Me.Guna2Separator1.TabIndex = 6
+        Me.Guna2Separator1.TabStop = False
         '
         'CtxTrackArtist
         '

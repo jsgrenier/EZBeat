@@ -82,10 +82,16 @@ Public Class OpeningForm
             Guna2RadioButton2.Font = New Font(boldfont.Families(0), 9.75, FontStyle.Regular)
             Guna2RadioButton3.Font = New Font(boldfont.Families(0), 9.75, FontStyle.Regular)
             Label2.Font = New Font(titlefont.Families(0), 11.25, FontStyle.Regular)
-            'CBBox1.Font = New Font(titlefont.Families(0), 12, FontStyle.Regular)
-            'CBBox1.TextOffset = New Point(22, 2)
-            'CBBox4.Font = New Font(titlefont.Families(0), 12, FontStyle.Regular)
-            'CBBox4.TextOffset = New Point(10, 2)
+            CBBox1.Font = New Font(titlefont.Families(0), 12, FontStyle.Regular)
+            ctxArtist.Guna2Button1.Font = New Font(titlefont.Families(0), 12, FontStyle.Regular)
+            ctxArtist.Guna2Button3.Font = New Font(titlefont.Families(0), 12, FontStyle.Regular)
+
+            CBBox2.Font = New Font(titlefont.Families(0), 12, FontStyle.Regular)
+            ctxCount.Btn20.Font = New Font(titlefont.Families(0), 12, FontStyle.Regular)
+            ctxCount.Btn40.Font = New Font(titlefont.Families(0), 12, FontStyle.Regular)
+            ctxCount.Btn60.Font = New Font(titlefont.Families(0), 12, FontStyle.Regular)
+            ctxCount.Btn80.Font = New Font(titlefont.Families(0), 12, FontStyle.Regular)
+            ctxCount.Btn100.Font = New Font(titlefont.Families(0), 12, FontStyle.Regular)
             Guna2Button1.Font = New Font(boldfont.Families(0), 11.25, FontStyle.Regular)
         Catch ex As System.IO.FileNotFoundException
             Guna2RadioButton1.Font = defaultradiofont
