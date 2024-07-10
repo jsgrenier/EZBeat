@@ -22,16 +22,16 @@ Partial Class SearchForm
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
-        Dim Animation1 As Guna.UI2.AnimatorNS.Animation = New Guna.UI2.AnimatorNS.Animation()
+        Dim Animation2 As Guna.UI2.AnimatorNS.Animation = New Guna.UI2.AnimatorNS.Animation()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(SearchForm))
         Me.Guna2Panel1 = New Guna.UI2.WinForms.Guna2Panel()
-        Me.CBBox2 = New Guna.UI2.WinForms.Guna2ComboBox()
-        Me.CBBox1 = New Guna.UI2.WinForms.Guna2ComboBox()
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
+        Me.CBBox1 = New Guna.UI2.WinForms.Guna2Button()
         Me.Guna2Button2 = New Guna.UI2.WinForms.Guna2Button()
         Me.SearchMenu1 = New EZBeat.SearchMenu()
         Me.Guna2TextBox1 = New Guna.UI2.WinForms.Guna2TextBox()
         Me.Panel1 = New System.Windows.Forms.Panel()
+        Me.CBBox2 = New Guna.UI2.WinForms.Guna2Button()
         Me.FlowLayoutPanel1 = New System.Windows.Forms.FlowLayoutPanel()
         Me.DoubleDotSpin1 = New AnimOfDots.DoubleDotSpin()
         Me.DownloadLink = New System.Windows.Forms.Panel()
@@ -48,9 +48,9 @@ Partial Class SearchForm
         'Guna2Panel1
         '
         Me.Guna2Panel1.BackColor = System.Drawing.Color.FromArgb(CType(CType(30, Byte), Integer), CType(CType(31, Byte), Integer), CType(CType(34, Byte), Integer))
+        Me.Guna2Panel1.Controls.Add(Me.PictureBox1)
         Me.Guna2Panel1.Controls.Add(Me.CBBox2)
         Me.Guna2Panel1.Controls.Add(Me.CBBox1)
-        Me.Guna2Panel1.Controls.Add(Me.PictureBox1)
         Me.Guna2Panel1.Controls.Add(Me.Guna2Button2)
         Me.Guna2Panel1.Controls.Add(Me.SearchMenu1)
         Me.Guna2Panel1.Controls.Add(Me.Guna2TextBox1)
@@ -61,60 +61,6 @@ Partial Class SearchForm
         Me.Guna2Panel1.Name = "Guna2Panel1"
         Me.Guna2Panel1.Size = New System.Drawing.Size(1080, 133)
         Me.Guna2Panel1.TabIndex = 0
-        '
-        'CBBox2
-        '
-        Me.CBBox2.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.CBBox2.AutoRoundedCorners = True
-        Me.CBBox2.BackColor = System.Drawing.Color.Transparent
-        Me.CBBox2.BorderColor = System.Drawing.Color.FromArgb(CType(CType(96, Byte), Integer), CType(CType(99, Byte), Integer), CType(CType(104, Byte), Integer))
-        Me.CBBox2.BorderRadius = 24
-        Me.Guna2Transition1.SetDecoration(Me.CBBox2, Guna.UI2.AnimatorNS.DecorationType.None)
-        Me.CBBox2.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed
-        Me.CBBox2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.CBBox2.FillColor = System.Drawing.Color.FromArgb(CType(CType(30, Byte), Integer), CType(CType(31, Byte), Integer), CType(CType(34, Byte), Integer))
-        Me.CBBox2.FocusedColor = System.Drawing.Color.FromArgb(CType(CType(45, Byte), Integer), CType(CType(46, Byte), Integer), CType(CType(49, Byte), Integer))
-        Me.CBBox2.FocusedState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(45, Byte), Integer), CType(CType(46, Byte), Integer), CType(CType(49, Byte), Integer))
-        Me.CBBox2.FocusedState.FillColor = System.Drawing.Color.FromArgb(CType(CType(45, Byte), Integer), CType(CType(46, Byte), Integer), CType(CType(49, Byte), Integer))
-        Me.CBBox2.Font = New System.Drawing.Font("Segoe UI", 12.0!)
-        Me.CBBox2.ForeColor = System.Drawing.Color.White
-        Me.CBBox2.HoverState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(45, Byte), Integer), CType(CType(46, Byte), Integer), CType(CType(49, Byte), Integer))
-        Me.CBBox2.HoverState.FillColor = System.Drawing.Color.FromArgb(CType(CType(45, Byte), Integer), CType(CType(46, Byte), Integer), CType(CType(49, Byte), Integer))
-        Me.CBBox2.ItemHeight = 44
-        Me.CBBox2.Items.AddRange(New Object() {"20", "40", "60", "80", "100"})
-        Me.CBBox2.Location = New System.Drawing.Point(902, 26)
-        Me.CBBox2.Name = "CBBox2"
-        Me.CBBox2.Size = New System.Drawing.Size(78, 50)
-        Me.CBBox2.StartIndex = 0
-        Me.CBBox2.TabIndex = 9
-        Me.CBBox2.TextOffset = New System.Drawing.Point(10, 0)
-        '
-        'CBBox1
-        '
-        Me.CBBox1.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.CBBox1.AutoRoundedCorners = True
-        Me.CBBox1.BackColor = System.Drawing.Color.Transparent
-        Me.CBBox1.BorderColor = System.Drawing.Color.FromArgb(CType(CType(96, Byte), Integer), CType(CType(99, Byte), Integer), CType(CType(104, Byte), Integer))
-        Me.CBBox1.BorderRadius = 24
-        Me.Guna2Transition1.SetDecoration(Me.CBBox1, Guna.UI2.AnimatorNS.DecorationType.None)
-        Me.CBBox1.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed
-        Me.CBBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.CBBox1.FillColor = System.Drawing.Color.FromArgb(CType(CType(30, Byte), Integer), CType(CType(31, Byte), Integer), CType(CType(34, Byte), Integer))
-        Me.CBBox1.FocusedColor = System.Drawing.Color.FromArgb(CType(CType(45, Byte), Integer), CType(CType(46, Byte), Integer), CType(CType(49, Byte), Integer))
-        Me.CBBox1.FocusedState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(45, Byte), Integer), CType(CType(46, Byte), Integer), CType(CType(49, Byte), Integer))
-        Me.CBBox1.FocusedState.FillColor = System.Drawing.Color.FromArgb(CType(CType(45, Byte), Integer), CType(CType(46, Byte), Integer), CType(CType(49, Byte), Integer))
-        Me.CBBox1.Font = New System.Drawing.Font("Segoe UI", 12.0!)
-        Me.CBBox1.ForeColor = System.Drawing.Color.White
-        Me.CBBox1.HoverState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(45, Byte), Integer), CType(CType(46, Byte), Integer), CType(CType(49, Byte), Integer))
-        Me.CBBox1.HoverState.FillColor = System.Drawing.Color.FromArgb(CType(CType(45, Byte), Integer), CType(CType(46, Byte), Integer), CType(CType(49, Byte), Integer))
-        Me.CBBox1.ItemHeight = 44
-        Me.CBBox1.Items.AddRange(New Object() {"Track", "Artist"})
-        Me.CBBox1.Location = New System.Drawing.Point(775, 26)
-        Me.CBBox1.Name = "CBBox1"
-        Me.CBBox1.Size = New System.Drawing.Size(109, 50)
-        Me.CBBox1.StartIndex = 0
-        Me.CBBox1.TabIndex = 8
-        Me.CBBox1.TextOffset = New System.Drawing.Point(22, 0)
         '
         'PictureBox1
         '
@@ -127,6 +73,36 @@ Partial Class SearchForm
         Me.PictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
         Me.PictureBox1.TabIndex = 6
         Me.PictureBox1.TabStop = False
+        '
+        'CBBox1
+        '
+        Me.CBBox1.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.CBBox1.Animated = True
+        Me.CBBox1.BorderColor = System.Drawing.Color.FromArgb(CType(CType(96, Byte), Integer), CType(CType(99, Byte), Integer), CType(CType(104, Byte), Integer))
+        Me.CBBox1.BorderRadius = 24
+        Me.CBBox1.BorderThickness = 1
+        Me.CBBox1.ButtonMode = Guna.UI2.WinForms.Enums.ButtonMode.ToogleButton
+        Me.CBBox1.CheckedState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(45, Byte), Integer), CType(CType(46, Byte), Integer), CType(CType(49, Byte), Integer))
+        Me.CBBox1.CheckedState.FillColor = System.Drawing.Color.FromArgb(CType(CType(45, Byte), Integer), CType(CType(46, Byte), Integer), CType(CType(49, Byte), Integer))
+        Me.CBBox1.CustomImages.Image = Global.EZBeat.My.Resources.Resources.icons8_expand_arrow_26
+        Me.CBBox1.CustomImages.ImageSize = New System.Drawing.Size(12, 12)
+        Me.Guna2Transition1.SetDecoration(Me.CBBox1, Guna.UI2.AnimatorNS.DecorationType.None)
+        Me.CBBox1.DisabledState.BorderColor = System.Drawing.Color.DarkGray
+        Me.CBBox1.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray
+        Me.CBBox1.DisabledState.FillColor = System.Drawing.Color.FromArgb(CType(CType(169, Byte), Integer), CType(CType(169, Byte), Integer), CType(CType(169, Byte), Integer))
+        Me.CBBox1.DisabledState.ForeColor = System.Drawing.Color.FromArgb(CType(CType(141, Byte), Integer), CType(CType(141, Byte), Integer), CType(CType(141, Byte), Integer))
+        Me.CBBox1.FillColor = System.Drawing.Color.FromArgb(CType(CType(30, Byte), Integer), CType(CType(31, Byte), Integer), CType(CType(34, Byte), Integer))
+        Me.CBBox1.Font = New System.Drawing.Font("Segoe UI", 12.0!)
+        Me.CBBox1.ForeColor = System.Drawing.Color.White
+        Me.CBBox1.HoverState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(45, Byte), Integer), CType(CType(46, Byte), Integer), CType(CType(49, Byte), Integer))
+        Me.CBBox1.HoverState.FillColor = System.Drawing.Color.FromArgb(CType(CType(45, Byte), Integer), CType(CType(46, Byte), Integer), CType(CType(49, Byte), Integer))
+        Me.CBBox1.Location = New System.Drawing.Point(775, 26)
+        Me.CBBox1.Name = "CBBox1"
+        Me.CBBox1.PressedDepth = 0
+        Me.CBBox1.Size = New System.Drawing.Size(109, 50)
+        Me.CBBox1.TabIndex = 0
+        Me.CBBox1.Text = "Track"
+        Me.CBBox1.TextOffset = New System.Drawing.Point(-6, -2)
         '
         'Guna2Button2
         '
@@ -169,6 +145,7 @@ Partial Class SearchForm
         '
         Me.Guna2TextBox1.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.Guna2TextBox1.Animated = True
         Me.Guna2TextBox1.AutoRoundedCorners = True
         Me.Guna2TextBox1.BackColor = System.Drawing.Color.Transparent
         Me.Guna2TextBox1.BorderColor = System.Drawing.Color.FromArgb(CType(CType(96, Byte), Integer), CType(CType(99, Byte), Integer), CType(CType(104, Byte), Integer))
@@ -212,6 +189,36 @@ Partial Class SearchForm
         Me.Panel1.Name = "Panel1"
         Me.Panel1.Size = New System.Drawing.Size(155, 529)
         Me.Panel1.TabIndex = 2
+        '
+        'CBBox2
+        '
+        Me.CBBox2.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.CBBox2.Animated = True
+        Me.CBBox2.BorderColor = System.Drawing.Color.FromArgb(CType(CType(96, Byte), Integer), CType(CType(99, Byte), Integer), CType(CType(104, Byte), Integer))
+        Me.CBBox2.BorderRadius = 24
+        Me.CBBox2.BorderThickness = 1
+        Me.CBBox2.ButtonMode = Guna.UI2.WinForms.Enums.ButtonMode.ToogleButton
+        Me.CBBox2.CheckedState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(45, Byte), Integer), CType(CType(46, Byte), Integer), CType(CType(49, Byte), Integer))
+        Me.CBBox2.CheckedState.FillColor = System.Drawing.Color.FromArgb(CType(CType(45, Byte), Integer), CType(CType(46, Byte), Integer), CType(CType(49, Byte), Integer))
+        Me.CBBox2.CustomImages.Image = Global.EZBeat.My.Resources.Resources.icons8_expand_arrow_26
+        Me.CBBox2.CustomImages.ImageSize = New System.Drawing.Size(12, 12)
+        Me.Guna2Transition1.SetDecoration(Me.CBBox2, Guna.UI2.AnimatorNS.DecorationType.None)
+        Me.CBBox2.DisabledState.BorderColor = System.Drawing.Color.DarkGray
+        Me.CBBox2.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray
+        Me.CBBox2.DisabledState.FillColor = System.Drawing.Color.FromArgb(CType(CType(169, Byte), Integer), CType(CType(169, Byte), Integer), CType(CType(169, Byte), Integer))
+        Me.CBBox2.DisabledState.ForeColor = System.Drawing.Color.FromArgb(CType(CType(141, Byte), Integer), CType(CType(141, Byte), Integer), CType(CType(141, Byte), Integer))
+        Me.CBBox2.FillColor = System.Drawing.Color.FromArgb(CType(CType(30, Byte), Integer), CType(CType(31, Byte), Integer), CType(CType(34, Byte), Integer))
+        Me.CBBox2.Font = New System.Drawing.Font("Segoe UI", 12.0!)
+        Me.CBBox2.ForeColor = System.Drawing.Color.White
+        Me.CBBox2.HoverState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(45, Byte), Integer), CType(CType(46, Byte), Integer), CType(CType(49, Byte), Integer))
+        Me.CBBox2.HoverState.FillColor = System.Drawing.Color.FromArgb(CType(CType(45, Byte), Integer), CType(CType(46, Byte), Integer), CType(CType(49, Byte), Integer))
+        Me.CBBox2.Location = New System.Drawing.Point(902, 26)
+        Me.CBBox2.Name = "CBBox2"
+        Me.CBBox2.PressedDepth = 0
+        Me.CBBox2.Size = New System.Drawing.Size(78, 50)
+        Me.CBBox2.TabIndex = 1
+        Me.CBBox2.Text = "20"
+        Me.CBBox2.TextOffset = New System.Drawing.Point(-6, -2)
         '
         'FlowLayoutPanel1
         '
@@ -348,22 +355,22 @@ Partial Class SearchForm
         'Guna2Transition1
         '
         Me.Guna2Transition1.Cursor = Nothing
-        Animation1.AnimateOnlyDifferences = True
-        Animation1.BlindCoeff = CType(resources.GetObject("Animation1.BlindCoeff"), System.Drawing.PointF)
-        Animation1.LeafCoeff = 0!
-        Animation1.MaxTime = 1.0!
-        Animation1.MinTime = 0!
-        Animation1.MosaicCoeff = CType(resources.GetObject("Animation1.MosaicCoeff"), System.Drawing.PointF)
-        Animation1.MosaicShift = CType(resources.GetObject("Animation1.MosaicShift"), System.Drawing.PointF)
-        Animation1.MosaicSize = 0
-        Animation1.Padding = New System.Windows.Forms.Padding(0)
-        Animation1.RotateCoeff = 0!
-        Animation1.RotateLimit = 0!
-        Animation1.ScaleCoeff = CType(resources.GetObject("Animation1.ScaleCoeff"), System.Drawing.PointF)
-        Animation1.SlideCoeff = CType(resources.GetObject("Animation1.SlideCoeff"), System.Drawing.PointF)
-        Animation1.TimeCoeff = 0!
-        Animation1.TransparencyCoeff = 0!
-        Me.Guna2Transition1.DefaultAnimation = Animation1
+        Animation2.AnimateOnlyDifferences = True
+        Animation2.BlindCoeff = CType(resources.GetObject("Animation2.BlindCoeff"), System.Drawing.PointF)
+        Animation2.LeafCoeff = 0!
+        Animation2.MaxTime = 1.0!
+        Animation2.MinTime = 0!
+        Animation2.MosaicCoeff = CType(resources.GetObject("Animation2.MosaicCoeff"), System.Drawing.PointF)
+        Animation2.MosaicShift = CType(resources.GetObject("Animation2.MosaicShift"), System.Drawing.PointF)
+        Animation2.MosaicSize = 0
+        Animation2.Padding = New System.Windows.Forms.Padding(0)
+        Animation2.RotateCoeff = 0!
+        Animation2.RotateLimit = 0!
+        Animation2.ScaleCoeff = CType(resources.GetObject("Animation2.ScaleCoeff"), System.Drawing.PointF)
+        Animation2.SlideCoeff = CType(resources.GetObject("Animation2.SlideCoeff"), System.Drawing.PointF)
+        Animation2.TimeCoeff = 0!
+        Animation2.TransparencyCoeff = 0!
+        Me.Guna2Transition1.DefaultAnimation = Animation2
         Me.Guna2Transition1.Interval = 1
         Me.Guna2Transition1.TimeStep = 0.07!
         '
@@ -407,7 +414,7 @@ Partial Class SearchForm
     Friend WithEvents PictureBox1 As PictureBox
     Friend WithEvents DotScaling1 As AnimOfDots.DotScaling
     Friend WithEvents Guna2VScrollBar1 As Guna.UI2.WinForms.Guna2VScrollBar
-    Friend WithEvents CBBox1 As Guna.UI2.WinForms.Guna2ComboBox
-    Friend WithEvents CBBox2 As Guna.UI2.WinForms.Guna2ComboBox
     Friend WithEvents Guna2Transition1 As Guna.UI2.WinForms.Guna2Transition
+    Friend WithEvents CBBox1 As Guna.UI2.WinForms.Guna2Button
+    Friend WithEvents CBBox2 As Guna.UI2.WinForms.Guna2Button
 End Class

@@ -12,8 +12,8 @@ Public Class MainForm
     Public SearchQuery As String = String.Empty
     Public PlayState As Integer
     Public textboxFocused As Boolean = False
-    Public CountSelectedIndex As Integer
-    Public CategorieSelectedIndex As Integer
+    Public CountSelected As Integer
+    Public CategorieSelected As String
     Public titlefont As New PrivateFontCollection()
     Public lightfont As New PrivateFontCollection()
     Public boldfont As New PrivateFontCollection()

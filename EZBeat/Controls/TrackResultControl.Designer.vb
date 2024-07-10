@@ -107,6 +107,7 @@ Partial Class TrackResultControl
         Me.DLBtn.Size = New System.Drawing.Size(24, 24)
         Me.DLBtn.TabIndex = 7
         Me.DLBtn.UseTransparentBackground = True
+        Me.DLBtn.Visible = False
         '
         'DurationLbl
         '

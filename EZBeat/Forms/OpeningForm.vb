@@ -17,8 +17,8 @@ Public Class OpeningForm
 
     Private Sub Guna2Button1_Click(sender As Object, e As EventArgs) Handles Guna2Button1.Click
         MainForm.SearchQuery = Guna2TextBox1.Text
-        MainForm.CategorieSelectedIndex = CBBox1.SelectedIndex
-        MainForm.CountSelectedIndex = CBBox2.SelectedIndex
+        MainForm.CategorieSelected = CBBox1.Text
+        MainForm.CountSelected = CBBox2.Text
         MainForm.OpenChildFormContentPanel(New SearchForm)
     End Sub
 
@@ -26,8 +26,8 @@ Public Class OpeningForm
         If e.KeyChar = ChrW(Keys.Enter) Then
             e.Handled = True
             MainForm.SearchQuery = Guna2TextBox1.Text
-            MainForm.CategorieSelectedIndex = CBBox1.SelectedIndex
-            MainForm.CountSelectedIndex = CBBox2.SelectedIndex
+            MainForm.CategorieSelected = CBBox1.Text
+            MainForm.CountSelected = CBBox2.Text
             MainForm.OpenChildFormContentPanel(New SearchForm)
         End If
     End Sub

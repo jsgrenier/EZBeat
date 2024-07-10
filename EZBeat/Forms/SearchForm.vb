@@ -38,6 +38,8 @@ Public Class SearchForm
     Private Download As Guna.UI2.WinForms.Guna2Button
     Private cts As CancellationTokenSource = New CancellationTokenSource()
     Public WithEvents ctxTrack As New TrackCtxMenu()
+    Public WithEvents ctxArtist As New CtxTrackArtist()
+    Public WithEvents ctxCount As New CtxCount()
 
 #Region "UserActions"
     Private Async Sub Guna2TextBox1_KeyDown(sender As Object, e As KeyEventArgs) Handles Guna2TextBox1.KeyDown
@@ -165,6 +167,13 @@ Public Class SearchForm
         Dim ctrl As Control = TryCast(sender, Control)
         If ctrl IsNot ctxTrack Then
             ctxTrack.Visible = False
+        End If
+        If ctrl IsNot CBBox1 Then
+            CBBox1.Checked = False
+        End If
+
+        If ctrl IsNot CBBox2 Then
+            CBBox2.Checked = False
         End If
     End Sub
 
@@ -628,7 +637,7 @@ Public Class SearchForm
                 Dim Url = If(track.Url, String.Empty)
                 Dim duration As String = If(track.Duration, String.Empty)
 
-                If CBBox1.SelectedIndex = 1 Then
+                If CBBox1.Text = "Artist" Then
                     ' Remove special characters from artist and query
                     Dim sanitizedArtist As String = System.Text.RegularExpressions.Regex.Replace(author, "[^a-zA-Z0-9]", String.Empty)
                     Dim sanitizedQuery As String = System.Text.RegularExpressions.Regex.Replace(query, "[^a-zA-Z0-9]", String.Empty)
@@ -734,7 +743,7 @@ Public Class SearchForm
                     Dim artists = track.Artists.ToList()
                     Dim album = track.Album
 
-                    If CBBox1.SelectedIndex = 1 Then
+                    If CBBox1.Text = "Artist" Then
                         Dim artistMatch As Boolean = False
                         For Each artist In artists
                             If String.Equals(artist.Name, query, StringComparison.OrdinalIgnoreCase) Then
@@ -948,11 +957,15 @@ Public Class SearchForm
 
 
     Private Sub SearchForm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        CBBox1.SelectedIndex = MainForm.CategorieSelectedIndex
-        CBBox2.SelectedIndex = MainForm.CountSelectedIndex
+        CBBox1.Text = MainForm.CategorieSelected
+        CBBox2.Text = MainForm.CountSelected
         DotScaling1.Start()
         Me.Controls.Add(ctxTrack)
-        ctxTrack.Visible= false
+        Me.Controls.Add(ctxArtist)
+        Me.Controls.Add(ctxCount)
+        ctxTrack.Visible = False
+        ctxArtist.Visible = False
+        ctxCount.Visible = False
         Guna2TextBox1.Text = MainForm.SearchQuery
         Select Case MainForm.SearchEngine
             Case "Youtube"
@@ -964,15 +977,16 @@ Public Class SearchForm
         End Select
 
         AddMouseDownEventHandlers(Me)
+        AddMouseDownEventHandlers(MainForm.Panel1)
 
         Try
             SearchMenu1.Label1.Font = New Font(MainForm.boldfont.Families(0), 9.75, FontStyle.Regular)
             SearchMenu1.Label2.Font = New Font(MainForm.boldfont.Families(0), 9.75, FontStyle.Regular)
             SearchMenu1.Label3.Font = New Font(MainForm.boldfont.Families(0), 9.75, FontStyle.Regular)
-            CBBox1.Font = New Font(MainForm.titlefont.Families(0), 12, FontStyle.Regular)
-            CBBox1.TextOffset = New Point(22, 2)
-            CBBox2.Font = New Font(MainForm.titlefont.Families(0), 12, FontStyle.Regular)
-            CBBox2.TextOffset = New Point(10, 2)
+            'CBBox1.Font = New Font(MainForm.titlefont.Families(0), 12, FontStyle.Regular)
+            'CBBox1.TextOffset = New Point(22, 2)
+            'CBBox3.Font = New Font(MainForm.titlefont.Families(0), 12, FontStyle.Regular)
+            'CBBox3.TextOffset = New Point(10, 2)
             ctxTrack.Guna2Button1.Font = New Font(MainForm.boldfont.Families(0), 9.75, FontStyle.Regular)
             ctxTrack.Guna2Button3.Font = New Font(MainForm.boldfont.Families(0), 9.75, FontStyle.Regular)
         Catch ex As System.IO.FileNotFoundException
@@ -988,10 +1002,91 @@ Public Class SearchForm
 
     Private Sub FlowLayoutPanel1_Scroll(sender As Object, e As ScrollEventArgs) Handles Guna2VScrollBar1.Scroll, FlowLayoutPanel1.Scroll
         ctxTrack.Visible = False
+        CBBox1.Checked = False
+        ctxArtist.Visible = False
+        CBBox2.Checked = False
+        ctxCount.Visible = False
     End Sub
 
     Private Sub SearchForm_SizeChanged(sender As Object, e As EventArgs) Handles MyBase.SizeChanged
         ctxTrack.Visible = False
+        CBBox1.Checked = False
+        ctxArtist.Visible = False
+        CBBox2.Checked = False
+        ctxCount.Visible = False
     End Sub
 
+
+    Private Sub ArtistCtx(action As String, Xcoord As Integer, Ycoord As Integer)
+        Select Case action
+            Case "Open"
+                ctxArtist.Location = New Point(Xcoord, Ycoord + 51)
+                ctxArtist.BringToFront()
+                Guna2Transition1.ShowSync(ctxArtist, True, Guna.UI2.AnimatorNS.Animation.Transparent)
+            Case "Close"
+
+        End Select
+
+    End Sub
+
+    Private Sub CountCtx(action As String, Xcoord As Integer, Ycoord As Integer)
+        Select Case action
+            Case "Open"
+                ctxCount.Location = New Point(Xcoord, Ycoord + 51)
+                ctxCount.BringToFront()
+                Guna2Transition1.ShowSync(ctxCount, True, Guna.UI2.AnimatorNS.Animation.Transparent)
+            Case "Close"
+        End Select
+    End Sub
+
+
+    Private Sub CBBox1_CheckedChanged(sender As Object, e As EventArgs) Handles CBBox1.CheckedChanged
+        If CBBox1.Checked = True Then
+            ArtistCtx("Open", CBBox1.Location.X, CBBox1.Location.Y)
+        Else
+            ctxArtist.Visible = False
+        End If
+    End Sub
+
+    Private Sub ArtistCtxOption_Clicked(sender As Object, e As EventArgs) Handles ctxArtist.ArtistClicked
+        CBBox1.Text = "Artist"
+        CBBox1.Checked = False
+    End Sub
+
+    Private Sub TrackCtxOption_Clicked(sender As Object, e As EventArgs) Handles ctxArtist.TrackClicked
+        CBBox1.Text = "Track"
+        CBBox1.Checked = False
+    End Sub
+
+
+
+    Private Sub CBBox3_CheckedChanged(sender As Object, e As EventArgs) Handles CBBox2.CheckedChanged
+        If CBBox2.Checked = True Then
+            CountCtx("Open", CBBox2.Location.X, CBBox2.Location.Y)
+        Else
+            ctxCount.Visible = False
+        End If
+    End Sub
+
+    Private Sub Btn20_Clicked(sender As Object, e As EventArgs) Handles ctxCount.Btn20Clicked
+        CBBox2.Text = "20"
+        CBBox2.Checked = False
+    End Sub
+    Private Sub Btn40_Clicked(sender As Object, e As EventArgs) Handles ctxCount.Btn40Clicked
+        CBBox2.Text = "40"
+        CBBox2.Checked = False
+    End Sub
+    Private Sub Btn60_Clicked(sender As Object, e As EventArgs) Handles ctxCount.Btn60Clicked
+        CBBox2.Text = "60"
+        CBBox2.Checked = False
+    End Sub
+    Private Sub Btn80_Clicked(sender As Object, e As EventArgs) Handles ctxCount.Btn80Clicked
+        CBBox2.Text = "80"
+        CBBox2.Checked = False
+    End Sub
+
+    Private Sub Btn100_Clicked(sender As Object, e As EventArgs) Handles ctxCount.Btn100Clicked
+        CBBox2.Text = "100"
+        CBBox2.Checked = False
+    End Sub
 End Class
