@@ -67,7 +67,7 @@ Public Class WAudioPlayer
                 audioplayer.controls.stop()
             End If
 
-            Dim soundcloud = New SoundCloudClient()
+            Dim soundcloud = New SoundCloudClient(MainForm.SCClientId)
             Dim track = Await soundcloud.Tracks.GetAsync(songUrl)
             Dim VideoToPlay As String = Await soundcloud.Tracks.GetDownloadUrlAsync(track)
 

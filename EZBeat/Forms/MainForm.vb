@@ -18,6 +18,7 @@ Public Class MainForm
     Public lightfont As New PrivateFontCollection()
     Public boldfont As New PrivateFontCollection()
     Public WithEvents player2 As New WAudioPlayer()
+    Public SCClientId As String = String.Empty
 
     ' Constants for the Windows API functions
     Private Const WM_HOTKEY As Integer = &H312

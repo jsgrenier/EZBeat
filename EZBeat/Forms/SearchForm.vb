@@ -595,7 +595,14 @@ Public Class SearchForm
 
 
     Private Async Function SearchSC(query As String, ct As CancellationToken) As Task
-        Dim soundcloud As New SoundCloudClient()
+        Try
+            Dim soundCloudClient As New SoundCloudClientIDFetcher()
+            MainForm.SCClientId = Await soundCloudClient.GetClientIdAsync()
+            Console.WriteLine("Client ID: " & MainForm.SCClientId)
+        Catch ex As Exception
+            Console.WriteLine("Error: " & ex.Message)
+        End Try
+        Dim soundcloud As New SoundCloudClient(MainForm.SCClientId)
         Dim results = Await soundcloud.Search.GetTracksAsync(query).CollectAsync(CInt(CBBox2.Text))
         ' Check if a cancellation has been requested
         ct.ThrowIfCancellationRequested()
