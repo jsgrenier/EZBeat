@@ -321,6 +321,12 @@
     <Compile Include="Controls\SearchMenu.vb">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="Controls\SettingsCtrl.Designer.vb">
+      <DependentUpon>SettingsCtrl.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\SettingsCtrl.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="Controls\TrackCtxMenu.Designer.vb">
       <DependentUpon>TrackCtxMenu.vb</DependentUpon>
     </Compile>
@@ -387,6 +393,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\SearchMenu.resx">
       <DependentUpon>SearchMenu.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\SettingsCtrl.resx">
+      <DependentUpon>SettingsCtrl.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\TrackCtxMenu.resx">
       <DependentUpon>TrackCtxMenu.vb</DependentUpon>

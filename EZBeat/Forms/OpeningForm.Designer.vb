@@ -63,6 +63,7 @@ Partial Class OpeningForm
         Me.Guna2Button2.AutoRoundedCorners = True
         Me.Guna2Button2.BorderColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(15, Byte), Integer), CType(CType(15, Byte), Integer))
         Me.Guna2Button2.BorderRadius = 24
+        Me.Guna2Button2.CheckedState.FillColor = System.Drawing.Color.FromArgb(CType(CType(30, Byte), Integer), CType(CType(31, Byte), Integer), CType(CType(34, Byte), Integer))
         Me.Guna2Button2.Cursor = System.Windows.Forms.Cursors.Hand
         Me.Guna2Button2.CustomImages.Image = Global.EZBeat.My.Resources.Resources.icons8_settings_30_white
         Me.Guna2Button2.CustomImages.ImageAlign = System.Windows.Forms.HorizontalAlignment.Center

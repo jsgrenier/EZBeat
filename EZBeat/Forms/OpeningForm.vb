@@ -61,13 +61,35 @@ Public Class OpeningForm
     Private Sub Guna2TextBox1_Leave(sender As Object, e As EventArgs) Handles Guna2TextBox1.Leave
         MainForm.textboxFocused = False
     End Sub
-
+    Private WithEvents settings As New SettingsCtrl()
     Private Sub Guna2Button2_MouseClick(sender As Object, e As MouseEventArgs) Handles Guna2Button2.MouseClick
         If e.Button = MouseButtons.Left Then
-            Dim settings As New Settings()
-            settings.ShowDialog()
+            'Me.Controls.Add(settings)
+
+            settings.BringToFront()
+            settings.Visible = True
+            CenterControl(settings)
+            settings.Location = New Point(settings.Location.X, 112)
+            'settings.Anchor = AnchorStyles.Top
+            'CenterControl(settings)
+
+            Console.WriteLine(settings.Location.Y)
+
+            'settings.ShowDialog()
         End If
 
+    End Sub
+
+
+
+    Private Sub CenterControl(ctrl As Control)
+        ' Calculate the center position
+        Dim centerX As Integer = (Me.ClientSize.Width - ctrl.Width) \ 2
+        Dim centerY As Integer = (Me.ClientSize.Height - ctrl.Height) \ 2
+
+        ' Set the control's position
+        ctrl.Left = centerX
+        ctrl.Top = centerY
     End Sub
 
     Private Sub OpeningForm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -116,8 +138,11 @@ Public Class OpeningForm
         End Try
         MainMenu.Controls.Add(ctxArtist)
         MainMenu.Controls.Add(ctxCount)
+        Me.Controls.Add(settings)
         ctxArtist.Visible = False
         ctxCount.Visible = False
+        settings.Visible = False
+        settings.Anchor = AnchorStyles.Top
         AddMouseDownEventHandlers(Me)
     End Sub
 
@@ -127,15 +152,30 @@ Public Class OpeningForm
         titlefont.Dispose()
     End Sub
 
-    Private Sub Control2_MouseClick(sender As Object, e As MouseEventArgs) Handles Me.MouseDown
+    Private Sub Control2_MouseClick(sender As Object, e As MouseEventArgs) Handles Me.MouseClick
         Dim ctrl As Control = TryCast(sender, Control)
+
         If ctrl IsNot CBBox1 Then
             CBBox1.Checked = False
         End If
         If ctrl IsNot CBBox2 Then
             CBBox2.Checked = False
         End If
+
+        If Not IsChildOf(ctrl, settings) Then
+            settings.Visible = False
+        End If
     End Sub
+
+    Private Function IsChildOf(child As Control, parent As Control) As Boolean
+        While child IsNot Nothing
+            If child Is parent Then
+                Return True
+            End If
+            child = child.Parent
+        End While
+        Return False
+    End Function
 
     Private Sub AddMouseDownEventHandlers(parentControl As Control)
         ' Recursively attach the event handler to this control and its children
@@ -217,4 +257,9 @@ Public Class OpeningForm
         CBBox2.Text = "100"
         CBBox2.Checked = False
     End Sub
+
+    Private Sub XClicked(sender As Object, e As EventArgs) Handles settings.XClicked
+        settings.Visible = False
+    End Sub
+
 End Class
