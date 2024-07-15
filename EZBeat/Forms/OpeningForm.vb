@@ -65,18 +65,10 @@ Public Class OpeningForm
 
     Private Sub Guna2Button2_MouseClick(sender As Object, e As MouseEventArgs) Handles Guna2Button2.MouseClick
         If e.Button = MouseButtons.Left Then
-            'Me.Controls.Add(settings)
-
             settings.BringToFront()
-            settings.Visible = True
             CenterControl(settings)
             settings.Location = New Point(settings.Location.X, 112)
-            'settings.Anchor = AnchorStyles.Top
-            'CenterControl(settings)
-
-            Console.WriteLine(settings.Location.Y)
-
-            'settings.ShowDialog()
+            Guna2Transition1.ShowSync(settings, True, Guna.UI2.AnimatorNS.Animation.Transparent)
         End If
 
     End Sub

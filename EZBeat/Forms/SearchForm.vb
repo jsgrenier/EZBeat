@@ -395,15 +395,10 @@ Public Class SearchForm
 
     Private Sub Guna2Button2_MouseClick(sender As Object, e As MouseEventArgs) Handles Guna2Button2.MouseClick
         If e.Button = MouseButtons.Left Then
-            'Dim settings As New Settings()
             settings.BringToFront()
-            settings.Visible = True
             CenterControl(settings)
             settings.Location = New Point(settings.Location.X, 112)
-
-            Console.WriteLine(settings.Location.Y)
-
-            'settings.ShowDialog()
+            settings.Visible = True
         End If
     End Sub
 
@@ -1057,6 +1052,8 @@ Public Class SearchForm
         ctxArtist.Visible = False
         CBBox2.Checked = False
         ctxCount.Visible = False
+
+        settings.Visible = False
     End Sub
 
     Private Sub SearchForm_SizeChanged(sender As Object, e As EventArgs) Handles MyBase.SizeChanged

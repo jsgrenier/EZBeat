@@ -84,6 +84,7 @@ Partial Class OpeningForm
         Me.Guna2Button2.PressedDepth = 0
         Me.Guna2Button2.Size = New System.Drawing.Size(50, 50)
         Me.Guna2Button2.TabIndex = 5
+        Me.Guna2Button2.TabStop = False
         '
         'MainFooter
         '
@@ -152,6 +153,7 @@ Partial Class OpeningForm
         Me.CBBox2.PressedDepth = 0
         Me.CBBox2.Size = New System.Drawing.Size(78, 50)
         Me.CBBox2.TabIndex = 7
+        Me.CBBox2.TabStop = False
         Me.CBBox2.Text = "20"
         Me.CBBox2.TextOffset = New System.Drawing.Point(-6, -2)
         '
@@ -182,6 +184,7 @@ Partial Class OpeningForm
         Me.CBBox1.PressedDepth = 0
         Me.CBBox1.Size = New System.Drawing.Size(109, 50)
         Me.CBBox1.TabIndex = 6
+        Me.CBBox1.TabStop = False
         Me.CBBox1.Text = "Track"
         Me.CBBox1.TextOffset = New System.Drawing.Point(-6, -2)
         '
@@ -258,7 +261,6 @@ Partial Class OpeningForm
         Me.Guna2RadioButton1.Name = "Guna2RadioButton1"
         Me.Guna2RadioButton1.Size = New System.Drawing.Size(77, 21)
         Me.Guna2RadioButton1.TabIndex = 3
-        Me.Guna2RadioButton1.TabStop = True
         Me.Guna2RadioButton1.Text = "Youtube"
         Me.Guna2RadioButton1.UncheckedState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(96, Byte), Integer), CType(CType(99, Byte), Integer), CType(CType(104, Byte), Integer))
         Me.Guna2RadioButton1.UncheckedState.BorderThickness = 2
@@ -288,6 +290,7 @@ Partial Class OpeningForm
         Me.Guna2Button1.PressedDepth = 0
         Me.Guna2Button1.Size = New System.Drawing.Size(129, 40)
         Me.Guna2Button1.TabIndex = 2
+        Me.Guna2Button1.TabStop = False
         Me.Guna2Button1.Text = "Search Beat"
         Me.Guna2Button1.TextOffset = New System.Drawing.Point(0, -1)
         '
@@ -322,6 +325,7 @@ Partial Class OpeningForm
         Me.Guna2TextBox1.SelectedText = ""
         Me.Guna2TextBox1.Size = New System.Drawing.Size(580, 50)
         Me.Guna2TextBox1.TabIndex = 1
+        Me.Guna2TextBox1.TabStop = False
         Me.Guna2TextBox1.TextOffset = New System.Drawing.Point(6, 0)
         '
         'Guna2Transition1
