@@ -153,7 +153,7 @@ Partial Class SettingsCtrl
         Me.Guna2Button1.ForeColor = System.Drawing.Color.FromArgb(CType(CType(232, Byte), Integer), CType(CType(234, Byte), Integer), CType(CType(237, Byte), Integer))
         Me.Guna2Button1.HoverState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(96, Byte), Integer), CType(CType(99, Byte), Integer), CType(CType(104, Byte), Integer))
         Me.Guna2Button1.HoverState.FillColor = System.Drawing.Color.FromArgb(CType(CType(42, Byte), Integer), CType(CType(43, Byte), Integer), CType(CType(48, Byte), Integer))
-        Me.Guna2Button1.Location = New System.Drawing.Point(235, 302)
+        Me.Guna2Button1.Location = New System.Drawing.Point(235, 280)
         Me.Guna2Button1.Name = "Guna2Button1"
         Me.Guna2Button1.PressedDepth = 0
         Me.Guna2Button1.Size = New System.Drawing.Size(81, 40)
@@ -177,7 +177,7 @@ Partial Class SettingsCtrl
         Me.Name = "SettingsCtrl"
         Me.Radius = 12
         Me.RectColor = System.Drawing.Color.FromArgb(CType(CType(63, Byte), Integer), CType(CType(63, Byte), Integer), CType(CType(63, Byte), Integer))
-        Me.Size = New System.Drawing.Size(551, 398)
+        Me.Size = New System.Drawing.Size(551, 351)
         Me.ResumeLayout(False)
         Me.PerformLayout()
 

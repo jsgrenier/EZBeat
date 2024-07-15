@@ -40,6 +40,7 @@ Public Class SearchForm
     Public WithEvents ctxTrack As New TrackCtxMenu()
     Public WithEvents ctxArtist As New CtxTrackArtist()
     Public WithEvents ctxCount As New CtxCount()
+    Private WithEvents settings As New SettingsCtrl()
 
 #Region "UserActions"
     Private Async Sub Guna2TextBox1_KeyDown(sender As Object, e As KeyEventArgs) Handles Guna2TextBox1.KeyDown
@@ -175,7 +176,20 @@ Public Class SearchForm
         If ctrl IsNot CBBox2 Then
             CBBox2.Checked = False
         End If
+
+        If Not IsChildOf(ctrl, Settings) Then
+            Settings.Visible = False
+        End If
     End Sub
+    Private Function IsChildOf(child As Control, parent As Control) As Boolean
+        While child IsNot Nothing
+            If child Is parent Then
+                Return True
+            End If
+            child = child.Parent
+        End While
+        Return False
+    End Function
 
     Private Sub AddMouseDownEventHandlers(parentControl As Control)
         ' Recursively attach the event handler to this control and its children
@@ -369,11 +383,32 @@ Public Class SearchForm
         MainForm.OpenChildFormContentPanel(New OpeningForm)
     End Sub
 
+    Private Sub CenterControl(ctrl As Control)
+        ' Calculate the center position
+        Dim centerX As Integer = (Me.ClientSize.Width - ctrl.Width) \ 2
+        Dim centerY As Integer = (Me.ClientSize.Height - ctrl.Height) \ 2
+
+        ' Set the control's position
+        ctrl.Left = centerX
+        ctrl.Top = centerY
+    End Sub
+
     Private Sub Guna2Button2_MouseClick(sender As Object, e As MouseEventArgs) Handles Guna2Button2.MouseClick
         If e.Button = MouseButtons.Left Then
-            Dim settings As New Settings()
-            settings.ShowDialog()
+            'Dim settings As New Settings()
+            settings.BringToFront()
+            settings.Visible = True
+            CenterControl(settings)
+            settings.Location = New Point(settings.Location.X, 112)
+
+            Console.WriteLine(settings.Location.Y)
+
+            'settings.ShowDialog()
         End If
+    End Sub
+
+    Private Sub XClicked(sender As Object, e As EventArgs) Handles settings.XClicked
+        settings.Visible = False
     End Sub
 
     Private Sub Guna2TextBox1_Enter(sender As Object, e As EventArgs) Handles Guna2TextBox1.Enter
@@ -970,9 +1005,12 @@ Public Class SearchForm
         Me.Controls.Add(ctxTrack)
         Me.Controls.Add(ctxArtist)
         Me.Controls.Add(ctxCount)
+        Me.Controls.Add(settings)
         ctxTrack.Visible = False
         ctxArtist.Visible = False
         ctxCount.Visible = False
+        settings.Visible = False
+        settings.Anchor = AnchorStyles.Top
         Guna2TextBox1.Text = MainForm.SearchQuery
         Select Case MainForm.SearchEngine
             Case "Youtube"

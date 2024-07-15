@@ -22,12 +22,12 @@ Partial Class OpeningForm
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
-        Dim Animation1 As Guna.UI2.AnimatorNS.Animation = New Guna.UI2.AnimatorNS.Animation()
+        Dim Animation2 As Guna.UI2.AnimatorNS.Animation = New Guna.UI2.AnimatorNS.Animation()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(OpeningForm))
         Me.OpeningPanel = New Guna.UI2.WinForms.Guna2Panel()
         Me.Guna2Button2 = New Guna.UI2.WinForms.Guna2Button()
         Me.MainFooter = New System.Windows.Forms.Panel()
-        Me.Label2 = New System.Windows.Forms.Label()
+        Me.LblVersion = New System.Windows.Forms.Label()
         Me.MainMenu = New System.Windows.Forms.Panel()
         Me.CBBox2 = New Guna.UI2.WinForms.Guna2Button()
         Me.CBBox1 = New Guna.UI2.WinForms.Guna2Button()
@@ -88,7 +88,7 @@ Partial Class OpeningForm
         'MainFooter
         '
         Me.MainFooter.BackColor = System.Drawing.Color.FromArgb(CType(CType(30, Byte), Integer), CType(CType(31, Byte), Integer), CType(CType(34, Byte), Integer))
-        Me.MainFooter.Controls.Add(Me.Label2)
+        Me.MainFooter.Controls.Add(Me.LblVersion)
         Me.Guna2Transition1.SetDecoration(Me.MainFooter, Guna.UI2.AnimatorNS.DecorationType.None)
         Me.MainFooter.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.MainFooter.Location = New System.Drawing.Point(0, 612)
@@ -96,17 +96,17 @@ Partial Class OpeningForm
         Me.MainFooter.Size = New System.Drawing.Size(1080, 50)
         Me.MainFooter.TabIndex = 1
         '
-        'Label2
+        'LblVersion
         '
-        Me.Label2.AutoSize = True
-        Me.Guna2Transition1.SetDecoration(Me.Label2, Guna.UI2.AnimatorNS.DecorationType.None)
-        Me.Label2.Font = New System.Drawing.Font("Segoe UI", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label2.ForeColor = System.Drawing.Color.FromArgb(CType(CType(154, Byte), Integer), CType(CType(160, Byte), Integer), CType(CType(166, Byte), Integer))
-        Me.Label2.Location = New System.Drawing.Point(25, 15)
-        Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(91, 20)
-        Me.Label2.TabIndex = 0
-        Me.Label2.Text = "Version 1.0.5"
+        Me.LblVersion.AutoSize = True
+        Me.Guna2Transition1.SetDecoration(Me.LblVersion, Guna.UI2.AnimatorNS.DecorationType.None)
+        Me.LblVersion.Font = New System.Drawing.Font("Segoe UI", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LblVersion.ForeColor = System.Drawing.Color.FromArgb(CType(CType(154, Byte), Integer), CType(CType(160, Byte), Integer), CType(CType(166, Byte), Integer))
+        Me.LblVersion.Location = New System.Drawing.Point(25, 15)
+        Me.LblVersion.Name = "LblVersion"
+        Me.LblVersion.Size = New System.Drawing.Size(106, 20)
+        Me.LblVersion.TabIndex = 0
+        Me.LblVersion.Text = "Version X.X.X.X"
         '
         'MainMenu
         '
@@ -327,22 +327,22 @@ Partial Class OpeningForm
         'Guna2Transition1
         '
         Me.Guna2Transition1.Cursor = Nothing
-        Animation1.AnimateOnlyDifferences = True
-        Animation1.BlindCoeff = CType(resources.GetObject("Animation1.BlindCoeff"), System.Drawing.PointF)
-        Animation1.LeafCoeff = 0!
-        Animation1.MaxTime = 1.0!
-        Animation1.MinTime = 0!
-        Animation1.MosaicCoeff = CType(resources.GetObject("Animation1.MosaicCoeff"), System.Drawing.PointF)
-        Animation1.MosaicShift = CType(resources.GetObject("Animation1.MosaicShift"), System.Drawing.PointF)
-        Animation1.MosaicSize = 0
-        Animation1.Padding = New System.Windows.Forms.Padding(0)
-        Animation1.RotateCoeff = 0!
-        Animation1.RotateLimit = 0!
-        Animation1.ScaleCoeff = CType(resources.GetObject("Animation1.ScaleCoeff"), System.Drawing.PointF)
-        Animation1.SlideCoeff = CType(resources.GetObject("Animation1.SlideCoeff"), System.Drawing.PointF)
-        Animation1.TimeCoeff = 0!
-        Animation1.TransparencyCoeff = 0!
-        Me.Guna2Transition1.DefaultAnimation = Animation1
+        Animation2.AnimateOnlyDifferences = True
+        Animation2.BlindCoeff = CType(resources.GetObject("Animation2.BlindCoeff"), System.Drawing.PointF)
+        Animation2.LeafCoeff = 0!
+        Animation2.MaxTime = 1.0!
+        Animation2.MinTime = 0!
+        Animation2.MosaicCoeff = CType(resources.GetObject("Animation2.MosaicCoeff"), System.Drawing.PointF)
+        Animation2.MosaicShift = CType(resources.GetObject("Animation2.MosaicShift"), System.Drawing.PointF)
+        Animation2.MosaicSize = 0
+        Animation2.Padding = New System.Windows.Forms.Padding(0)
+        Animation2.RotateCoeff = 0!
+        Animation2.RotateLimit = 0!
+        Animation2.ScaleCoeff = CType(resources.GetObject("Animation2.ScaleCoeff"), System.Drawing.PointF)
+        Animation2.SlideCoeff = CType(resources.GetObject("Animation2.SlideCoeff"), System.Drawing.PointF)
+        Animation2.TimeCoeff = 0!
+        Animation2.TransparencyCoeff = 0!
+        Me.Guna2Transition1.DefaultAnimation = Animation2
         Me.Guna2Transition1.Interval = 1
         Me.Guna2Transition1.TimeStep = 0.07!
         '
@@ -372,7 +372,7 @@ Partial Class OpeningForm
 
     Friend WithEvents OpeningPanel As Guna.UI2.WinForms.Guna2Panel
     Friend WithEvents MainFooter As Panel
-    Friend WithEvents Label2 As Label
+    Friend WithEvents LblVersion As Label
     Friend WithEvents MainMenu As Panel
     Friend WithEvents Guna2Button1 As Guna.UI2.WinForms.Guna2Button
     Friend WithEvents Guna2TextBox1 As Guna.UI2.WinForms.Guna2TextBox

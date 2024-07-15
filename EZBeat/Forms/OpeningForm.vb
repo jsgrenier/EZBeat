@@ -10,6 +10,7 @@ Public Class OpeningForm
 
     Public WithEvents ctxArtist As New CtxTrackArtist()
     Public WithEvents ctxCount As New CtxCount()
+    Private WithEvents settings As New SettingsCtrl()
 
     Protected Overloads Overrides ReadOnly Property CreateParams() As CreateParams
         Get
@@ -61,7 +62,7 @@ Public Class OpeningForm
     Private Sub Guna2TextBox1_Leave(sender As Object, e As EventArgs) Handles Guna2TextBox1.Leave
         MainForm.textboxFocused = False
     End Sub
-    Private WithEvents settings As New SettingsCtrl()
+
     Private Sub Guna2Button2_MouseClick(sender As Object, e As MouseEventArgs) Handles Guna2Button2.MouseClick
         If e.Button = MouseButtons.Left Then
             'Me.Controls.Add(settings)
@@ -103,7 +104,7 @@ Public Class OpeningForm
             Guna2RadioButton1.Font = New Font(boldfont.Families(0), 9.75, FontStyle.Regular)
             Guna2RadioButton2.Font = New Font(boldfont.Families(0), 9.75, FontStyle.Regular)
             Guna2RadioButton3.Font = New Font(boldfont.Families(0), 9.75, FontStyle.Regular)
-            Label2.Font = New Font(titlefont.Families(0), 11.25, FontStyle.Regular)
+            LblVersion.Font = New Font(titlefont.Families(0), 11.25, FontStyle.Regular)
             CBBox1.Font = New Font(titlefont.Families(0), 12, FontStyle.Regular)
             ctxArtist.Guna2Button1.Font = New Font(titlefont.Families(0), 12, FontStyle.Regular)
             ctxArtist.Guna2Button3.Font = New Font(titlefont.Families(0), 12, FontStyle.Regular)
@@ -119,7 +120,7 @@ Public Class OpeningForm
             Guna2RadioButton1.Font = defaultradiofont
             Guna2RadioButton2.Font = defaultradiofont
             Guna2RadioButton3.Font = defaultradiofont
-            Label2.Font = New Font("Segoe UI", 11.25!, FontStyle.Regular, GraphicsUnit.Point)
+            LblVersion.Font = New Font("Segoe UI", 11.25!, FontStyle.Regular, GraphicsUnit.Point)
             CBBox1.Font = New Font("Segoe UI", 12.0!)
             CBBox1.TextOffset = New Point(22, 0)
             CBBox2.Font = New Font("Segoe UI", 12.0!)
@@ -130,7 +131,7 @@ Public Class OpeningForm
             Guna2RadioButton1.Font = defaultradiofont
             Guna2RadioButton2.Font = defaultradiofont
             Guna2RadioButton3.Font = defaultradiofont
-            Label2.Font = New Font("Segoe UI", 11.25!, FontStyle.Regular, GraphicsUnit.Point)
+            LblVersion.Font = New Font("Segoe UI", 11.25!, FontStyle.Regular, GraphicsUnit.Point)
             CBBox1.Font = New Font("Segoe UI", 12.0!)
             CBBox1.TextOffset = New Point(22, 2)
             CBBox2.Font = New Font("Segoe UI", 12.0!)
@@ -144,6 +145,8 @@ Public Class OpeningForm
         settings.Visible = False
         settings.Anchor = AnchorStyles.Top
         AddMouseDownEventHandlers(Me)
+
+        LblVersion.Text = "Version " & My.Application.Info.Version.ToString()
     End Sub
 
     Private Sub OpeningForm_FormClosing(sender As Object, e As FormClosingEventArgs) Handles MyBase.FormClosing
