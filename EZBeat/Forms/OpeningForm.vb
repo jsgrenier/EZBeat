@@ -139,6 +139,9 @@ Public Class OpeningForm
         AddMouseDownEventHandlers(Me)
 
         LblVersion.Text = "Version " & My.Application.Info.Version.ToString()
+
+        Dim versioning As New VersionChecker()
+        versioning.CheckForUpdate()
     End Sub
 
     Private Sub OpeningForm_FormClosing(sender As Object, e As FormClosingEventArgs) Handles MyBase.FormClosing

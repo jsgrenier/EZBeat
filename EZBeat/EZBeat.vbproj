@@ -293,6 +293,7 @@
     </Compile>
     <Compile Include="Classes\SoundCloudClientIDFetcher.vb" />
     <Compile Include="Classes\SpotifyToYoutube.vb" />
+    <Compile Include="Classes\VersionChecker.vb" />
     <Compile Include="Classes\VolumeTrackbar.vb">
       <SubType>Component</SubType>
     </Compile>

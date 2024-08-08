@@ -70,7 +70,7 @@ Public Class WAudioPlayer
             Dim soundcloud = New SoundCloudClient(MainForm.SCClientId)
             Dim track = Await soundcloud.Tracks.GetAsync(songUrl)
             Dim VideoToPlay As String = Await soundcloud.Tracks.GetDownloadUrlAsync(track)
-
+            Console.WriteLine(VideoToPlay)
             If VideoToPlay.Length > 0 Then
                 PlayFile(VideoToPlay)
             End If
