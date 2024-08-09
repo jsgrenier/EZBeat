@@ -310,10 +310,22 @@
     <Compile Include="Controls\CtxTrackArtist.vb">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Controls\CustomYesNoDialog.Designer.vb">
+    <Compile Include="Controls\Dialogs\DownloadCompleteDialog.Designer.vb">
+      <DependentUpon>DownloadCompleteDialog.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Dialogs\DownloadCompleteDialog.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Controls\Dialogs\UpToDateDialog.Designer.vb">
+      <DependentUpon>UpToDateDialog.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Dialogs\UpToDateDialog.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Controls\Dialogs\CustomYesNoDialog.Designer.vb">
       <DependentUpon>CustomYesNoDialog.vb</DependentUpon>
     </Compile>
-    <Compile Include="Controls\CustomYesNoDialog.vb">
+    <Compile Include="Controls\Dialogs\CustomYesNoDialog.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Controls\ResultError.Designer.vb">
@@ -346,7 +358,7 @@
     <Compile Include="Controls\TrackResultControl.vb">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Controls\CustomProgressForm.vb">
+    <Compile Include="Controls\Dialogs\CustomProgressForm.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\MainForm.vb">
@@ -398,10 +410,16 @@
     <EmbeddedResource Include="Controls\CtxTrackArtist.resx">
       <DependentUpon>CtxTrackArtist.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Controls\CustomProgressForm.resx">
+    <EmbeddedResource Include="Controls\Dialogs\DownloadCompleteDialog.resx">
+      <DependentUpon>DownloadCompleteDialog.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\Dialogs\UpToDateDialog.resx">
+      <DependentUpon>UpToDateDialog.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\Dialogs\CustomProgressForm.resx">
       <DependentUpon>CustomProgressForm.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Controls\CustomYesNoDialog.resx">
+    <EmbeddedResource Include="Controls\Dialogs\CustomYesNoDialog.resx">
       <DependentUpon>CustomYesNoDialog.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\ResultError.resx">
@@ -497,6 +515,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="imageico.ico" />
+    <None Include="Resources\icons8-done-48.png" />
+    <None Include="Resources\icons8-check-mark-48.png" />
     <None Include="Resources\icons8-update-48.png" />
     <None Include="Resources\icons8-help-48.png" />
     <None Include="Resources\icons8-info-48.png" />

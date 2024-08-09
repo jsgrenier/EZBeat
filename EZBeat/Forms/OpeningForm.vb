@@ -98,6 +98,8 @@ Public Class OpeningForm
             Guna2RadioButton2.Font = New Font(boldfont.Families(0), 9.75, FontStyle.Regular)
             Guna2RadioButton3.Font = New Font(boldfont.Families(0), 9.75, FontStyle.Regular)
             LblVersion.Font = New Font(titlefont.Families(0), 11.25, FontStyle.Regular)
+            LinkUpdate.Font = New Font(titlefont.Families(0), 11.25, FontStyle.Regular)
+            LblChecking.Font = New Font(titlefont.Families(0), 11.25, FontStyle.Regular)
             CBBox1.Font = New Font(titlefont.Families(0), 12, FontStyle.Regular)
             ctxArtist.Guna2Button1.Font = New Font(titlefont.Families(0), 12, FontStyle.Regular)
             ctxArtist.Guna2Button3.Font = New Font(titlefont.Families(0), 12, FontStyle.Regular)
@@ -264,6 +266,36 @@ Public Class OpeningForm
 
     Private Sub UpdateBtn_Click(sender As Object, e As EventArgs) Handles UpdateBtn.Click
         MainForm.UpdateCheck = True
+        Dim versioning As New VersionChecker()
+        versioning.CheckForUpdate()
+    End Sub
+
+    Private Sub LinkUpdate_MouseEnter(sender As Object, e As EventArgs) Handles LinkUpdate.MouseEnter
+        LinkUpdate.LinkColor = Color.White
+    End Sub
+
+    Private Sub LinkUpdate_MouseLeave(sender As Object, e As EventArgs) Handles LinkUpdate.MouseLeave
+        LinkUpdate.LinkColor = Color.FromArgb(154, 160, 166)
+    End Sub
+
+    Private Sub LinkUpdate_Click(sender As Object, e As EventArgs) Handles LinkUpdate.Click
+        If LinkUpdate.Visible Then
+            LinkUpdate.Visible = False
+            LblChecking.Visible = True
+            Timer1.Start()
+        End If
+
+    End Sub
+
+    Private Sub Timer1_Tick(sender As Object, e As EventArgs) Handles Timer1.Tick
+        MainForm.UpdateCheck = True
+
+        LblChecking.Visible = False
+        LinkUpdate.Visible = True
+
+
+        Timer1.Stop()
+
         Dim versioning As New VersionChecker()
         versioning.CheckForUpdate()
     End Sub

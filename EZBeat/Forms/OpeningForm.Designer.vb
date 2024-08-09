@@ -22,6 +22,7 @@ Partial Class OpeningForm
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
         Dim Animation7 As Guna.UI2.AnimatorNS.Animation = New Guna.UI2.AnimatorNS.Animation()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(OpeningForm))
         Me.OpeningPanel = New Guna.UI2.WinForms.Guna2Panel()
@@ -39,6 +40,10 @@ Partial Class OpeningForm
         Me.Guna2Button1 = New Guna.UI2.WinForms.Guna2Button()
         Me.Guna2TextBox1 = New Guna.UI2.WinForms.Guna2TextBox()
         Me.Guna2Transition1 = New Guna.UI2.WinForms.Guna2Transition()
+        Me.LinkUpdate = New Sunny.UI.UILinkLabel()
+        Me.Guna2VSeparator1 = New Guna.UI2.WinForms.Guna2VSeparator()
+        Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
+        Me.LblChecking = New System.Windows.Forms.Label()
         Me.OpeningPanel.SuspendLayout()
         Me.MainFooter.SuspendLayout()
         Me.MainMenu.SuspendLayout()
@@ -61,6 +66,7 @@ Partial Class OpeningForm
         'Guna2Button2
         '
         Me.Guna2Button2.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.Guna2Button2.Animated = True
         Me.Guna2Button2.AutoRoundedCorners = True
         Me.Guna2Button2.BorderColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(15, Byte), Integer), CType(CType(15, Byte), Integer))
         Me.Guna2Button2.BorderRadius = 24
@@ -90,6 +96,9 @@ Partial Class OpeningForm
         'MainFooter
         '
         Me.MainFooter.BackColor = System.Drawing.Color.FromArgb(CType(CType(30, Byte), Integer), CType(CType(31, Byte), Integer), CType(CType(34, Byte), Integer))
+        Me.MainFooter.Controls.Add(Me.LblChecking)
+        Me.MainFooter.Controls.Add(Me.Guna2VSeparator1)
+        Me.MainFooter.Controls.Add(Me.LinkUpdate)
         Me.MainFooter.Controls.Add(Me.UpdateBtn)
         Me.MainFooter.Controls.Add(Me.LblVersion)
         Me.Guna2Transition1.SetDecoration(Me.MainFooter, Guna.UI2.AnimatorNS.DecorationType.None)
@@ -102,6 +111,7 @@ Partial Class OpeningForm
         'UpdateBtn
         '
         Me.UpdateBtn.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.UpdateBtn.Animated = True
         Me.UpdateBtn.BorderColor = System.Drawing.Color.Empty
         Me.UpdateBtn.BorderRadius = 4
         Me.UpdateBtn.BorderThickness = 1
@@ -125,6 +135,7 @@ Partial Class OpeningForm
         Me.UpdateBtn.TabStop = False
         Me.UpdateBtn.Text = "Check for update"
         Me.UpdateBtn.TextOffset = New System.Drawing.Point(0, -1)
+        Me.UpdateBtn.Visible = False
         '
         'LblVersion
         '
@@ -220,6 +231,7 @@ Partial Class OpeningForm
         'Guna2RadioButton3
         '
         Me.Guna2RadioButton3.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.Guna2RadioButton3.Animated = True
         Me.Guna2RadioButton3.AutoSize = True
         Me.Guna2RadioButton3.CheckedState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(96, Byte), Integer), CType(CType(99, Byte), Integer), CType(CType(104, Byte), Integer))
         Me.Guna2RadioButton3.CheckedState.BorderThickness = 0
@@ -254,6 +266,7 @@ Partial Class OpeningForm
         'Guna2RadioButton2
         '
         Me.Guna2RadioButton2.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.Guna2RadioButton2.Animated = True
         Me.Guna2RadioButton2.AutoSize = True
         Me.Guna2RadioButton2.CheckedState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(96, Byte), Integer), CType(CType(99, Byte), Integer), CType(CType(104, Byte), Integer))
         Me.Guna2RadioButton2.CheckedState.BorderThickness = 0
@@ -276,6 +289,7 @@ Partial Class OpeningForm
         'Guna2RadioButton1
         '
         Me.Guna2RadioButton1.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.Guna2RadioButton1.Animated = True
         Me.Guna2RadioButton1.AutoSize = True
         Me.Guna2RadioButton1.Checked = True
         Me.Guna2RadioButton1.CheckedState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(96, Byte), Integer), CType(CType(99, Byte), Integer), CType(CType(104, Byte), Integer))
@@ -380,6 +394,50 @@ Partial Class OpeningForm
         Me.Guna2Transition1.Interval = 1
         Me.Guna2Transition1.TimeStep = 0.07!
         '
+        'LinkUpdate
+        '
+        Me.LinkUpdate.ActiveLinkColor = System.Drawing.Color.White
+        Me.LinkUpdate.AutoSize = True
+        Me.Guna2Transition1.SetDecoration(Me.LinkUpdate, Guna.UI2.AnimatorNS.DecorationType.None)
+        Me.LinkUpdate.DisabledLinkColor = System.Drawing.Color.FromArgb(CType(CType(10, Byte), Integer), CType(CType(10, Byte), Integer), CType(CType(10, Byte), Integer))
+        Me.LinkUpdate.Font = New System.Drawing.Font("Segoe UI", 11.25!)
+        Me.LinkUpdate.ForeColor = System.Drawing.Color.White
+        Me.LinkUpdate.LinkBehavior = System.Windows.Forms.LinkBehavior.HoverUnderline
+        Me.LinkUpdate.LinkColor = System.Drawing.Color.FromArgb(CType(CType(154, Byte), Integer), CType(CType(160, Byte), Integer), CType(CType(166, Byte), Integer))
+        Me.LinkUpdate.Location = New System.Drawing.Point(154, 15)
+        Me.LinkUpdate.Name = "LinkUpdate"
+        Me.LinkUpdate.Size = New System.Drawing.Size(122, 20)
+        Me.LinkUpdate.TabIndex = 4
+        Me.LinkUpdate.TabStop = True
+        Me.LinkUpdate.Text = "Check for update"
+        Me.LinkUpdate.VisitedLinkColor = System.Drawing.Color.FromArgb(CType(CType(230, Byte), Integer), CType(CType(80, Byte), Integer), CType(CType(80, Byte), Integer))
+        '
+        'Guna2VSeparator1
+        '
+        Me.Guna2Transition1.SetDecoration(Me.Guna2VSeparator1, Guna.UI2.AnimatorNS.DecorationType.None)
+        Me.Guna2VSeparator1.FillColor = System.Drawing.Color.FromArgb(CType(CType(154, Byte), Integer), CType(CType(160, Byte), Integer), CType(CType(166, Byte), Integer))
+        Me.Guna2VSeparator1.Location = New System.Drawing.Point(139, 15)
+        Me.Guna2VSeparator1.Name = "Guna2VSeparator1"
+        Me.Guna2VSeparator1.Size = New System.Drawing.Size(10, 20)
+        Me.Guna2VSeparator1.TabIndex = 6
+        '
+        'Timer1
+        '
+        Me.Timer1.Interval = 2000
+        '
+        'LblChecking
+        '
+        Me.LblChecking.AutoSize = True
+        Me.Guna2Transition1.SetDecoration(Me.LblChecking, Guna.UI2.AnimatorNS.DecorationType.None)
+        Me.LblChecking.Font = New System.Drawing.Font("Segoe UI", 11.25!)
+        Me.LblChecking.ForeColor = System.Drawing.Color.White
+        Me.LblChecking.Location = New System.Drawing.Point(154, 15)
+        Me.LblChecking.Name = "LblChecking"
+        Me.LblChecking.Size = New System.Drawing.Size(78, 20)
+        Me.LblChecking.TabIndex = 7
+        Me.LblChecking.Text = "Checking..."
+        Me.LblChecking.Visible = False
+        '
         'OpeningForm
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
@@ -419,4 +477,8 @@ Partial Class OpeningForm
     Friend WithEvents CBBox1 As Guna.UI2.WinForms.Guna2Button
     Friend WithEvents Guna2Transition1 As Guna.UI2.WinForms.Guna2Transition
     Friend WithEvents UpdateBtn As Guna.UI2.WinForms.Guna2Button
+    Friend WithEvents LinkUpdate As Sunny.UI.UILinkLabel
+    Friend WithEvents Guna2VSeparator1 As Guna.UI2.WinForms.Guna2VSeparator
+    Friend WithEvents Timer1 As Timer
+    Friend WithEvents LblChecking As Label
 End Class

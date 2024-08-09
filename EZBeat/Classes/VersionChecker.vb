@@ -29,8 +29,9 @@ Public Class VersionChecker
                 DownloadLatestVersion(latestVersion)
             End If
         Else
-            If MainForm.updatecheck = True Then
-                XtraMessageBox.Show("You are using the latest version.", "Up to date", MessageBoxButtons.OK, MessageBoxIcon.Information)
+            If MainForm.UpdateCheck = True Then
+                UpToDateDialog.ShowDialog(MainForm)
+                'XtraMessageBox.Show("You are using the latest version.", "Up to date", MessageBoxButtons.OK)
             End If
         End If
     End Sub
@@ -77,7 +78,7 @@ Public Class VersionChecker
 
         ' Create a new form to show the progress bar
         Dim progressForm As New CustomProgressForm With {
-        .Text = "Downloading Update...",
+        .Text = "Downloading update...",
         .Size = New Size(400, 100),
         .FormBorderStyle = FormBorderStyle.FixedDialog,
         .StartPosition = FormStartPosition.CenterScreen,
@@ -125,15 +126,16 @@ Public Class VersionChecker
                                                                                                         End If
 
                                                                                                         If ev.Error Is Nothing Then
-                                                                                                            XtraMessageBox.Show("Download complete. The application will now update.", "Download Complete", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                                                                                                            DownloadCompleteDialog.ShowDialog(MainForm)
+                                                                                                            'XtraMessageBox.Show("Download complete. The application will now update.", "Download Complete", MessageBoxButtons.OK)
                                                                                                             ' Execute the setup file
                                                                                                             Process.Start(downloadPath)
                                                                                                             ' Close the current application
                                                                                                             Application.Exit()
                                                                                                         ElseIf ev.Cancelled Then
-                                                                                                            XtraMessageBox.Show("Download canceled.", "Download Canceled", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                                                                                                            XtraMessageBox.Show("Update was unsuccessful.", "Download canceled", MessageBoxButtons.OK, MessageBoxIcon.Error)
                                                                                                         Else
-                                                                                                            XtraMessageBox.Show("An error occurred during the download. Please try again.", "Download Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                                                                                                            XtraMessageBox.Show("An error occurred during the download. Please try again.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
                                                                                                         End If
                                                                                                     End Sub, Nothing)
                                                                                End Sub
