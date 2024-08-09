@@ -29,7 +29,9 @@ Public Class VersionChecker
                 DownloadLatestVersion(latestVersion)
             End If
         Else
-                Console.WriteLine("You are using the latest version.")
+            If MainForm.updatecheck = True Then
+                XtraMessageBox.Show("You are using the latest version.", "Up to date", MessageBoxButtons.OK, MessageBoxIcon.Information)
+            End If
         End If
     End Sub
 

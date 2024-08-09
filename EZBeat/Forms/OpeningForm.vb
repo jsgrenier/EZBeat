@@ -263,6 +263,7 @@ Public Class OpeningForm
     End Sub
 
     Private Sub UpdateBtn_Click(sender As Object, e As EventArgs) Handles UpdateBtn.Click
+        MainForm.UpdateCheck = True
         Dim versioning As New VersionChecker()
         versioning.CheckForUpdate()
     End Sub
