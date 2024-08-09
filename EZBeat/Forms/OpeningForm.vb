@@ -86,6 +86,7 @@ Public Class OpeningForm
     End Sub
 
     Private Sub OpeningForm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+
         Dim defaultradiofont As New Font("Segoe UI Semibold", 9.75!, FontStyle.Bold, GraphicsUnit.Point)
         Try
             titlefont.AddFontFile("Tofino-Regular.ttf")
@@ -108,6 +109,7 @@ Public Class OpeningForm
             ctxCount.Btn80.Font = New Font(titlefont.Families(0), 12, FontStyle.Regular)
             ctxCount.Btn100.Font = New Font(titlefont.Families(0), 12, FontStyle.Regular)
             Guna2Button1.Font = New Font(boldfont.Families(0), 11.25, FontStyle.Regular)
+            UpdateBtn.Font = New Font(boldfont.Families(0), 10, FontStyle.Regular)
         Catch ex As System.IO.FileNotFoundException
             Guna2RadioButton1.Font = defaultradiofont
             Guna2RadioButton2.Font = defaultradiofont
@@ -140,8 +142,8 @@ Public Class OpeningForm
 
         LblVersion.Text = "Version " & My.Application.Info.Version.ToString()
 
-        Dim versioning As New VersionChecker()
-        versioning.CheckForUpdate()
+        'Dim versioning As New VersionChecker()
+        'versioning.CheckForUpdate()
     End Sub
 
     Private Sub OpeningForm_FormClosing(sender As Object, e As FormClosingEventArgs) Handles MyBase.FormClosing
@@ -260,4 +262,8 @@ Public Class OpeningForm
         settings.Visible = False
     End Sub
 
+    Private Sub UpdateBtn_Click(sender As Object, e As EventArgs) Handles UpdateBtn.Click
+        Dim versioning As New VersionChecker()
+        versioning.CheckForUpdate()
+    End Sub
 End Class

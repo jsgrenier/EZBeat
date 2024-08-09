@@ -118,6 +118,8 @@ Public Class MainForm
     Public btnNext As New ThumbnailToolBarButton(My.Resources.TaskNext, "Next")
 
     Private Sub MainForm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        Dim versioning As New VersionChecker()
+        versioning.CheckForUpdate()
         OpenChildFormContentPanel(New OpeningForm)
         Dim settingsDialog As Form = Settings
         If My.Settings.SaveLocation = String.Empty Then

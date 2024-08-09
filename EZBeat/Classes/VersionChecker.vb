@@ -3,6 +3,8 @@ Imports System.IO
 Imports Newtonsoft.Json.Linq
 Imports System.Windows.Forms
 Imports System.ComponentModel
+Imports DevExpress.XtraEditors ' Import DevExpress namespace
+Imports System.Threading
 
 Public Class VersionChecker
     Private Const GitHubApiUrl As String = "https://api.github.com/repos/{owner}/{repo}/releases/latest"
@@ -10,20 +12,38 @@ Public Class VersionChecker
     Private client As WebClient ' WebClient instance to handle the download
 
     Public Sub CheckForUpdate()
+        ' Check for internet connectivity
+        If Not IsInternetAvailable() Then
+            Return
+        End If
+
         ' Delete any old setup files before checking for updates
         DeleteOldSetupFiles()
 
         Dim latestVersion As String = GetLatestVersionFromGitHub()
 
         If IsNewVersionAvailable(CurrentVersion, latestVersion) Then
-            Dim result As DialogResult = MessageBox.Show("A new version is available. Do you want to download it?", "Update Available", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+
+            Dim result As DialogResult = CustomYesNoDialog.ShowDialog(MainForm) 'XtraMessageBox.Show("A new version is available. Do you want to download it?", "Update Available", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
             If result = DialogResult.Yes Then
                 DownloadLatestVersion(latestVersion)
             End If
         Else
-            Console.WriteLine("You are using the latest version.")
+                Console.WriteLine("You are using the latest version.")
         End If
     End Sub
+
+    Private Function IsInternetAvailable() As Boolean
+        Try
+            Using client As New WebClient()
+                Using stream As Stream = client.OpenRead("http://www.google.com")
+                    Return True
+                End Using
+            End Using
+        Catch
+            Return False
+        End Try
+    End Function
 
     Private Function GetLatestVersionFromGitHub() As String
         Dim url As String = GitHubApiUrl.Replace("{owner}", "jsgrenier").Replace("{repo}", "EZBeat")
@@ -54,20 +74,25 @@ Public Class VersionChecker
         End If
 
         ' Create a new form to show the progress bar
-        Dim progressForm As New Form With {
-            .Text = "Downloading Update",
-            .Size = New Size(400, 100),
-            .FormBorderStyle = FormBorderStyle.FixedDialog,
-            .StartPosition = FormStartPosition.CenterScreen,
-            .MaximizeBox = False,
-            .MinimizeBox = False,
-            .TopMost = True
-        }
+        Dim progressForm As New CustomProgressForm With {
+        .Text = "Downloading Update...",
+        .Size = New Size(400, 100),
+        .FormBorderStyle = FormBorderStyle.FixedDialog,
+        .StartPosition = FormStartPosition.CenterScreen,
+        .MaximizeBox = False,
+        .MinimizeBox = False,
+        .TopMost = True,
+        .BackColor = Color.FromArgb(30, 31, 34)
+    }
 
-        Dim progressBar As New ProgressBar With {
-            .Dock = DockStyle.Fill,
-            .Style = ProgressBarStyle.Continuous
-        }
+        Dim progressBar As New Guna.UI2.WinForms.Guna2ProgressBar With {
+        .Dock = DockStyle.Fill,
+        .Style = ProgressBarStyle.Continuous,
+        .FillColor = Color.FromArgb(30, 31, 34),
+        .BackColor = Color.FromArgb(30, 31, 34),
+        .ShowText = True,
+        .ShowPercentage = True
+    }
 
         progressForm.Controls.Add(progressBar)
 
@@ -78,29 +103,52 @@ Public Class VersionChecker
                                                  End If
                                              End Sub
 
-        progressForm.Show()
+        ' Create a BackgroundWorker to handle the download process
+        Dim worker As New BackgroundWorker()
+        Dim syncContext As SynchronizationContext = SynchronizationContext.Current
 
-        client = New WebClient()
-        AddHandler client.DownloadProgressChanged, Sub(sender As Object, e As DownloadProgressChangedEventArgs)
-                                                       progressBar.Value = e.ProgressPercentage
-                                                   End Sub
-        AddHandler client.DownloadFileCompleted, Sub(sender As Object, e As AsyncCompletedEventArgs)
-                                                     progressForm.Close()
-                                                     If e.Error Is Nothing Then
-                                                         MessageBox.Show("Download complete. The application will now update.", "Download Complete", MessageBoxButtons.OK, MessageBoxIcon.Information)
-                                                         ' Execute the setup file
-                                                         Process.Start(downloadPath)
-                                                         ' Close the current application
-                                                         Application.Exit()
-                                                     ElseIf e.Cancelled Then
-                                                         MessageBox.Show("Download canceled.", "Download Canceled", MessageBoxButtons.OK, MessageBoxIcon.Information)
-                                                     Else
-                                                         MessageBox.Show("An error occurred during the download. Please try again.", "Download Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
-                                                     End If
-                                                 End Sub
+        AddHandler worker.DoWork, Sub(sender As Object, e As DoWorkEventArgs)
+                                      client = New WebClient()
+                                      AddHandler client.DownloadProgressChanged, Sub(s, ev)
+                                                                                     syncContext.Post(Sub()
+                                                                                                          If Not progressForm.IsDisposed Then
+                                                                                                              progressBar.Value = ev.ProgressPercentage
+                                                                                                          End If
+                                                                                                      End Sub, Nothing)
+                                                                                 End Sub
+                                      AddHandler client.DownloadFileCompleted, Sub(s, ev)
+                                                                                   syncContext.Post(Sub()
+                                                                                                        If Not progressForm.IsDisposed Then
+                                                                                                            progressForm.Close()
+                                                                                                        End If
 
-        client.DownloadFileAsync(New Uri(url), downloadPath)
+                                                                                                        If ev.Error Is Nothing Then
+                                                                                                            XtraMessageBox.Show("Download complete. The application will now update.", "Download Complete", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                                                                                                            ' Execute the setup file
+                                                                                                            Process.Start(downloadPath)
+                                                                                                            ' Close the current application
+                                                                                                            Application.Exit()
+                                                                                                        ElseIf ev.Cancelled Then
+                                                                                                            XtraMessageBox.Show("Download canceled.", "Download Canceled", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                                                                                                        Else
+                                                                                                            XtraMessageBox.Show("An error occurred during the download. Please try again.", "Download Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                                                                                                        End If
+                                                                                                    End Sub, Nothing)
+                                                                               End Sub
+
+                                      client.DownloadFileAsync(New Uri(url), downloadPath)
+                                  End Sub
+
+        ' Start the BackgroundWorker
+        worker.RunWorkerAsync()
+
+        ' Show the progress form as a modal dialog
+        progressForm.ShowDialog(MainForm)
     End Sub
+
+
+
+
 
     Private Sub DeleteOldSetupFiles()
         Dim downloadDirectory As String = AppDomain.CurrentDomain.BaseDirectory
@@ -115,4 +163,5 @@ Public Class VersionChecker
             End Try
         Next
     End Sub
+
 End Class

@@ -310,6 +310,12 @@
     <Compile Include="Controls\CtxTrackArtist.vb">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="Controls\CustomYesNoDialog.Designer.vb">
+      <DependentUpon>CustomYesNoDialog.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\CustomYesNoDialog.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Controls\ResultError.Designer.vb">
       <DependentUpon>ResultError.vb</DependentUpon>
     </Compile>
@@ -339,6 +345,9 @@
     </Compile>
     <Compile Include="Controls\TrackResultControl.vb">
       <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\CustomProgressForm.vb">
+      <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\MainForm.vb">
       <SubType>Form</SubType>
@@ -389,6 +398,12 @@
     <EmbeddedResource Include="Controls\CtxTrackArtist.resx">
       <DependentUpon>CtxTrackArtist.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Controls\CustomProgressForm.resx">
+      <DependentUpon>CustomProgressForm.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\CustomYesNoDialog.resx">
+      <DependentUpon>CustomYesNoDialog.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Controls\ResultError.resx">
       <DependentUpon>ResultError.vb</DependentUpon>
     </EmbeddedResource>
@@ -416,6 +431,7 @@
     <EmbeddedResource Include="Forms\Settings.resx">
       <DependentUpon>Settings.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="My Project\licenses.licx" />
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.vb</LastGenOutput>
@@ -481,6 +497,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="imageico.ico" />
+    <None Include="Resources\icons8-update-48.png" />
+    <None Include="Resources\icons8-help-48.png" />
+    <None Include="Resources\icons8-info-48.png" />
     <None Include="Resources\icons8-expand-arrow-26.png" />
     <None Include="Resources\EZIco.ico" />
     <None Include="Resources\EZLogo2.png" />

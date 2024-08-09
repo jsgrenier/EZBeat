@@ -1,4 +1,6 @@
-﻿Imports WK.Libraries.BetterFolderBrowserNS
+﻿Imports System.IO
+Imports WK.Libraries.BetterFolderBrowserNS
+Imports DevExpress.XtraEditors
 
 Public Class SettingsCtrl
     Public Event XClicked As EventHandler
@@ -7,13 +9,16 @@ Public Class SettingsCtrl
     End Sub
 
     Private Sub Guna2TextBox1_IconRightClick(sender As Object, e As EventArgs) Handles FileLoc.IconRightClick
-        Dim betterFolderBrowser = New BetterFolderBrowser()
-        betterFolderBrowser.Title = "Select folder..."
-        betterFolderBrowser.RootFolder = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) & "\Downloads"
+        ' Create an instance of the FolderBrowserDialog
+        Dim folderBrowser As New FolderBrowserDialog()
+
+        ' Set properties of the folder browser
+        folderBrowser.Description = "Select folder..."
+        folderBrowser.SelectedPath = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) & "\Downloads"
 
         ' Show the FolderBrowserDialog and get the selected path.
-        If betterFolderBrowser.ShowDialog() = DialogResult.OK Then
-            FileLoc.Text = betterFolderBrowser.SelectedPath
+        If folderBrowser.ShowDialog() = DialogResult.OK Then
+            FileLoc.Text = folderBrowser.SelectedPath
             If FileLoc.Text.Length > 1 Then
                 Guna2Button1.DialogResult = DialogResult.OK
                 MainForm.FileSaveExist = True
@@ -22,7 +27,7 @@ Public Class SettingsCtrl
                 MainForm.FileSaveExist = False
             End If
         Else
-            'If no Then folder Is selected, Return from the subroutine.
+            ' If no folder is selected, return from the subroutine.
             Return
         End If
     End Sub

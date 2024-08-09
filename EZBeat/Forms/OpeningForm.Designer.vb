@@ -22,11 +22,12 @@ Partial Class OpeningForm
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
-        Dim Animation2 As Guna.UI2.AnimatorNS.Animation = New Guna.UI2.AnimatorNS.Animation()
+        Dim Animation7 As Guna.UI2.AnimatorNS.Animation = New Guna.UI2.AnimatorNS.Animation()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(OpeningForm))
         Me.OpeningPanel = New Guna.UI2.WinForms.Guna2Panel()
         Me.Guna2Button2 = New Guna.UI2.WinForms.Guna2Button()
         Me.MainFooter = New System.Windows.Forms.Panel()
+        Me.UpdateBtn = New Guna.UI2.WinForms.Guna2Button()
         Me.LblVersion = New System.Windows.Forms.Label()
         Me.MainMenu = New System.Windows.Forms.Panel()
         Me.CBBox2 = New Guna.UI2.WinForms.Guna2Button()
@@ -89,6 +90,7 @@ Partial Class OpeningForm
         'MainFooter
         '
         Me.MainFooter.BackColor = System.Drawing.Color.FromArgb(CType(CType(30, Byte), Integer), CType(CType(31, Byte), Integer), CType(CType(34, Byte), Integer))
+        Me.MainFooter.Controls.Add(Me.UpdateBtn)
         Me.MainFooter.Controls.Add(Me.LblVersion)
         Me.Guna2Transition1.SetDecoration(Me.MainFooter, Guna.UI2.AnimatorNS.DecorationType.None)
         Me.MainFooter.Dock = System.Windows.Forms.DockStyle.Bottom
@@ -96,6 +98,33 @@ Partial Class OpeningForm
         Me.MainFooter.Name = "MainFooter"
         Me.MainFooter.Size = New System.Drawing.Size(1080, 50)
         Me.MainFooter.TabIndex = 1
+        '
+        'UpdateBtn
+        '
+        Me.UpdateBtn.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.UpdateBtn.BorderColor = System.Drawing.Color.Empty
+        Me.UpdateBtn.BorderRadius = 4
+        Me.UpdateBtn.BorderThickness = 1
+        Me.UpdateBtn.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.Guna2Transition1.SetDecoration(Me.UpdateBtn, Guna.UI2.AnimatorNS.DecorationType.None)
+        Me.UpdateBtn.DisabledState.BorderColor = System.Drawing.Color.DarkGray
+        Me.UpdateBtn.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray
+        Me.UpdateBtn.DisabledState.FillColor = System.Drawing.Color.FromArgb(CType(CType(169, Byte), Integer), CType(CType(169, Byte), Integer), CType(CType(169, Byte), Integer))
+        Me.UpdateBtn.DisabledState.ForeColor = System.Drawing.Color.FromArgb(CType(CType(141, Byte), Integer), CType(CType(141, Byte), Integer), CType(CType(141, Byte), Integer))
+        Me.UpdateBtn.FillColor = System.Drawing.Color.FromArgb(CType(CType(42, Byte), Integer), CType(CType(43, Byte), Integer), CType(CType(48, Byte), Integer))
+        Me.UpdateBtn.FocusedColor = System.Drawing.Color.FromArgb(CType(CType(42, Byte), Integer), CType(CType(43, Byte), Integer), CType(CType(48, Byte), Integer))
+        Me.UpdateBtn.Font = New System.Drawing.Font("Segoe UI Semibold", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.UpdateBtn.ForeColor = System.Drawing.Color.FromArgb(CType(CType(232, Byte), Integer), CType(CType(234, Byte), Integer), CType(CType(237, Byte), Integer))
+        Me.UpdateBtn.HoverState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(96, Byte), Integer), CType(CType(99, Byte), Integer), CType(CType(104, Byte), Integer))
+        Me.UpdateBtn.HoverState.FillColor = System.Drawing.Color.FromArgb(CType(CType(42, Byte), Integer), CType(CType(43, Byte), Integer), CType(CType(48, Byte), Integer))
+        Me.UpdateBtn.Location = New System.Drawing.Point(922, 5)
+        Me.UpdateBtn.Name = "UpdateBtn"
+        Me.UpdateBtn.PressedDepth = 0
+        Me.UpdateBtn.Size = New System.Drawing.Size(153, 40)
+        Me.UpdateBtn.TabIndex = 3
+        Me.UpdateBtn.TabStop = False
+        Me.UpdateBtn.Text = "Check for update"
+        Me.UpdateBtn.TextOffset = New System.Drawing.Point(0, -1)
         '
         'LblVersion
         '
@@ -261,6 +290,7 @@ Partial Class OpeningForm
         Me.Guna2RadioButton1.Name = "Guna2RadioButton1"
         Me.Guna2RadioButton1.Size = New System.Drawing.Size(77, 21)
         Me.Guna2RadioButton1.TabIndex = 3
+        Me.Guna2RadioButton1.TabStop = True
         Me.Guna2RadioButton1.Text = "Youtube"
         Me.Guna2RadioButton1.UncheckedState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(96, Byte), Integer), CType(CType(99, Byte), Integer), CType(CType(104, Byte), Integer))
         Me.Guna2RadioButton1.UncheckedState.BorderThickness = 2
@@ -331,22 +361,22 @@ Partial Class OpeningForm
         'Guna2Transition1
         '
         Me.Guna2Transition1.Cursor = Nothing
-        Animation2.AnimateOnlyDifferences = True
-        Animation2.BlindCoeff = CType(resources.GetObject("Animation2.BlindCoeff"), System.Drawing.PointF)
-        Animation2.LeafCoeff = 0!
-        Animation2.MaxTime = 1.0!
-        Animation2.MinTime = 0!
-        Animation2.MosaicCoeff = CType(resources.GetObject("Animation2.MosaicCoeff"), System.Drawing.PointF)
-        Animation2.MosaicShift = CType(resources.GetObject("Animation2.MosaicShift"), System.Drawing.PointF)
-        Animation2.MosaicSize = 0
-        Animation2.Padding = New System.Windows.Forms.Padding(0)
-        Animation2.RotateCoeff = 0!
-        Animation2.RotateLimit = 0!
-        Animation2.ScaleCoeff = CType(resources.GetObject("Animation2.ScaleCoeff"), System.Drawing.PointF)
-        Animation2.SlideCoeff = CType(resources.GetObject("Animation2.SlideCoeff"), System.Drawing.PointF)
-        Animation2.TimeCoeff = 0!
-        Animation2.TransparencyCoeff = 0!
-        Me.Guna2Transition1.DefaultAnimation = Animation2
+        Animation7.AnimateOnlyDifferences = True
+        Animation7.BlindCoeff = CType(resources.GetObject("Animation7.BlindCoeff"), System.Drawing.PointF)
+        Animation7.LeafCoeff = 0!
+        Animation7.MaxTime = 1.0!
+        Animation7.MinTime = 0!
+        Animation7.MosaicCoeff = CType(resources.GetObject("Animation7.MosaicCoeff"), System.Drawing.PointF)
+        Animation7.MosaicShift = CType(resources.GetObject("Animation7.MosaicShift"), System.Drawing.PointF)
+        Animation7.MosaicSize = 0
+        Animation7.Padding = New System.Windows.Forms.Padding(0)
+        Animation7.RotateCoeff = 0!
+        Animation7.RotateLimit = 0!
+        Animation7.ScaleCoeff = CType(resources.GetObject("Animation7.ScaleCoeff"), System.Drawing.PointF)
+        Animation7.SlideCoeff = CType(resources.GetObject("Animation7.SlideCoeff"), System.Drawing.PointF)
+        Animation7.TimeCoeff = 0!
+        Animation7.TransparencyCoeff = 0!
+        Me.Guna2Transition1.DefaultAnimation = Animation7
         Me.Guna2Transition1.Interval = 1
         Me.Guna2Transition1.TimeStep = 0.07!
         '
@@ -388,4 +418,5 @@ Partial Class OpeningForm
     Friend WithEvents CBBox2 As Guna.UI2.WinForms.Guna2Button
     Friend WithEvents CBBox1 As Guna.UI2.WinForms.Guna2Button
     Friend WithEvents Guna2Transition1 As Guna.UI2.WinForms.Guna2Transition
+    Friend WithEvents UpdateBtn As Guna.UI2.WinForms.Guna2Button
 End Class

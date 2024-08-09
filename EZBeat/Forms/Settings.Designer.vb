@@ -31,6 +31,7 @@ Partial Class Settings
         Me.Guna2Button1 = New Guna.UI2.WinForms.Guna2Button()
         Me.FileLoc = New Guna.UI2.WinForms.Guna2TextBox()
         Me.Label1 = New System.Windows.Forms.Label()
+        Me.Guna2ProgressBar1 = New Guna.UI2.WinForms.Guna2ProgressBar()
         Me.Guna2Panel1.SuspendLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Guna2Panel2.SuspendLayout()
@@ -63,6 +64,7 @@ Partial Class Settings
         'Guna2Panel2
         '
         Me.Guna2Panel2.BorderRadius = 16
+        Me.Guna2Panel2.Controls.Add(Me.Guna2ProgressBar1)
         Me.Guna2Panel2.Controls.Add(Me.Label2)
         Me.Guna2Panel2.Controls.Add(Me.AudioForm)
         Me.Guna2Panel2.Controls.Add(Me.Guna2Button1)
@@ -174,6 +176,16 @@ Partial Class Settings
         Me.Label1.TabIndex = 0
         Me.Label1.Text = "Save file location"
         '
+        'Guna2ProgressBar1
+        '
+        Me.Guna2ProgressBar1.Location = New System.Drawing.Point(134, 153)
+        Me.Guna2ProgressBar1.Name = "Guna2ProgressBar1"
+        Me.Guna2ProgressBar1.ShowText = True
+        Me.Guna2ProgressBar1.Size = New System.Drawing.Size(300, 30)
+        Me.Guna2ProgressBar1.TabIndex = 6
+        Me.Guna2ProgressBar1.Text = "Guna2ProgressBar1"
+        Me.Guna2ProgressBar1.TextRenderingHint = System.Drawing.Text.TextRenderingHint.SystemDefault
+        '
         'Settings
         '
         Me.ActiveGlowColor = System.Drawing.Color.Black
@@ -212,4 +224,5 @@ Partial Class Settings
     Friend WithEvents Guna2Button1 As Guna.UI2.WinForms.Guna2Button
     Friend WithEvents AudioForm As Guna.UI2.WinForms.Guna2ComboBox
     Friend WithEvents Label2 As Label
+    Friend WithEvents Guna2ProgressBar1 As Guna.UI2.WinForms.Guna2ProgressBar
 End Class
