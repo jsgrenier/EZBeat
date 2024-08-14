@@ -23,12 +23,15 @@ Partial Class OpeningForm
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
-        Dim Animation7 As Guna.UI2.AnimatorNS.Animation = New Guna.UI2.AnimatorNS.Animation()
+        Dim Animation2 As Guna.UI2.AnimatorNS.Animation = New Guna.UI2.AnimatorNS.Animation()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(OpeningForm))
         Me.OpeningPanel = New Guna.UI2.WinForms.Guna2Panel()
         Me.Guna2Button2 = New Guna.UI2.WinForms.Guna2Button()
         Me.MainFooter = New System.Windows.Forms.Panel()
-        Me.UpdateBtn = New Guna.UI2.WinForms.Guna2Button()
+        Me.Guna2Button3 = New Guna.UI2.WinForms.Guna2Button()
+        Me.LblChecking = New System.Windows.Forms.Label()
+        Me.Guna2VSeparator1 = New Guna.UI2.WinForms.Guna2VSeparator()
+        Me.LinkUpdate = New Sunny.UI.UILinkLabel()
         Me.LblVersion = New System.Windows.Forms.Label()
         Me.MainMenu = New System.Windows.Forms.Panel()
         Me.CBBox2 = New Guna.UI2.WinForms.Guna2Button()
@@ -40,10 +43,7 @@ Partial Class OpeningForm
         Me.Guna2Button1 = New Guna.UI2.WinForms.Guna2Button()
         Me.Guna2TextBox1 = New Guna.UI2.WinForms.Guna2TextBox()
         Me.Guna2Transition1 = New Guna.UI2.WinForms.Guna2Transition()
-        Me.LinkUpdate = New Sunny.UI.UILinkLabel()
-        Me.Guna2VSeparator1 = New Guna.UI2.WinForms.Guna2VSeparator()
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
-        Me.LblChecking = New System.Windows.Forms.Label()
         Me.OpeningPanel.SuspendLayout()
         Me.MainFooter.SuspendLayout()
         Me.MainMenu.SuspendLayout()
@@ -96,10 +96,10 @@ Partial Class OpeningForm
         'MainFooter
         '
         Me.MainFooter.BackColor = System.Drawing.Color.FromArgb(CType(CType(30, Byte), Integer), CType(CType(31, Byte), Integer), CType(CType(34, Byte), Integer))
+        Me.MainFooter.Controls.Add(Me.Guna2Button3)
         Me.MainFooter.Controls.Add(Me.LblChecking)
         Me.MainFooter.Controls.Add(Me.Guna2VSeparator1)
         Me.MainFooter.Controls.Add(Me.LinkUpdate)
-        Me.MainFooter.Controls.Add(Me.UpdateBtn)
         Me.MainFooter.Controls.Add(Me.LblVersion)
         Me.Guna2Transition1.SetDecoration(Me.MainFooter, Guna.UI2.AnimatorNS.DecorationType.None)
         Me.MainFooter.Dock = System.Windows.Forms.DockStyle.Bottom
@@ -108,34 +108,70 @@ Partial Class OpeningForm
         Me.MainFooter.Size = New System.Drawing.Size(1080, 50)
         Me.MainFooter.TabIndex = 1
         '
-        'UpdateBtn
+        'Guna2Button3
         '
-        Me.UpdateBtn.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.UpdateBtn.Animated = True
-        Me.UpdateBtn.BorderColor = System.Drawing.Color.Empty
-        Me.UpdateBtn.BorderRadius = 4
-        Me.UpdateBtn.BorderThickness = 1
-        Me.UpdateBtn.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.Guna2Transition1.SetDecoration(Me.UpdateBtn, Guna.UI2.AnimatorNS.DecorationType.None)
-        Me.UpdateBtn.DisabledState.BorderColor = System.Drawing.Color.DarkGray
-        Me.UpdateBtn.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray
-        Me.UpdateBtn.DisabledState.FillColor = System.Drawing.Color.FromArgb(CType(CType(169, Byte), Integer), CType(CType(169, Byte), Integer), CType(CType(169, Byte), Integer))
-        Me.UpdateBtn.DisabledState.ForeColor = System.Drawing.Color.FromArgb(CType(CType(141, Byte), Integer), CType(CType(141, Byte), Integer), CType(CType(141, Byte), Integer))
-        Me.UpdateBtn.FillColor = System.Drawing.Color.FromArgb(CType(CType(42, Byte), Integer), CType(CType(43, Byte), Integer), CType(CType(48, Byte), Integer))
-        Me.UpdateBtn.FocusedColor = System.Drawing.Color.FromArgb(CType(CType(42, Byte), Integer), CType(CType(43, Byte), Integer), CType(CType(48, Byte), Integer))
-        Me.UpdateBtn.Font = New System.Drawing.Font("Segoe UI Semibold", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.UpdateBtn.ForeColor = System.Drawing.Color.FromArgb(CType(CType(232, Byte), Integer), CType(CType(234, Byte), Integer), CType(CType(237, Byte), Integer))
-        Me.UpdateBtn.HoverState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(96, Byte), Integer), CType(CType(99, Byte), Integer), CType(CType(104, Byte), Integer))
-        Me.UpdateBtn.HoverState.FillColor = System.Drawing.Color.FromArgb(CType(CType(42, Byte), Integer), CType(CType(43, Byte), Integer), CType(CType(48, Byte), Integer))
-        Me.UpdateBtn.Location = New System.Drawing.Point(922, 5)
-        Me.UpdateBtn.Name = "UpdateBtn"
-        Me.UpdateBtn.PressedDepth = 0
-        Me.UpdateBtn.Size = New System.Drawing.Size(153, 40)
-        Me.UpdateBtn.TabIndex = 3
-        Me.UpdateBtn.TabStop = False
-        Me.UpdateBtn.Text = "Check for update"
-        Me.UpdateBtn.TextOffset = New System.Drawing.Point(0, -1)
-        Me.UpdateBtn.Visible = False
+        Me.Guna2Button3.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.Guna2Button3.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.Guna2Button3.CustomImages.HoveredImage = Global.EZBeat.My.Resources.Resources.icons8_github_50_white
+        Me.Guna2Button3.CustomImages.Image = Global.EZBeat.My.Resources.Resources.icons8_github_50
+        Me.Guna2Button3.CustomImages.ImageAlign = System.Windows.Forms.HorizontalAlignment.Center
+        Me.Guna2Button3.CustomImages.ImageOffset = New System.Drawing.Point(0, -8)
+        Me.Guna2Button3.CustomImages.ImageSize = New System.Drawing.Size(35, 35)
+        Me.Guna2Transition1.SetDecoration(Me.Guna2Button3, Guna.UI2.AnimatorNS.DecorationType.None)
+        Me.Guna2Button3.DisabledState.BorderColor = System.Drawing.Color.DarkGray
+        Me.Guna2Button3.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray
+        Me.Guna2Button3.DisabledState.FillColor = System.Drawing.Color.FromArgb(CType(CType(169, Byte), Integer), CType(CType(169, Byte), Integer), CType(CType(169, Byte), Integer))
+        Me.Guna2Button3.DisabledState.ForeColor = System.Drawing.Color.FromArgb(CType(CType(141, Byte), Integer), CType(CType(141, Byte), Integer), CType(CType(141, Byte), Integer))
+        Me.Guna2Button3.FillColor = System.Drawing.Color.Empty
+        Me.Guna2Button3.Font = New System.Drawing.Font("Segoe UI", 9.0!)
+        Me.Guna2Button3.ForeColor = System.Drawing.Color.White
+        Me.Guna2Button3.HoverState.FillColor = System.Drawing.Color.FromArgb(CType(CType(30, Byte), Integer), CType(CType(31, Byte), Integer), CType(CType(34, Byte), Integer))
+        Me.Guna2Button3.Location = New System.Drawing.Point(1021, 8)
+        Me.Guna2Button3.Name = "Guna2Button3"
+        Me.Guna2Button3.PressedDepth = 0
+        Me.Guna2Button3.Size = New System.Drawing.Size(35, 35)
+        Me.Guna2Button3.TabIndex = 8
+        Me.Guna2Button3.TabStop = False
+        '
+        'LblChecking
+        '
+        Me.LblChecking.AutoSize = True
+        Me.Guna2Transition1.SetDecoration(Me.LblChecking, Guna.UI2.AnimatorNS.DecorationType.None)
+        Me.LblChecking.Font = New System.Drawing.Font("Segoe UI", 11.25!)
+        Me.LblChecking.ForeColor = System.Drawing.Color.White
+        Me.LblChecking.Location = New System.Drawing.Point(154, 15)
+        Me.LblChecking.Name = "LblChecking"
+        Me.LblChecking.Size = New System.Drawing.Size(78, 20)
+        Me.LblChecking.TabIndex = 7
+        Me.LblChecking.Text = "Checking..."
+        Me.LblChecking.Visible = False
+        '
+        'Guna2VSeparator1
+        '
+        Me.Guna2Transition1.SetDecoration(Me.Guna2VSeparator1, Guna.UI2.AnimatorNS.DecorationType.None)
+        Me.Guna2VSeparator1.FillColor = System.Drawing.Color.FromArgb(CType(CType(154, Byte), Integer), CType(CType(160, Byte), Integer), CType(CType(166, Byte), Integer))
+        Me.Guna2VSeparator1.Location = New System.Drawing.Point(139, 17)
+        Me.Guna2VSeparator1.Name = "Guna2VSeparator1"
+        Me.Guna2VSeparator1.Size = New System.Drawing.Size(10, 20)
+        Me.Guna2VSeparator1.TabIndex = 6
+        '
+        'LinkUpdate
+        '
+        Me.LinkUpdate.ActiveLinkColor = System.Drawing.Color.White
+        Me.LinkUpdate.AutoSize = True
+        Me.Guna2Transition1.SetDecoration(Me.LinkUpdate, Guna.UI2.AnimatorNS.DecorationType.None)
+        Me.LinkUpdate.DisabledLinkColor = System.Drawing.Color.FromArgb(CType(CType(10, Byte), Integer), CType(CType(10, Byte), Integer), CType(CType(10, Byte), Integer))
+        Me.LinkUpdate.Font = New System.Drawing.Font("Segoe UI", 11.25!)
+        Me.LinkUpdate.ForeColor = System.Drawing.Color.White
+        Me.LinkUpdate.LinkBehavior = System.Windows.Forms.LinkBehavior.HoverUnderline
+        Me.LinkUpdate.LinkColor = System.Drawing.Color.FromArgb(CType(CType(154, Byte), Integer), CType(CType(160, Byte), Integer), CType(CType(166, Byte), Integer))
+        Me.LinkUpdate.Location = New System.Drawing.Point(154, 15)
+        Me.LinkUpdate.Name = "LinkUpdate"
+        Me.LinkUpdate.Size = New System.Drawing.Size(122, 20)
+        Me.LinkUpdate.TabIndex = 4
+        Me.LinkUpdate.TabStop = True
+        Me.LinkUpdate.Text = "Check for update"
+        Me.LinkUpdate.VisitedLinkColor = System.Drawing.Color.FromArgb(CType(CType(230, Byte), Integer), CType(CType(80, Byte), Integer), CType(CType(80, Byte), Integer))
         '
         'LblVersion
         '
@@ -375,68 +411,28 @@ Partial Class OpeningForm
         'Guna2Transition1
         '
         Me.Guna2Transition1.Cursor = Nothing
-        Animation7.AnimateOnlyDifferences = True
-        Animation7.BlindCoeff = CType(resources.GetObject("Animation7.BlindCoeff"), System.Drawing.PointF)
-        Animation7.LeafCoeff = 0!
-        Animation7.MaxTime = 1.0!
-        Animation7.MinTime = 0!
-        Animation7.MosaicCoeff = CType(resources.GetObject("Animation7.MosaicCoeff"), System.Drawing.PointF)
-        Animation7.MosaicShift = CType(resources.GetObject("Animation7.MosaicShift"), System.Drawing.PointF)
-        Animation7.MosaicSize = 0
-        Animation7.Padding = New System.Windows.Forms.Padding(0)
-        Animation7.RotateCoeff = 0!
-        Animation7.RotateLimit = 0!
-        Animation7.ScaleCoeff = CType(resources.GetObject("Animation7.ScaleCoeff"), System.Drawing.PointF)
-        Animation7.SlideCoeff = CType(resources.GetObject("Animation7.SlideCoeff"), System.Drawing.PointF)
-        Animation7.TimeCoeff = 0!
-        Animation7.TransparencyCoeff = 0!
-        Me.Guna2Transition1.DefaultAnimation = Animation7
+        Animation2.AnimateOnlyDifferences = True
+        Animation2.BlindCoeff = CType(resources.GetObject("Animation2.BlindCoeff"), System.Drawing.PointF)
+        Animation2.LeafCoeff = 0!
+        Animation2.MaxTime = 1.0!
+        Animation2.MinTime = 0!
+        Animation2.MosaicCoeff = CType(resources.GetObject("Animation2.MosaicCoeff"), System.Drawing.PointF)
+        Animation2.MosaicShift = CType(resources.GetObject("Animation2.MosaicShift"), System.Drawing.PointF)
+        Animation2.MosaicSize = 0
+        Animation2.Padding = New System.Windows.Forms.Padding(0)
+        Animation2.RotateCoeff = 0!
+        Animation2.RotateLimit = 0!
+        Animation2.ScaleCoeff = CType(resources.GetObject("Animation2.ScaleCoeff"), System.Drawing.PointF)
+        Animation2.SlideCoeff = CType(resources.GetObject("Animation2.SlideCoeff"), System.Drawing.PointF)
+        Animation2.TimeCoeff = 0!
+        Animation2.TransparencyCoeff = 0!
+        Me.Guna2Transition1.DefaultAnimation = Animation2
         Me.Guna2Transition1.Interval = 1
         Me.Guna2Transition1.TimeStep = 0.07!
-        '
-        'LinkUpdate
-        '
-        Me.LinkUpdate.ActiveLinkColor = System.Drawing.Color.White
-        Me.LinkUpdate.AutoSize = True
-        Me.Guna2Transition1.SetDecoration(Me.LinkUpdate, Guna.UI2.AnimatorNS.DecorationType.None)
-        Me.LinkUpdate.DisabledLinkColor = System.Drawing.Color.FromArgb(CType(CType(10, Byte), Integer), CType(CType(10, Byte), Integer), CType(CType(10, Byte), Integer))
-        Me.LinkUpdate.Font = New System.Drawing.Font("Segoe UI", 11.25!)
-        Me.LinkUpdate.ForeColor = System.Drawing.Color.White
-        Me.LinkUpdate.LinkBehavior = System.Windows.Forms.LinkBehavior.HoverUnderline
-        Me.LinkUpdate.LinkColor = System.Drawing.Color.FromArgb(CType(CType(154, Byte), Integer), CType(CType(160, Byte), Integer), CType(CType(166, Byte), Integer))
-        Me.LinkUpdate.Location = New System.Drawing.Point(154, 15)
-        Me.LinkUpdate.Name = "LinkUpdate"
-        Me.LinkUpdate.Size = New System.Drawing.Size(122, 20)
-        Me.LinkUpdate.TabIndex = 4
-        Me.LinkUpdate.TabStop = True
-        Me.LinkUpdate.Text = "Check for update"
-        Me.LinkUpdate.VisitedLinkColor = System.Drawing.Color.FromArgb(CType(CType(230, Byte), Integer), CType(CType(80, Byte), Integer), CType(CType(80, Byte), Integer))
-        '
-        'Guna2VSeparator1
-        '
-        Me.Guna2Transition1.SetDecoration(Me.Guna2VSeparator1, Guna.UI2.AnimatorNS.DecorationType.None)
-        Me.Guna2VSeparator1.FillColor = System.Drawing.Color.FromArgb(CType(CType(154, Byte), Integer), CType(CType(160, Byte), Integer), CType(CType(166, Byte), Integer))
-        Me.Guna2VSeparator1.Location = New System.Drawing.Point(139, 15)
-        Me.Guna2VSeparator1.Name = "Guna2VSeparator1"
-        Me.Guna2VSeparator1.Size = New System.Drawing.Size(10, 20)
-        Me.Guna2VSeparator1.TabIndex = 6
         '
         'Timer1
         '
         Me.Timer1.Interval = 2000
-        '
-        'LblChecking
-        '
-        Me.LblChecking.AutoSize = True
-        Me.Guna2Transition1.SetDecoration(Me.LblChecking, Guna.UI2.AnimatorNS.DecorationType.None)
-        Me.LblChecking.Font = New System.Drawing.Font("Segoe UI", 11.25!)
-        Me.LblChecking.ForeColor = System.Drawing.Color.White
-        Me.LblChecking.Location = New System.Drawing.Point(154, 15)
-        Me.LblChecking.Name = "LblChecking"
-        Me.LblChecking.Size = New System.Drawing.Size(78, 20)
-        Me.LblChecking.TabIndex = 7
-        Me.LblChecking.Text = "Checking..."
-        Me.LblChecking.Visible = False
         '
         'OpeningForm
         '
@@ -476,9 +472,9 @@ Partial Class OpeningForm
     Friend WithEvents CBBox2 As Guna.UI2.WinForms.Guna2Button
     Friend WithEvents CBBox1 As Guna.UI2.WinForms.Guna2Button
     Friend WithEvents Guna2Transition1 As Guna.UI2.WinForms.Guna2Transition
-    Friend WithEvents UpdateBtn As Guna.UI2.WinForms.Guna2Button
     Friend WithEvents LinkUpdate As Sunny.UI.UILinkLabel
     Friend WithEvents Guna2VSeparator1 As Guna.UI2.WinForms.Guna2VSeparator
     Friend WithEvents Timer1 As Timer
     Friend WithEvents LblChecking As Label
+    Friend WithEvents Guna2Button3 As Guna.UI2.WinForms.Guna2Button
 End Class

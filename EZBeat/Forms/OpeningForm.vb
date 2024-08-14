@@ -111,7 +111,6 @@ Public Class OpeningForm
             ctxCount.Btn80.Font = New Font(titlefont.Families(0), 12, FontStyle.Regular)
             ctxCount.Btn100.Font = New Font(titlefont.Families(0), 12, FontStyle.Regular)
             Guna2Button1.Font = New Font(boldfont.Families(0), 11.25, FontStyle.Regular)
-            UpdateBtn.Font = New Font(boldfont.Families(0), 10, FontStyle.Regular)
         Catch ex As System.IO.FileNotFoundException
             Guna2RadioButton1.Font = defaultradiofont
             Guna2RadioButton2.Font = defaultradiofont
@@ -264,12 +263,6 @@ Public Class OpeningForm
         settings.Visible = False
     End Sub
 
-    Private Sub UpdateBtn_Click(sender As Object, e As EventArgs) Handles UpdateBtn.Click
-        MainForm.UpdateCheck = True
-        Dim versioning As New VersionChecker()
-        versioning.CheckForUpdate()
-    End Sub
-
     Private Sub LinkUpdate_MouseEnter(sender As Object, e As EventArgs) Handles LinkUpdate.MouseEnter
         LinkUpdate.LinkColor = Color.White
     End Sub
@@ -298,5 +291,9 @@ Public Class OpeningForm
 
         Dim versioning As New VersionChecker()
         versioning.CheckForUpdate()
+    End Sub
+
+    Private Sub Guna2Button3_Click(sender As Object, e As EventArgs) Handles Guna2Button3.Click
+        Process.Start("https://github.com/jsgrenier/EZBeat/")
     End Sub
 End Class

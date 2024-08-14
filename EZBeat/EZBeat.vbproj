@@ -515,6 +515,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="imageico.ico" />
+    <None Include="Resources\icons8-github-50.png" />
+    <None Include="Resources\icons8-github-50_white.png" />
     <None Include="Resources\icons8-done-48.png" />
     <None Include="Resources\icons8-check-mark-48.png" />
     <None Include="Resources\icons8-update-48.png" />
