@@ -24,7 +24,6 @@ Partial Class TrackResultControl
     Private Sub InitializeComponent()
         Me.MainPanel = New Guna.UI2.WinForms.Guna2Panel()
         Me.PB1 = New Guna.UI2.WinForms.Guna2CircleProgressBar()
-        Me.SuccessImg = New System.Windows.Forms.PictureBox()
         Me.DLBtn = New Guna.UI2.WinForms.Guna2Button()
         Me.DurationLbl = New System.Windows.Forms.Label()
         Me.Url = New System.Windows.Forms.Label()
@@ -32,10 +31,11 @@ Partial Class TrackResultControl
         Me.Author = New System.Windows.Forms.Label()
         Me.Title = New System.Windows.Forms.Label()
         Me.ImgBox = New Guna.UI2.WinForms.Guna2PictureBox()
+        Me.SuccessImg = New System.Windows.Forms.PictureBox()
         Me.MainPanel.SuspendLayout()
         Me.PB1.SuspendLayout()
-        CType(Me.SuccessImg, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.ImgBox, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.SuccessImg, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'MainPanel
@@ -77,16 +77,6 @@ Partial Class TrackResultControl
         Me.PB1.Text = "Guna2CircleProgressBar1"
         Me.PB1.Visible = False
         '
-        'SuccessImg
-        '
-        Me.SuccessImg.Image = Global.EZBeat.My.Resources.Resources.icons8_success_30
-        Me.SuccessImg.Location = New System.Drawing.Point(0, 0)
-        Me.SuccessImg.Name = "SuccessImg"
-        Me.SuccessImg.Size = New System.Drawing.Size(30, 30)
-        Me.SuccessImg.TabIndex = 19
-        Me.SuccessImg.TabStop = False
-        Me.SuccessImg.Visible = False
-        '
         'DLBtn
         '
         Me.DLBtn.BackColor = System.Drawing.Color.Transparent
@@ -101,7 +91,7 @@ Partial Class TrackResultControl
         Me.DLBtn.FillColor = System.Drawing.Color.Empty
         Me.DLBtn.Font = New System.Drawing.Font("Segoe UI", 9.0!)
         Me.DLBtn.ForeColor = System.Drawing.Color.White
-        Me.DLBtn.Location = New System.Drawing.Point(784, 16)
+        Me.DLBtn.Location = New System.Drawing.Point(644, 15)
         Me.DLBtn.Name = "DLBtn"
         Me.DLBtn.PressedDepth = 0
         Me.DLBtn.Size = New System.Drawing.Size(24, 24)
@@ -190,6 +180,16 @@ Partial Class TrackResultControl
         Me.ImgBox.TabIndex = 0
         Me.ImgBox.TabStop = False
         '
+        'SuccessImg
+        '
+        Me.SuccessImg.Image = Global.EZBeat.My.Resources.Resources.icons8_success_30
+        Me.SuccessImg.Location = New System.Drawing.Point(0, 0)
+        Me.SuccessImg.Name = "SuccessImg"
+        Me.SuccessImg.Size = New System.Drawing.Size(30, 30)
+        Me.SuccessImg.TabIndex = 19
+        Me.SuccessImg.TabStop = False
+        Me.SuccessImg.Visible = False
+        '
         'TrackResultControl
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
@@ -201,8 +201,8 @@ Partial Class TrackResultControl
         Me.MainPanel.ResumeLayout(False)
         Me.MainPanel.PerformLayout()
         Me.PB1.ResumeLayout(False)
-        CType(Me.SuccessImg, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.ImgBox, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.SuccessImg, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub

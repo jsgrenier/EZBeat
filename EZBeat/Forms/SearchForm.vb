@@ -33,7 +33,7 @@ Public Class SearchForm
     Private author As String
 
     Private PB1 As Guna.UI2.WinForms.Guna2CircleProgressBar
-    Private SuccessImg As PictureBox
+    Private WithEvents SuccessImg As PictureBox
     Private Status As Label
     Private Download As Guna.UI2.WinForms.Guna2Button
     Private cts As CancellationTokenSource = New CancellationTokenSource()
@@ -135,7 +135,7 @@ Public Class SearchForm
     Private Sub CtrlRightClick(sender As Object, e As MouseEventArgs)
         Dim ctrl As Control = DirectCast(sender, Control)
         Dim newpos As Point = ctrl.PointToClient(Control.MousePosition)
-        'ClickedNoteID = ctrl.Tag
+
 
 
         ' Convert the mouse position to client coordinates
@@ -258,6 +258,7 @@ Public Class SearchForm
         'ctxTrack.Visible = False
         Download.Visible = False
         Dim filepath As String = String.Empty
+
         Try
             If MainForm.SearchEngine = "Spotify" Then
                 url = Await Spotify2Youtube(title & " ", author, cts.Token)
@@ -273,16 +274,19 @@ Public Class SearchForm
             TaskbarManager.Instance.SetProgressState(TaskbarProgressBarState.Normal)
 
             Dim progressHandler = New Progress(Of DownloadProgress)(Sub(p)
+                                                                        SuccessImg.Visible = False
                                                                         PB1.Value = CInt(p.Progress * 100)
                                                                         TaskbarManager.Instance.SetProgressValue(CInt(p.Progress * 100), 100)
                                                                         Select Case p.State
                                                                             Case 1
-                                                                    'Status.Text = "Requesting download..."
+                                                            'Status.Text = "Requesting download..."
                                                                             Case 2
-                                                                    'Status.Text = "Downloading..."
+                                                            'Status.Text = "Downloading..."
                                                                             Case 3
-                                                                    'Status.Text = "Finalizing..."
+                                                            'Status.Text = "Finalizing..."
                                                                             Case 5
+                                                                                'PB1.Visible = False
+                                                                                SuccessImg.Visible = True
                                                                                 'Status.Text = ""
                                                                         End Select
                                                                         'Status.Text = p.State '$"Downloading... {p.Progress * 100}%"
@@ -301,8 +305,8 @@ Public Class SearchForm
                     filepath = res.Data
             End Select
 
-            PB1.Visible = False
-            SuccessImg.Visible = True
+            'PB1.Visible = False
+            'SuccessImg.Visible = True
             TaskbarManager.Instance.SetProgressState(TaskbarProgressBarState.NoProgress)
         Catch ex As Exception
             TaskbarManager.Instance.SetProgressState(TaskbarProgressBarState.Error)
@@ -916,7 +920,7 @@ Public Class SearchForm
                 End Select
 
                 parentControl.PB1.Visible = False
-                parentControl.SuccessImg.Visible = True
+                'parentControl.SuccessImg.Visible = True
                 TaskbarManager.Instance.SetProgressState(TaskbarProgressBarState.NoProgress)
             Catch ex As Exception
                 TaskbarManager.Instance.SetProgressState(TaskbarProgressBarState.Error)

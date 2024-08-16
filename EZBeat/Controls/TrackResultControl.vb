@@ -13,7 +13,7 @@ Public Class TrackResultControl
     Public Event RightClicked As EventHandler
 
 
-    Private Sub Guna2Panel1_MouseEnter(sender As Object, e As EventArgs) Handles Title.MouseEnter, ImgBox.MouseEnter, MainPanel.MouseEnter, Author.MouseEnter, PlayBtn.MouseEnter, DurationLbl.MouseEnter, DLBtn.MouseEnter, PB1.MouseEnter
+    Private Sub Guna2Panel1_MouseEnter(sender As Object, e As EventArgs) Handles Title.MouseEnter, ImgBox.MouseEnter, MainPanel.MouseEnter, Author.MouseEnter, PlayBtn.MouseEnter, DurationLbl.MouseEnter, DLBtn.MouseEnter, PB1.MouseEnter, SuccessImg.MouseEnter
         RaiseEvent MouseEnterControl(Me, e)
 
     End Sub
@@ -37,7 +37,7 @@ Public Class TrackResultControl
 
     End Sub
 
-    Private Sub Guna2Panel1_MouseLeave(sender As Object, e As EventArgs) Handles Title.MouseLeave, ImgBox.MouseLeave, MainPanel.MouseLeave, Author.MouseLeave, PlayBtn.MouseLeave, DurationLbl.MouseLeave, DLBtn.MouseLeave, PB1.MouseLeave
+    Private Sub Guna2Panel1_MouseLeave(sender As Object, e As EventArgs) Handles Title.MouseLeave, ImgBox.MouseLeave, MainPanel.MouseLeave, Author.MouseLeave, PlayBtn.MouseLeave, DurationLbl.MouseLeave, DLBtn.MouseLeave, PB1.MouseLeave, SuccessImg.MouseLeave
         RaiseEvent MouseLeftControl(Me, EventArgs.Empty)
     End Sub
 
