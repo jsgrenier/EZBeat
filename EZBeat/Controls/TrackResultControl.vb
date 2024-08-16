@@ -13,18 +13,18 @@ Public Class TrackResultControl
     Public Event RightClicked As EventHandler
 
 
-    Private Sub Guna2Panel1_MouseEnter(sender As Object, e As EventArgs) Handles Title.MouseEnter, ImgBox.MouseEnter, MainPanel.MouseEnter, Author.MouseEnter, PlayBtn.MouseEnter, DurationLbl.MouseEnter, DLBtn.MouseEnter, PB1.MouseEnter, SuccessImg.MouseEnter
+    Private Sub Guna2Panel1_MouseEnter(sender As Object, e As EventArgs) Handles Title.MouseEnter, ImgBox.MouseEnter, MainPanel.MouseEnter, Author.MouseEnter, PlayBtn.MouseEnter, DurationLbl.MouseEnter, PB1.MouseEnter, SuccessImg.MouseEnter, DLBtn.MouseEnter
         RaiseEvent MouseEnterControl(Me, e)
 
     End Sub
 
-    Private Sub TrackResultControl_MouseClick(sender As Object, e As MouseEventArgs) Handles Title.MouseClick, ImgBox.MouseClick, MainPanel.MouseClick, Author.MouseClick, PlayBtn.MouseClick, DurationLbl.MouseClick, DLBtn.MouseClick, PB1.MouseClick
+    Private Sub TrackResultControl_MouseClick(sender As Object, e As MouseEventArgs) Handles Title.MouseClick, ImgBox.MouseClick, MainPanel.MouseClick, Author.MouseClick, PlayBtn.MouseClick, DurationLbl.MouseClick, PB1.MouseClick, DLBtn.MouseClick
         If e.Button = MouseButtons.Right Then
             RaiseEvent RightClicked(Me, e)
         End If
     End Sub
 
-    Private Sub Title_MouseClick(sender As Object, e As EventArgs) Handles Title.Click, ImgBox.Click, MainPanel.Click, Author.Click, PlayBtn.Click, DurationLbl.Click, DLBtn.Click, PB1.Click
+    Private Sub Title_MouseClick(sender As Object, e As EventArgs) Handles Title.Click, ImgBox.Click, MainPanel.Click, Author.Click, PlayBtn.Click, DurationLbl.Click, PB1.Click, DLBtn.Click
 
         MainPanel.FillColor = Color.FromArgb(45, 46, 49)
         ImgBox.BackColor = Color.FromArgb(45, 46, 49)
@@ -37,7 +37,7 @@ Public Class TrackResultControl
 
     End Sub
 
-    Private Sub Guna2Panel1_MouseLeave(sender As Object, e As EventArgs) Handles Title.MouseLeave, ImgBox.MouseLeave, MainPanel.MouseLeave, Author.MouseLeave, PlayBtn.MouseLeave, DurationLbl.MouseLeave, DLBtn.MouseLeave, PB1.MouseLeave, SuccessImg.MouseLeave
+    Private Sub Guna2Panel1_MouseLeave(sender As Object, e As EventArgs) Handles Title.MouseLeave, ImgBox.MouseLeave, MainPanel.MouseLeave, Author.MouseLeave, PlayBtn.MouseLeave, DurationLbl.MouseLeave, PB1.MouseLeave, SuccessImg.MouseLeave, DLBtn.MouseLeave
         RaiseEvent MouseLeftControl(Me, EventArgs.Empty)
     End Sub
 

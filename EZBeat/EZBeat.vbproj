@@ -264,8 +264,8 @@
     <Reference Include="YouTubeApiSharp, Version=0.0.1.1, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\YouTubeApiSharp.0.0.5\lib\netstandard2.0\YouTubeApiSharp.dll</HintPath>
     </Reference>
-    <Reference Include="YoutubeDLSharp, Version=1.1.0.246, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\YoutubeDLSharp.1.1.0\lib\net45\YoutubeDLSharp.dll</HintPath>
+    <Reference Include="YoutubeDLSharp, Version=1.1.1.24210, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\YoutubeDLSharp.1.1.1\lib\net45\YoutubeDLSharp.dll</HintPath>
     </Reference>
     <Reference Include="YoutubeExplode, Version=6.3.16.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\YoutubeExplode.6.3.16\lib\net461\YoutubeExplode.dll</HintPath>

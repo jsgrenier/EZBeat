@@ -305,8 +305,6 @@ Public Class SearchForm
                     filepath = res.Data
             End Select
 
-            'PB1.Visible = False
-            'SuccessImg.Visible = True
             TaskbarManager.Instance.SetProgressState(TaskbarProgressBarState.NoProgress)
         Catch ex As Exception
             TaskbarManager.Instance.SetProgressState(TaskbarProgressBarState.Error)
@@ -509,17 +507,17 @@ Public Class SearchForm
         Try
             Select Case MainForm.SearchEngine
                 Case "Youtube"
-                    DotScaling1.Visible = True
+                    LoadingAnim.Visible = True
                     FlowLayoutPanel1.Controls.Clear()
                     Await SearchYT(query, cts.Token)
 
                 Case "Soundcloud"
-                    DotScaling1.Visible = True
+                    LoadingAnim.Visible = True
                     FlowLayoutPanel1.Controls.Clear()
                     Await SearchSC(query, cts.Token)
 
                 Case "Spotify"
-                    DotScaling1.Visible = True
+                    LoadingAnim.Visible = True
                     FlowLayoutPanel1.Controls.Clear()
                     Await SearchSP(query, cts.Token)
             End Select
@@ -561,7 +559,6 @@ Public Class SearchForm
                 AddHandler Ctrl.PlayBtn.MouseDown, AddressOf Ctrl_PlayBtn_MouseDown
                 AddHandler Ctrl.MouseLeftControl, AddressOf Ctrl_MouseLeftControl
                 AddHandler Ctrl.MouseEnterControl, AddressOf Ctrl_MouseEnterControl
-                AddHandler Ctrl.DLBtn.MouseDown, AddressOf Ctrl_DL_MouseDown
                 AddHandler Ctrl.RightClicked, AddressOf CtrlRightClick
                 Ctrl.URI = track.Url
 
@@ -614,7 +611,7 @@ Public Class SearchForm
             FlowLayoutPanel1.ResumeLayout()
             FlowLayoutPanel1.PerformLayout() ' Force layout update
 
-            DotScaling1.Visible = False
+            LoadingAnim.Visible = False
 
             If Guna2VScrollBar1 IsNot Nothing Then
                 Guna2VScrollBar1.Maximum = FlowLayoutPanel1.VerticalScroll.Maximum
@@ -670,7 +667,6 @@ Public Class SearchForm
                 AddHandler Ctrl.PlayBtn.MouseDown, AddressOf Ctrl_PlayBtn_MouseDown
                 AddHandler Ctrl.MouseLeftControl, AddressOf Ctrl_MouseLeftControl
                 AddHandler Ctrl.MouseEnterControl, AddressOf Ctrl_MouseEnterControl
-                AddHandler Ctrl.DLBtn.MouseDown, AddressOf Ctrl_DL_MouseDown
                 AddHandler Ctrl.RightClicked, AddressOf CtrlRightClick
                 Dim title = If(track.Title, String.Empty)
                 Dim img = If(track.ArtworkUrl, "https://www.gravatar.com/avatar/7771a96494d732c4e34f6895879eebf7?size=192&d=mm")
@@ -730,7 +726,7 @@ Public Class SearchForm
 
             ' Add all controls to the FlowLayoutPanel1 at once
             FlowLayoutPanel1.Controls.AddRange(controlArray)
-            DotScaling1.Visible = False
+            LoadingAnim.Visible = False
             FlowLayoutPanel1.ResumeLayout()
             FlowLayoutPanel1.PerformLayout() ' Force layout update
             If Guna2VScrollBar1 IsNot Nothing Then
@@ -775,7 +771,6 @@ Public Class SearchForm
                     AddHandler ctrl.PlayBtn.MouseDown, AddressOf Ctrl_PlayBtn_MouseDown
                     AddHandler ctrl.MouseLeftControl, AddressOf Ctrl_MouseLeftControl
                     AddHandler ctrl.MouseEnterControl, AddressOf Ctrl_MouseEnterControl
-                    AddHandler ctrl.DLBtn.MouseDown, AddressOf Ctrl_DL_MouseDown
                     AddHandler ctrl.RightClicked, AddressOf CtrlRightClick
                     Dim id = track.Id
                     Dim title = track.Title
@@ -845,7 +840,7 @@ Public Class SearchForm
                 FlowLayoutPanel1.ResumeLayout()
                 FlowLayoutPanel1.PerformLayout() ' Force layout update
 
-                DotScaling1.Visible = False
+                LoadingAnim.Visible = False
 
                 If Guna2VScrollBar1 IsNot Nothing Then
                     Guna2VScrollBar1.Maximum = FlowLayoutPanel1.VerticalScroll.Maximum
@@ -859,111 +854,10 @@ Public Class SearchForm
         Catch ex As Exception
             Dim lbl As New ResultError()
             FlowLayoutPanel1.Controls.Add(lbl)
-            DotScaling1.Visible = False
+            LoadingAnim.Visible = False
             Console.WriteLine(ex.Message.ToString())
         End Try
     End Function
-
-
-
-    Private Async Sub Ctrl_DL_MouseDown(sender As Object, e As MouseEventArgs)
-        If e.Button = MouseButtons.Left Then
-            Dim filepath As String = String.Empty
-            Dim spotify As New SpotifyToYoutube()
-            Dim clickedControl As Control = DirectCast(sender, Control)
-            Dim parentControl As TrackResultControl = clickedControl.Parent.Parent
-            parentControl.DLBtn.Visible = False
-            Try
-                If MainForm.SearchEngine = "Spotify" Then
-                    url = Await Spotify2Youtube(parentControl.Title.Text & " ", parentControl.Author.Text, cts.Token)
-                Else
-                    url = parentControl.URI
-                End If
-
-                Dim ytdl = New YoutubeDL()
-                ytdl.YoutubeDLPath = "yt-dlp.exe"
-                ytdl.FFmpegPath = "ffmpeg.exe"
-                ytdl.OutputFolder = My.Settings.SaveLocation
-                ytdl.OutputFileTemplate = "%(title)s [%(uploader)s].%(ext)s"
-
-                parentControl.PB1.Visible = True
-
-                TaskbarManager.Instance.SetProgressState(TaskbarProgressBarState.Normal)
-
-                Dim progressHandler = New Progress(Of DownloadProgress)(Sub(p)
-                                                                            parentControl.PB1.Value = CInt(p.Progress * 100)
-                                                                            TaskbarManager.Instance.SetProgressValue(CInt(p.Progress * 100), 100)
-                                                                            Select Case p.State
-                                                                                Case 1
-                                                                                'Status.Text = "Requesting download..."
-                                                                                Case 2
-                                                                                'Status.Text = "Downloading..."
-                                                                                Case 3
-                                                                                'Status.Text = "Finalizing..."
-                                                                                Case 5
-                                                                                    'Status.Text = ""
-                                                                            End Select
-                                                                            'Status.Text = p.State '$"Downloading... {p.Progress * 100}%"
-                                                                        End Sub)
-
-                ' Pass the progress handler to the RunAudioDownload method
-                Select Case My.Settings.AudioFormat
-                    Case "WAV"
-                        Dim res = Await ytdl.RunAudioDownload(url, AudioConversionFormat.Wav, progress:=progressHandler)
-                        filepath = res.Data
-                    Case "AAC"
-                        Dim res = Await ytdl.RunAudioDownload(url, AudioConversionFormat.Aac, progress:=progressHandler)
-                        filepath = res.Data
-                    Case "MP3"
-                        Dim res = Await ytdl.RunAudioDownload(url, AudioConversionFormat.Mp3, progress:=progressHandler)
-                        filepath = res.Data
-                End Select
-
-                parentControl.PB1.Visible = False
-                'parentControl.SuccessImg.Visible = True
-                TaskbarManager.Instance.SetProgressState(TaskbarProgressBarState.NoProgress)
-            Catch ex As Exception
-                TaskbarManager.Instance.SetProgressState(TaskbarProgressBarState.Error)
-            End Try
-
-
-            Try
-                Using file As TagLib.File = TagLib.File.Create(filepath)
-                    Select Case My.Settings.AudioFormat
-                        Case "WAV"
-                            ' Ensure RIFF INFO tags are used for WAV files
-                            If TypeOf file Is TagLib.Riff.File Then
-                                Dim wavFile = CType(file, TagLib.Riff.File)
-                                wavFile.Tag.Title = title
-                                wavFile.Tag.Performers = New String() {author}
-                                wavFile.Tag.AlbumArtists = New String() {author}
-                                wavFile.Save()
-                            End If
-                        Case "MP3"
-                            If TypeOf file Is TagLib.Mpeg.AudioFile Then
-                                Dim mp3File = CType(file, TagLib.Mpeg.AudioFile)
-                                mp3File.Tag.Title = title
-                                mp3File.Tag.Performers = New String() {author}
-                                mp3File.Tag.AlbumArtists = New String() {author}
-                                mp3File.Save()
-                            End If
-                        Case "AAC"
-                            ' Ensure MP4 tags are used for AAC files
-                            If TypeOf file Is TagLib.Mpeg4.File Then
-                                Dim aacFile = CType(file, TagLib.Mpeg4.File)
-                                aacFile.Tag.Title = title
-                                aacFile.Tag.Performers = New String() {author}
-                                aacFile.Tag.AlbumArtists = New String() {author}
-                                aacFile.Save()
-                            End If
-                    End Select
-                End Using
-
-            Catch ex As Exception
-                MsgBox("TagLib Error: " & ex.Message)
-            End Try
-        End If
-    End Sub
 
 
 
@@ -1000,7 +894,7 @@ Public Class SearchForm
     Private Sub SearchForm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         CBBox1.Text = MainForm.CategorieSelected
         CBBox2.Text = MainForm.CountSelected
-        DotScaling1.Start()
+        LoadingAnim.Start()
         Me.Controls.Add(ctxTrack)
         Me.Controls.Add(ctxArtist)
         Me.Controls.Add(ctxCount)

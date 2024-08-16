@@ -24,23 +24,23 @@ Partial Class TrackResultControl
     Private Sub InitializeComponent()
         Me.MainPanel = New Guna.UI2.WinForms.Guna2Panel()
         Me.PB1 = New Guna.UI2.WinForms.Guna2CircleProgressBar()
-        Me.DLBtn = New Guna.UI2.WinForms.Guna2Button()
+        Me.SuccessImg = New System.Windows.Forms.PictureBox()
         Me.DurationLbl = New System.Windows.Forms.Label()
         Me.Url = New System.Windows.Forms.Label()
         Me.PlayBtn = New Guna.UI2.WinForms.Guna2Button()
         Me.Author = New System.Windows.Forms.Label()
         Me.Title = New System.Windows.Forms.Label()
         Me.ImgBox = New Guna.UI2.WinForms.Guna2PictureBox()
-        Me.SuccessImg = New System.Windows.Forms.PictureBox()
+        Me.DLBtn = New Guna.UI2.WinForms.Guna2Button()
         Me.MainPanel.SuspendLayout()
         Me.PB1.SuspendLayout()
-        CType(Me.ImgBox, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SuccessImg, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.ImgBox, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'MainPanel
         '
-        Me.MainPanel.BackColor = System.Drawing.Color.FromArgb(CType(CType(30, Byte), Integer), CType(CType(31, Byte), Integer), CType(CType(34, Byte), Integer))
+        Me.MainPanel.BackColor = System.Drawing.Color.Transparent
         Me.MainPanel.BorderColor = System.Drawing.Color.FromArgb(CType(CType(69, Byte), Integer), CType(CType(71, Byte), Integer), CType(CType(76, Byte), Integer))
         Me.MainPanel.BorderRadius = 6
         Me.MainPanel.Controls.Add(Me.PB1)
@@ -77,27 +77,15 @@ Partial Class TrackResultControl
         Me.PB1.Text = "Guna2CircleProgressBar1"
         Me.PB1.Visible = False
         '
-        'DLBtn
+        'SuccessImg
         '
-        Me.DLBtn.BackColor = System.Drawing.Color.Transparent
-        Me.DLBtn.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.DLBtn.CustomImages.Image = Global.EZBeat.My.Resources.Resources.icons8_download_24_dark
-        Me.DLBtn.CustomImages.ImageAlign = System.Windows.Forms.HorizontalAlignment.Center
-        Me.DLBtn.CustomImages.ImageSize = New System.Drawing.Size(24, 24)
-        Me.DLBtn.DisabledState.BorderColor = System.Drawing.Color.DarkGray
-        Me.DLBtn.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray
-        Me.DLBtn.DisabledState.FillColor = System.Drawing.Color.FromArgb(CType(CType(169, Byte), Integer), CType(CType(169, Byte), Integer), CType(CType(169, Byte), Integer))
-        Me.DLBtn.DisabledState.ForeColor = System.Drawing.Color.FromArgb(CType(CType(141, Byte), Integer), CType(CType(141, Byte), Integer), CType(CType(141, Byte), Integer))
-        Me.DLBtn.FillColor = System.Drawing.Color.Empty
-        Me.DLBtn.Font = New System.Drawing.Font("Segoe UI", 9.0!)
-        Me.DLBtn.ForeColor = System.Drawing.Color.White
-        Me.DLBtn.Location = New System.Drawing.Point(644, 15)
-        Me.DLBtn.Name = "DLBtn"
-        Me.DLBtn.PressedDepth = 0
-        Me.DLBtn.Size = New System.Drawing.Size(24, 24)
-        Me.DLBtn.TabIndex = 7
-        Me.DLBtn.UseTransparentBackground = True
-        Me.DLBtn.Visible = False
+        Me.SuccessImg.Image = Global.EZBeat.My.Resources.Resources.icons8_success_30
+        Me.SuccessImg.Location = New System.Drawing.Point(0, 0)
+        Me.SuccessImg.Name = "SuccessImg"
+        Me.SuccessImg.Size = New System.Drawing.Size(30, 30)
+        Me.SuccessImg.TabIndex = 19
+        Me.SuccessImg.TabStop = False
+        Me.SuccessImg.Visible = False
         '
         'DurationLbl
         '
@@ -180,15 +168,27 @@ Partial Class TrackResultControl
         Me.ImgBox.TabIndex = 0
         Me.ImgBox.TabStop = False
         '
-        'SuccessImg
+        'DLBtn
         '
-        Me.SuccessImg.Image = Global.EZBeat.My.Resources.Resources.icons8_success_30
-        Me.SuccessImg.Location = New System.Drawing.Point(0, 0)
-        Me.SuccessImg.Name = "SuccessImg"
-        Me.SuccessImg.Size = New System.Drawing.Size(30, 30)
-        Me.SuccessImg.TabIndex = 19
-        Me.SuccessImg.TabStop = False
-        Me.SuccessImg.Visible = False
+        Me.DLBtn.BackColor = System.Drawing.Color.Transparent
+        Me.DLBtn.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.DLBtn.CustomImages.Image = Global.EZBeat.My.Resources.Resources.icons8_download_24_dark
+        Me.DLBtn.CustomImages.ImageAlign = System.Windows.Forms.HorizontalAlignment.Center
+        Me.DLBtn.CustomImages.ImageSize = New System.Drawing.Size(24, 24)
+        Me.DLBtn.DisabledState.BorderColor = System.Drawing.Color.DarkGray
+        Me.DLBtn.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray
+        Me.DLBtn.DisabledState.FillColor = System.Drawing.Color.FromArgb(CType(CType(169, Byte), Integer), CType(CType(169, Byte), Integer), CType(CType(169, Byte), Integer))
+        Me.DLBtn.DisabledState.ForeColor = System.Drawing.Color.FromArgb(CType(CType(141, Byte), Integer), CType(CType(141, Byte), Integer), CType(CType(141, Byte), Integer))
+        Me.DLBtn.FillColor = System.Drawing.Color.Empty
+        Me.DLBtn.Font = New System.Drawing.Font("Segoe UI", 9.0!)
+        Me.DLBtn.ForeColor = System.Drawing.Color.White
+        Me.DLBtn.Location = New System.Drawing.Point(644, 15)
+        Me.DLBtn.Name = "DLBtn"
+        Me.DLBtn.PressedDepth = 0
+        Me.DLBtn.Size = New System.Drawing.Size(24, 24)
+        Me.DLBtn.TabIndex = 7
+        Me.DLBtn.UseTransparentBackground = True
+        Me.DLBtn.Visible = False
         '
         'TrackResultControl
         '
@@ -201,8 +201,8 @@ Partial Class TrackResultControl
         Me.MainPanel.ResumeLayout(False)
         Me.MainPanel.PerformLayout()
         Me.PB1.ResumeLayout(False)
-        CType(Me.ImgBox, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SuccessImg, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.ImgBox, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -214,7 +214,7 @@ Partial Class TrackResultControl
     Friend WithEvents PlayBtn As Guna.UI2.WinForms.Guna2Button
     Friend WithEvents Url As Label
     Friend WithEvents DurationLbl As Label
-    Friend WithEvents DLBtn As Guna.UI2.WinForms.Guna2Button
     Friend WithEvents PB1 As Guna.UI2.WinForms.Guna2CircleProgressBar
     Friend WithEvents SuccessImg As PictureBox
+    Friend WithEvents DLBtn As Guna.UI2.WinForms.Guna2Button
 End Class
